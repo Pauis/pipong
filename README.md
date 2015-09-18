@@ -74,7 +74,6 @@ Run the excutable file.
 ```
 pi@raspberrypi ~/pipong $ sudo ./pipong
 ```
-And quit the program with Ctrl^Z.
 
 #### Makefile
 This project supports [Make] (http://www.gnu.org/software/make/). Makefile in this project supports some functions.
