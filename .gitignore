@@ -22,6 +22,9 @@
 *.a
 *.lib
 
+# Temporary files
+*.tlist
+
 # Executables
 pipong
 *.exe
