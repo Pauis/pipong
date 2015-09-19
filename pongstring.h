@@ -41,6 +41,7 @@ namespace pong
 			color = "default";
 		}
 		const char* c_str(void);
+		PString& ShowElement(void);
 		friend ostream& operator<<(ostream& os, const PString& pstr);
 	};
 }
