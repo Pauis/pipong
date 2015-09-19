@@ -21,19 +21,17 @@
 ### Hardware
 First, gather these objects.
 
-| 2p | 1p |
-|---|---|
-| 1 Over 1920*1080 resolution display | 1 Over 1920*1080 resolution display |
-| 1 Raspberry Pi (recommend B series) | 1 Raspberry Pi (recommend B series) |
-| 2 Breadboards | 1 Breadboard |
-| 4 pushbutton switches | 2 pushbutton switches |
-| 4 LEDs | 2 LEDs |
-| 4 1KOhm resistors | 2 1KOhm resistors|
-| 4 100Ohm resistors | 2 100Ohm resistors |
-| 8 jumper lines | 4 jumper lines |
-| 12 female-male lines | 6 female-male lines |
+| 1 Over 1920*1080 resolution display |
+| 1 Raspberry Pi (recommend B series) |
+| 2 Breadboards |
+| 4 pushbutton switches |
+| 4 LEDs |
+| 4 1KOhm resistors |
+| 4 100Ohm resistors |
+| 8 jumper lines |
+| 12 female-male lines |
 
-And make the controller. For 1p and 2p:
+And make the controller.
 ```
 3.3 VDC - 1KOhm resistor - pushbutton switch - GPIO 0
                                    |
@@ -50,7 +48,6 @@ GPIO 4 - 100Ohm resistor - LED - Ground
 ```
 GPIO 5 - 100Ohm resistor - LED - Ground
 ```
-And 2p only:
 ```
 3.3 VDC - 1KOhm resistor - pushbutton switch - GPIO 6
                                    |
