@@ -15,12 +15,12 @@ namespace pong
 		string color;
 		Point pos;
 	public:
-		PString(string str, char* color, Point pos)
+		PString(string str, string color, Point pos)
 			: str(str), color(color), pos(pos)
 		{
 			// empty
 		}
-		PString(string str, char* color, int x, int y)
+		PString(string str, string color, int x, int y)
 			: str(str), color(color), pos(x, y)
 		{
 			// empty
@@ -35,7 +35,7 @@ namespace pong
 		{
 			color = "default";
 		}
-		PString(string string)
+		PString(string str)
 			: str(str), pos(0, 0)
 		{
 			color = "default";

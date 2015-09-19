@@ -13,7 +13,7 @@ namespace pong
 
 	ostream& operator<<(ostream& os, const Rect& rect)
 	{
-		os << rect.spoint << " Length: " << rect.length << ", Width: " << rect.width;
+		os << '[' << rect.spoint << ", Length:" << rect.length << ", Width:" << rect.width << ']';
 		return os;
 	}
 }

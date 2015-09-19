@@ -2,6 +2,7 @@
 #include "pongstring.h"
 
 using std::ostream;
+using std::endl;
 
 namespace pong
 {
@@ -12,7 +13,7 @@ namespace pong
 
 	ostream& operator<<(ostream& os, const PString& pstr)
 	{
-		os << pstr.str;
+		os << "[String:" << pstr.str << ", Color:" << pstr.color << ", Position:"<< pstr.pos << ']';
 		return os;
 	}
 }
