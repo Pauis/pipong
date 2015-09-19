@@ -1,5 +1,5 @@
 #include <iostream>
-#include "ponggmobj.h"
+#include "pongobj.h"
 
 using std::ostream;
 

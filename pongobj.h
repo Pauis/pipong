@@ -1,5 +1,5 @@
-#ifndef __PONGGMOBJ_H__
-#define __PONGGMOBJ_H__
+#ifndef __PONGOBJ_H__
+#define __PONGOBJ_H__
 
 using std::ostream;
 
