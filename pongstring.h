@@ -35,14 +35,7 @@ namespace pong
 		{
 			color = "default";
 		}
-		PString(string str)
-			: str(str), pos(0, 0)
-		{
-			color = "default";
-		}
 		const char* c_str(void);
-		PString& ShowElement(void);
-		friend ostream& operator<<(ostream& os, const PString& pstr);
 	};
 }
 

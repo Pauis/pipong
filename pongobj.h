@@ -16,7 +16,6 @@ namespace pong
 		{
 			// empty
 		}
-		friend ostream& operator<<(ostream& os, const Point& pos);
 	};
 
 	class Rect
@@ -36,7 +35,6 @@ namespace pong
 		{
 			// empty
 		}
-		friend ostream& operator<<(ostream& os, const Rect& rect);
 	};
 }
 
