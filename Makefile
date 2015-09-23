@@ -7,7 +7,7 @@ CC             = g++
 MAINFLAG       = -o
 ADDITIONALFLAG = -lwiringPi
 TARGET         = pipong
-DEPFLAG        = -M
+DEPFLAG        = -MM
 DEPENDFILE     = dependfile.tlist
 
 $(TARGET) : $(OBJECTS)
