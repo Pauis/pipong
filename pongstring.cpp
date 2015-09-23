@@ -10,7 +10,7 @@ using std::string;
 
 namespace pong
 {
-	const char* PString::c_str(void)
+	const char* PString::c_str(void) const
 	{
 		return str.c_str();
 	}

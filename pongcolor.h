@@ -7,9 +7,9 @@ namespace pong
 	{
 		enum
 		{
-			DEFAULT = 0;
-		}
-	}
+			DEFAULT = 0
+		};
+	};
 }
 
 #endif
