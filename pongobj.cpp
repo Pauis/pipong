@@ -5,6 +5,12 @@ using std::ostream;
 
 namespace pong
 {
+	Point::Point(int xpos, int ypos)
+		: xpos(xpos), ypos(ypos)
+	{
+		// empty
+	}
+
 	Point& Point::Set(int xpos, int ypos)
 	{
 		(this->xpos) = xpos;
@@ -35,6 +41,18 @@ namespace pong
 	int Point::GetYpos(void) const
 	{
 		return ypos;
+	}
+
+	Rect::Rect(int xpos, int ypos, int length, int width)
+		: spoint(xpos, ypos), length(length), width(width)
+	{
+		// empty
+	}
+
+	Rect::Rect(Point& spoint, int length, int width)
+		: spoint(spoint), length(length), width(width)
+	{
+		// empty
 	}
 
 	Rect& Rect::Set(int xpos, int ypos, int length, int width)

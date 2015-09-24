@@ -11,11 +11,7 @@ namespace pong
 		int xpos;
 		int ypos;
 	public:
-		Point(int xpos=0, int ypos=0)
-			: xpos(xpos), ypos(ypos)
-		{
-			// empty
-		}
+		Point(int xpos=0, int ypos=0);
 		Point& Set(int xpos, int ypos);
 		Point& SetXpos(int xpos);
 		Point& SetYpos(int ypos);
@@ -30,16 +26,8 @@ namespace pong
 		int length;
 		int width;
 	public:
-		Rect(int xpos, int ypos, int length, int width)
-			: spoint(xpos, ypos), length(length), width(width)
-		{
-			// empty
-		}
-		Rect(Point& spoint, int length, int width)
-			: spoint(spoint), length(length), width(width)
-		{
-			// empty
-		}
+		Rect(int xpos, int ypos, int length, int width);
+		Rect(Point& spoint, int length, int width);
 		Rect& Set(int xpos, int ypos, int length, int width);
 		Rect& Set(Point& spoint, int length, int width);
 		Rect& SetSpoint(Point spoint);
