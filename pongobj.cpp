@@ -129,4 +129,9 @@ namespace pong
 	{
 		return width;
 	}
+
+	Rect::~Rect()
+	{
+		// empty
+	}
 }

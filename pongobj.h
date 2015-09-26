@@ -39,6 +39,7 @@ namespace pong
 		Point GetSpoint(void) const;
 		int GetLength(void) const;
 		int GetWidth(void) const;
+		virtual ~Rect();
 	};
 }
 
