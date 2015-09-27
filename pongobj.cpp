@@ -2,6 +2,9 @@
 #include "pongobj.h"
 
 using std::ostream;
+using pong::Point;
+using pong::Rect;
+using pong::PRect;
 
 namespace pong
 {
@@ -133,5 +136,45 @@ namespace pong
 	Rect::~Rect()
 	{
 		// empty
+	}
+
+	PRect::PRect(int xpos, int ypos, int length, int width, int colornum)
+		: Rect(xpos, ypos, length, width), color(colornum)
+	{
+		// empty
+	}
+
+	PRect::PRect(Point& spoint, int length, int width, int colornum)
+		: Rect(spoint, length, width), color(colornum)
+	{
+		// empty
+	}
+
+	PRect& PRect::Set(int xpos, int ypos, int length, int width, int colornum)
+	{
+		Rect::Set(xpos, ypos, length, width);
+		(this->color).Set(colornum);
+
+		return *this;
+	}
+
+	PRect& PRect::Set(Point& spoint, int length, int width, int colornum)
+	{
+		Rect::Set(spoint, length, width);
+		(this->color).Set(colornum);
+
+		return *this;
+	}
+
+	PRect& PRect::SetColor(int colornum)
+	{
+		color.Set(colornum);
+
+		return *this;
+	}
+
+	PColor PRect::GetColor(void) const
+	{
+		return color;
 	}
 }

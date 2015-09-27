@@ -47,7 +47,7 @@ namespace pong
 	class PRect : public Rect
 	{
 	private:
-		PColor colornum;
+		PColor color;
 	public:
 		PRect(int xpos, int ypos, int length, int width, int colornum=PColor::DEFAULT);
 		PRect(Point& spoint, int length, int width, int colornum=PColor::DEFAULT);
@@ -55,7 +55,6 @@ namespace pong
 		PRect& Set(Point& spoint, int length, int width, int colornum=PColor::DEFAULT);
 		PRect& SetColor(int colornum=PColor::DEFAULT);
 		PColor GetColor(void) const;
-		virtual ~PRect();
 	};
 }
 
