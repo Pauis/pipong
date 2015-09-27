@@ -1,7 +1,9 @@
 #ifndef __PONGOBJ_H__
 #define __PONGOBJ_H__
 
+#include "pongcolor.h"
 using std::ostream;
+using pong::PColor;
 
 namespace pong
 {
@@ -40,6 +42,20 @@ namespace pong
 		int GetLength(void) const;
 		int GetWidth(void) const;
 		virtual ~Rect();
+	};
+
+	class PRect : public Rect
+	{
+	private:
+		PColor colornum;
+	public:
+		PRect(int xpos, int ypos, int length, int width, int colornum=PColor::DEFAULT);
+		PRect(Point& spoint, int length, int width, int colornum=PColor::DEFAULT);
+		PRect& Set(int xpos, int ypos, int length, int width, int colornum=PColor::DEFAULT);
+		PRect& Set(Point& spoint, int length, int width, int colornum=PColor::DEFAULT);
+		PRect& SetColor(int colornum=PColor::DEFAULT);
+		PColor GetColor(void) const;
+		virtual ~PRect();
 	};
 }
 

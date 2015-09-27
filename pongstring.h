@@ -30,7 +30,7 @@ namespace pong
 		PString& SetSxpos(int xpos);
 		PString& SetSypos(int ypos);
 		string GetString(void) const;
-		int GetColor(void) const;
+		PColor GetColor(void) const;
 		Point GetSpoint(void) const;
 		const char* c_str(void) const;
 	};
