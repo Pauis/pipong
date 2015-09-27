@@ -83,7 +83,7 @@ namespace pong
 
 	int PString::GetColor(void) const
 	{
-		return color;
+		return color.GetNum();
 	}
 
 	Point PString::GetSpoint(void) const

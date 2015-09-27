@@ -14,7 +14,7 @@ namespace pong
 	{
 	private:
 		string str;
-		int color;
+		PColor color;
 		Point spoint;
 	public:
 		PString(string str, int color, Point spoint);
