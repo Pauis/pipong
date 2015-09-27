@@ -3,12 +3,18 @@
 
 namespace pong
 {
-	struct PColor
+	class PColor
 	{
+	private:
+		int colornum;
+	public:
 		enum
 		{
 			DEFAULT = 0
 		};
+		PColor(int colornum=DEFAULT);
+		PColor& Set(int colornum);
+		int GetNum(void);
 	};
 }
 
