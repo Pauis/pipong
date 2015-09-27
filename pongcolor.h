@@ -14,7 +14,7 @@ namespace pong
 		};
 		PColor(int colornum=DEFAULT);
 		PColor& Set(int colornum);
-		int GetNum(void);
+		int GetNum(void) const;
 	};
 }
 

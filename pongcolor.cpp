@@ -16,7 +16,7 @@ namespace pong
 		return *this;
 	}
 
-	int PColor::GetNum(void)
+	int PColor::GetNum(void) const
 	{
 		return colornum;
 	}
