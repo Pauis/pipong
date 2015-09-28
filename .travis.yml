@@ -1,4 +1,6 @@
 language: cpp
-compiler:
-  - gcc
-  - clang
+compiler: gcc
+env:
+  - ARCH=arm
+script:
+  - "bash -ex .travis-ci.sh"
