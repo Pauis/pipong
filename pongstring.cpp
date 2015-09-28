@@ -37,6 +37,8 @@ namespace pong
 		(this->str) = str;
 		(this->color) = color;
 		(this->spoint) = spoint;
+
+		return *this;
 	}
 
 	PString& PString::Set(string str, int color, int xpos, int ypos)
@@ -44,36 +46,50 @@ namespace pong
 		(this->str) = str;
 		(this->color) = color;
 		(this->spoint).Set(xpos, ypos);
+
+		return *this;
 	}
 
 	PString& PString::SetString(string str)
 	{
 		(this->str) = str;
+
+		return *this;
 	}
 
 	PString& PString::SetColor(int color)
 	{
 		(this->color) = color;
+
+		return *this;
 	}
 
 	PString& PString::SetSpoint(Point spoint)
 	{
 		(this->spoint) = spoint;
+
+		return *this;
 	}
 
 	PString& PString::SetSpoint(int xpos, int ypos)
 	{
 		(this->spoint).Set(xpos, ypos);
+
+		return *this;
 	}
 
 	PString& PString::SetSxpos(int xpos)
 	{
 		(this->spoint).SetXpos(xpos);
+
+		return *this;
 	}
 
 	PString& PString::SetSypos(int ypos)
 	{
 		(this->spoint).SetYpos(ypos);
+
+		return *this;
 	}
 
 	string PString::GetString(void) const
