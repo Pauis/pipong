@@ -3,17 +3,17 @@
 SOURCES = $(wildcard *.cpp)
 OBJECTS = $(SOURCES:.cpp=.o)
 
-CC             = g++
+CXX            = g++
 MAINFLAG       = -o
-GPIOFLAG = -lwiringPi
+GPIOFLAG       = -lwiringPi
 TARGET         = pipong
 DEPFLAG        = -MM
 DEPENDFILE     = dependfile.tlist
 
 build : $(OBJECTS)
-	$(CC) $(MAINFLAG) $(TARGET) $(OBJECTS)
+	$(CXX) $(MAINFLAG) $(TARGET) $(OBJECTS)
 dep       :
-	$(CC) $(DEPFLAG) $(SOURCES) > $(DEPENDFILE)
+	$(CXX) $(DEPFLAG) $(SOURCES) > $(DEPENDFILE)
 clean     :
 ifneq ($(wildcard $(TARGET)),)
 	rm $(TARGET)
