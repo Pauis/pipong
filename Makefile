@@ -3,7 +3,7 @@
 SOURCES = $(wildcard *.cpp)
 OBJECTS = $(SOURCES:.cpp=.o)
 
-CXX            = g++
+GCXX            = g++
 MAINFLAG       = -o
 GPIOFLAG       = -lwiringPi
 TARGET         = pipong
@@ -11,6 +11,8 @@ DEPFLAG        = -MM
 DEPENDFILE     = dependfile.tlist
 
 $(TARGET) : $(OBJECTS)
+	$(GCXX) $(MAINFLAG) $(TARGET) $(OBJECTS)
+travis    :
 	$(CXX) $(MAINFLAG) $(TARGET) $(OBJECTS)
 dep       :
 	$(CXX) $(DEPFLAG) $(SOURCES) > $(DEPENDFILE)
