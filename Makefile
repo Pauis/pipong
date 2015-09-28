@@ -12,7 +12,7 @@ DEPENDFILE     = dependfile.tlist
 
 $(TARGET) : $(OBJECTS)
 	$(GCXX) $(MAINFLAG) $(TARGET) $(OBJECTS)
-travis    :
+travis    : $(OBJECTS)
 	$(CXX) $(MAINFLAG) $(TARGET) $(OBJECTS)
 dep       :
 	$(CXX) $(DEPFLAG) $(SOURCES) > $(DEPENDFILE)
