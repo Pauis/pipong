@@ -10,7 +10,7 @@ TARGET         = pipong
 DEPFLAG        = -MM
 DEPENDFILE     = dependfile.tlist
 
-build : $(OBJECTS)
+$(TARGET) : $(OBJECTS)
 	$(CXX) $(MAINFLAG) $(TARGET) $(OBJECTS)
 dep       :
 	$(CXX) $(DEPFLAG) $(SOURCES) > $(DEPENDFILE)
