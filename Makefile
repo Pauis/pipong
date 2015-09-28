@@ -5,13 +5,13 @@ OBJECTS = $(SOURCES:.cpp=.o)
 
 CC             = g++
 MAINFLAG       = -o
-ADDITIONALFLAG = -lwiringPi
+GPIOFLAG = -lwiringPi
 TARGET         = pipong
 DEPFLAG        = -MM
 DEPENDFILE     = dependfile.tlist
 
-$(TARGET) : $(OBJECTS)
-	$(CC) $(MAINFLAG) $(TARGET) $(OBJECTS) $(ADDITIONALFLAG)
+build : $(OBJECTS)
+	$(CC) $(MAINFLAG) $(TARGET) $(OBJECTS)
 dep       :
 	$(CC) $(DEPFLAG) $(SOURCES) > $(DEPENDFILE)
 clean     :
