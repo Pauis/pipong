@@ -4,3 +4,4 @@ env:
   - ARCH=arm
 script:
   - "bash -ex .travis-ci.sh"
+sudo: required
