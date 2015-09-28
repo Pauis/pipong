@@ -21,8 +21,11 @@
 ### Hardware
 First, gather these objects.
 
-| 1 Over 1920*1080 resolution display |
+| For all options: |
+|:-:|
+| 1 Over 1024*768 display |
 | 1 Raspberry Pi (recommend B series) |
+| For GPIO options: |
 | 2 Breadboards |
 | 4 pushbutton switches |
 | 4 LEDs |
