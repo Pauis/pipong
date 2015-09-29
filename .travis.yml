@@ -4,6 +4,4 @@ compiler:
   - clang
 script: "make"
 notifications: never
-env:
-  global:
-    - RPIGPIO=0
+env: RPIGPIO=0
