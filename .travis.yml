@@ -3,5 +3,4 @@ compiler:
   - gcc
   - clang
 script: "make"
-notifications: never
 env: RPIGPIO=0
