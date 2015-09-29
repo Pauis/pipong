@@ -40,6 +40,6 @@ ifneq ($(wildcard $(OBJDIR)),)
 endif
 $(OBJDIR)/%.o : %.cpp
 	@`[ -d $(OBJDIR) ] || mkdir $(OBJDIR)`
-	$(CXX) $(CFLAGS) $(RPIGPIODFLAG) -c $< -o $@
+	$(CXX) $(CFLAGS) -c $< -o $@ $(RPIGPIODFLAG)
 
 -include $(DEPENDFILE)
