@@ -1,4 +1,7 @@
 language: cpp
+os:
+  - linux
+  - osx
 compiler:
   - gcc
   - clang
@@ -6,3 +9,6 @@ script: "make"
 env: RPIGPIO=0
 notifications:
   email: false
+matrix:
+  allow_failures:
+    - os: osx
