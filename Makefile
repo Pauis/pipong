@@ -17,13 +17,18 @@ RPIGPIOLFLAG   =
 endif
 OBJECTS = $(SOURCES:%.cpp=$(OBJDIR)/%.o)
 MAINFLAG       = -o
-TARGET         = $(OBJDIR)/pipong
+TARGETNAME     = pipong
+TARGET         = $(OBJDIR)/$(TARGETNAME)
 DEPFLAG        = -MM -MT
 DEPENDFILE     = $(OBJDIR)/dependfile.tlist
+
+
 
 $(TARGET)     : $(OBJECTS)
 	@`[ -d $(OBJDIR) ] || mkdir $(OBJDIR)`
 	$(CXX) $(MAINFLAG) $(TARGET) $(OBJECTS) $(RPIGPIODFLAG) $(RPIGPIOLFLAG)
+	cp $(TARGET) ../$(TARGETNAME)
+
 dep           :
 ifeq ($(wildcard $(OBJDIR)),)
 	mkdir $(OBJDIR)
@@ -34,10 +39,15 @@ endif
 	for FILE in $(SOURCES:%.cpp=%); do \
 		$(CXX) $(DEPFLAG) $(OBJDIR)/$$FILE.o $$FILE.cpp >> $(DEPENDFILE); \
 	done
+
 clean         :
 ifneq ($(wildcard $(OBJDIR)),)
 	rm -r $(OBJDIR)
 endif
+ifneq ($(wildcard $(TARGETNAME)),)
+	rm $(TARGETNAME)
+endif
+
 $(OBJDIR)/%.o : %.cpp
 	@`[ -d $(OBJDIR) ] || mkdir $(OBJDIR)`
 	$(CXX) $(CFLAGS) -c $< -o $@ $(RPIGPIODFLAG)
