@@ -8,7 +8,7 @@ endif
 endif
 ifeq ($(RPIGPIO), 1)
 OBJDIR         = rpigpio
-RPIGPIODFLAG   = -DUSINGRPIGPIO -lwiringPi
+RPIGPIODFLAG   = -DUSINGRPIGPIO
 RPIGPIOLFLAG   = -lwiringPi
 else
 OBJDIR         = standard
