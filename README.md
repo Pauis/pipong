@@ -4,7 +4,7 @@
 ### x86_64
 | GNU/Linux | OSX | Windows |
 |:-:|:-:|:-:|
-| O | O | X |
+| O | TBD | X |
 
 ### Raspberry Pi
 | Raspberry Pi 1 Model A | Raspberry Pi 1 Model A+ | Raspberry Pi 1 Model B Rev. 1 | Raspberry Pi 1 Model B Rev. 2 | Raspberry Pi 1 Model B+ | Compute Module |
