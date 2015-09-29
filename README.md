@@ -1,6 +1,11 @@
 # Pipong
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 ## Support List
+### x86_64
+| GNU/Linux | OSX | Windows |
+|:-:|:-:|:-:|
+| O | O | X |
+
 ### Raspberry Pi
 | Raspberry Pi 1 Model A | Raspberry Pi 1 Model A+ | Raspberry Pi 1 Model B Rev. 1 | Raspberry Pi 1 Model B Rev. 2 | Raspberry Pi 1 Model B+ | Compute Module |
 |:-:|:-:|:-:|:-:|:-:|:-:|
@@ -12,21 +17,12 @@
 
 *1: Manual transmission of source code or extra device for internet connection is needed.
 
-### Operating System
 | Raspbian | Third Party Operating System |
 |:-:|:-:|
 | O | X |
 
-## Usage
-### Hardware
-First, gather these objects.
-
-| For all options: |
-|:-:|
-| 1 Over 1024*768 display |
-| 1 Raspberry Pi (recommend B series) |
-
-| For GPIO options: (Will be updated) |
+## Hardware for GPIO Options
+| For Raspberry Pi: (Will be updated) |
 |:-:|
 | 2 Breadboards |
 | 4 pushbutton switches |
@@ -70,6 +66,7 @@ GPIO 12 - 100Ohm resistor - LED - Ground
 GPIO 13 - 100Ohm resistor - LED - Ground
 ```
 
+## Usage
 ### Software
 #### Excutable file
 Run the excutable file.
