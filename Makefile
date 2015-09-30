@@ -16,38 +16,38 @@ SDEFINEFLAG    = -DPOSIX
 SLINKFLAG      =
 endif
 
-OBJDIR         = $(MODENAME)_out
-OBJECTS        = $(SOURCES:%.cpp=$(OBJDIR)/%.o)
+OBJDIRNAME     = $(MODENAME)_out
+OBJECTS        = $(SOURCES:%.cpp=$(OBJDIRNAME)/%.o)
 MAINFLAG       = -o
 TARGETNAME     = pipong
-TARGET         = $(OBJDIR)/$(TARGETNAME)
+TARGET         = $(OBJDIRNAME)/$(TARGETNAME)
 DEPFLAG        = -MM -MT
-DEPENDFILE     = $(OBJDIR)/dependfile.tlist
+DEPENDFILE     = $(OBJDIRNAME)/dependfile.tlist
 
 
 
 $(TARGET)     : $(OBJECTS)
-	@`[ -d $(OBJDIR) ] || mkdir $(OBJDIR)`
+	@`[ -d $(OBJDIRNAME) ] || mkdir $(OBJDIRNAME)`
 	$(CXX) $(MAINFLAG) $(TARGET) $(OBJECTS) $(SDEFINEFLAG) $(SLINKFLAG)
 
 dep           :
-ifeq ($(wildcard $(OBJDIR)),)
-	mkdir $(OBJDIR)
+ifeq ($(wildcard $(OBJDIRNAME)),)
+	mkdir $(OBJDIRNAME)
 endif
 ifneq ($(wildcard $(DEPENDFILE)),)
 	rm $(DEPENDFILE)
 endif
 	for FILE in $(SOURCES:%.cpp=%); do \
-		$(CXX) $(DEPFLAG) $(OBJDIR)/$$FILE.o $$FILE.cpp >> $(DEPENDFILE); \
+		$(CXX) $(DEPFLAG) $(OBJDIRNAME)/$$FILE.o $$FILE.cpp >> $(DEPENDFILE); \
 	done
 
 clean         :
-ifneq ($(wildcard $(OBJDIR)),)
-	rm -r $(OBJDIR)
+ifneq ($(wildcard $(OBJDIRNAME)),)
+	rm -r $(OBJDIRNAME)
 endif
 
-$(OBJDIR)/%.o : %.cpp
-	@`[ -d $(OBJDIR) ] || mkdir $(OBJDIR)`
+$(OBJDIRNAME)/%.o : %.cpp
+	@`[ -d $(OBJDIRNAME) ] || mkdir $(OBJDIRNAME)`
 	$(CXX) -c $(MAINFLAG) $@ $< $(SDEFINEFLAG)
 
 -include $(DEPENDFILE)
