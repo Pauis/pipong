@@ -48,6 +48,6 @@ endif
 
 $(OBJDIR)/%.o : %.cpp
 	@`[ -d $(OBJDIR) ] || mkdir $(OBJDIR)`
-	$(CXX) -c $(MAINFLAG) $@ $(SDEFINEFLAG) $<
+	$(CXX) -c $(MAINFLAG) $@ $< $(SDEFINEFLAG)
 
 -include $(DEPENDFILE)
