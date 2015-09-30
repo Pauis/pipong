@@ -7,29 +7,28 @@ CXX            = g++
 endif
 endif
 ifeq ($(RPIGPIO), 1)
-SPEDIR         = rpigpio
-RPIGPIODFLAG   = -DUSINGRPIGPIO
-RPIGPIOLFLAG   = -lwiringPi
+MODENAME       = linux_rpigpio
+SDEFINEFLAG    = -DLINUX_RPIGPIO
+SLINKFLAG      = -lwiringPi
 else
-SPEDIR         = standard
-RPIGPIODFLAG   =
-RPIGPIOLFLAG   =
+MODENAME       = posix
+SDEFINEFLAG    = -DPOSIX
+SLINKFLAG      =
 endif
-OBJECTS = $(SOURCES:%.cpp=$(OBJDIR)/%.o)
+
+OBJDIR         = $(MODENAME)_out
+OBJECTS        = $(SOURCES:%.cpp=$(OBJDIR)/%.o)
 MAINFLAG       = -o
 TARGETNAME     = pipong
 TARGET         = $(OBJDIR)/$(TARGETNAME)
-OBJDIRNAME     = out
-OBJDIR         = $(SPEDIR)/$(OBJDIRNAME)
 DEPFLAG        = -MM -MT
 DEPENDFILE     = $(OBJDIR)/dependfile.tlist
 
 
 
 $(TARGET)     : $(OBJECTS)
-	@`[ -d $(SPEDIR) ] || mkdir $(SPEDIR)`
 	@`[ -d $(OBJDIR) ] || mkdir $(OBJDIR)`
-	$(CXX) $(MAINFLAG) $(TARGET) $(OBJECTS) $(RPIGPIODFLAG) $(RPIGPIOLFLAG)
+	$(CXX) $(MAINFLAG) $(TARGET) $(OBJECTS) $(SDEFINEFLAG) $(SLINKFLAG)
 
 dep           :
 ifeq ($(wildcard $(OBJDIR)),)
@@ -48,8 +47,7 @@ ifneq ($(wildcard $(OBJDIR)),)
 endif
 
 $(OBJDIR)/%.o : %.cpp
-	@`[ -d $(SPEDIR) ] || mkdir $(SPEDIR)`
 	@`[ -d $(OBJDIR) ] || mkdir $(OBJDIR)`
-	$(CXX) -c $(MAINFLAG) $@ $(RPIGPIODFLAG) $<
+	$(CXX) -c $(MAINFLAG) $@ $(SDEFINEFLAG) $<
 
 -include $(DEPENDFILE)
