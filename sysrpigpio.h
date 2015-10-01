@@ -1,5 +1,5 @@
-#ifndef __PONGGPIO_H__
-#define __PONGGPIO_H__
+#ifndef __SYSRPIGPIO_H__
+#define __SYSRPIGPIO_H__
 
 namespace pong
 {
