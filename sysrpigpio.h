@@ -1,9 +1,7 @@
 #ifndef __SYSRPIGPIO_H__
 #define __SYSRPIGPIO_H__
 
-namespace pong
-{
-namespace sys
+namespace pong { namespace sys
 {
 	class PGpio
 	{
@@ -20,7 +18,6 @@ namespace sys
 			P2LED2    = 13
 		};
 	};
-}
-}
+}}
 
 #endif
