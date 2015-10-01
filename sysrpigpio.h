@@ -3,7 +3,9 @@
 
 namespace pong { namespace sys
 {
-	class PGpio
+	#ifdef POSIX
+	#ifdef RPIGPIO
+	class SGpio
 	{
 	public:
 		enum
@@ -18,6 +20,8 @@ namespace pong { namespace sys
 			P2LED2    = 13
 		};
 	};
+	#endif
+	#endif
 }}
 
 #endif
