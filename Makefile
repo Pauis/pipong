@@ -6,9 +6,9 @@ ifneq ($(CXX), clang++)
 CXX            = g++
 endif
 endif
-ifeq ($(RPIGPIO), 1)
-MODENAME       = linux_rpigpio
-SDEFINEFLAG    = -DLINUX_RPIGPIO
+ifeq ($(GPIORPI), 1)
+MODENAME       = linux_gpio_rpi
+SDEFINEFLAG    = -DLINUX_GPIO_RPI
 SLINKFLAG      = -lwiringPi
 else
 MODENAME       = posix
