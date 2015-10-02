@@ -23,7 +23,7 @@ namespace pong { namespace sys
 
 	struct SGpio
 	{
-		#ifdef GPIORPI
+#ifdef LINUX_GPIO_RPI
 		enum
 		{
 			P1SWITCH1 = 0,
@@ -35,7 +35,7 @@ namespace pong { namespace sys
 			P2LED1    = 12,
 			P2LED2    = 13
 		};
-		#endif
+#endif
 	};
 }}
 

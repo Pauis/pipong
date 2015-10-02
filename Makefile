@@ -6,7 +6,7 @@ ifneq ($(CXX), clang++)
 CXX            = g++
 endif
 endif
-ifeq ($(GPIORPI), 1)
+ifeq ($(LINUX_GPIO_RPI), 1)
 MODENAME       = linux_gpio_rpi
 SDEFINEFLAG    = -DLINUX_GPIO_RPI
 SLINKFLAG      = -lwiringPi

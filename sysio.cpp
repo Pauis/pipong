@@ -8,7 +8,7 @@ using pong::PColor;
 
 namespace pong { namespace sys
 {
-	#ifdef POSIX
+#ifdef POSIX
 	SOut& SOut::GotoXY(int x, int y)
 	{
 		printf("\033[%d;%df", y, x);
@@ -30,5 +30,5 @@ namespace pong { namespace sys
 
 		return *this;
 	}
-	#endif
+#endif
 }}
