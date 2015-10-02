@@ -8,7 +8,7 @@ endif
 endif
 ifeq ($(LINUX_GPIO_RPI), 1)
 MODENAME       = linux_gpio_rpi
-SDEFINEFLAG    = -DLINUX_GPIO_RPI
+SDEFINEFLAG    = -DPOSIX -DLINUX_GPIO_RPI
 SLINKFLAG      = -lwiringPi
 else
 MODENAME       = posix
