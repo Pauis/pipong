@@ -3,32 +3,43 @@
 #include "pongcolor.h"
 #include "sysio.h"
 
+#ifdef LINUX_GPIO_RPI
+#include <wiringPi>
+#endif
+
 using std::string;
 using pong::PColor;
 
 namespace pong { namespace sys
 {
 #ifdef POSIX
-	SOut& SOut::GotoXY(int x, int y)
+	static void SOut::GotoXY(int x, int y)
 	{
 		printf("\033[%d;%df", y, x);
 		fflush(stdout);
-
-		return *this;
 	}
 
-	SOut& SOut::PrintColorString(string str, PColor colornum)
+	static void SOut::PrintColorString(string str, PColor colornum)
 	{
 		printf("\033[%dm%s\033[0m", colornum.GetNum(), str.c_str());
-
-		return *this;
 	}
 
-	SOut& SOut::PrintColorString(char* str, PColor colornum)
+	static void SOut::PrintColorString(char* str, PColor colornum)
 	{
 		printf("\033[%dm%s\033[0m", colornum.GetNum(), str);
+	}
+#endif
 
-		return *this;
+#ifdef LINUX_GPIO_RPI
+	void SGpio::Setup(void)
+	{
+		static int ini = 0;
+
+		if(ini == 0)
+		{
+			wiringPiSetup();
+			ini++;
+		}
 	}
 #endif
 }}

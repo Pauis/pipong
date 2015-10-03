@@ -9,21 +9,25 @@ using pong::PColor;
 
 namespace pong { namespace sys
 {
-	struct SOut
+	class SOut
 	{
-		SOut& GotoXY(int x, int y);
-		SOut& PrintColorString(string str, PColor colornum);
-		SOut& PrintColorString(char* str, PColor colornum);
+	public:
+		static void GotoXY(int x, int y);
+		static void PrintColorString(string str, PColor colornum);
+		static void PrintColorString(char* str, PColor colornum);
 	};
 
-	struct SIn
+	class SIn
 	{
+	public:
 
 	};
 
-	struct SGpio
+	class SGpio
 	{
-#ifdef LINUX_GPIO_RPI
+	private:
+		void Setup(void);
+	public:
 		enum
 		{
 			P1SWITCH1 = 0,
@@ -35,7 +39,6 @@ namespace pong { namespace sys
 			P2LED1    = 12,
 			P2LED2    = 13
 		};
-#endif
 	};
 }}
 
