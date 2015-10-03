@@ -4,7 +4,7 @@
 #include "sysio.h"
 
 #ifdef LINUX_GPIO_RPI
-#include <wiringPi>
+#include <wiringPi.h>
 #endif
 
 using std::string;
