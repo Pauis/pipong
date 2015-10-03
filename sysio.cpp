@@ -13,18 +13,18 @@ using pong::PColor;
 namespace pong { namespace sys
 {
 #ifdef POSIX
-	static void SOut::GotoXY(int x, int y)
+	void SOut::GotoXY(int x, int y)
 	{
 		printf("\033[%d;%df", y, x);
 		fflush(stdout);
 	}
 
-	static void SOut::PrintColorString(string str, PColor colornum)
+	void SOut::PrintColorString(string str, PColor colornum)
 	{
 		printf("\033[%dm%s\033[0m", colornum.GetNum(), str.c_str());
 	}
 
-	static void SOut::PrintColorString(char* str, PColor colornum)
+	void SOut::PrintColorString(char* str, PColor colornum)
 	{
 		printf("\033[%dm%s\033[0m", colornum.GetNum(), str);
 	}
