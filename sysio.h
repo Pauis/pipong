@@ -26,7 +26,7 @@ namespace pong { namespace sys
 	class SGpio
 	{
 	private:
-		void Setup(void);
+		static void Setup(void);
 	public:
 		enum
 		{
@@ -39,6 +39,8 @@ namespace pong { namespace sys
 			P2LED1    = 12,
 			P2LED2    = 13
 		};
+		static int Read(int gnum);
+		static void Write(int gnum, int snum);
 	};
 }}
 

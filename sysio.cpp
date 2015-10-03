@@ -41,5 +41,15 @@ namespace pong { namespace sys
 			ini++;
 		}
 	}
+
+	int SGpio::Read(int gnum)
+	{
+		return digitalRead(gnum);
+	}
+
+	void SGpio::Write(int gnum, int snum)
+	{
+		digitalWrite(gnum, snum);
+	}
 #endif
 }}
