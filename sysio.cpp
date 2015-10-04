@@ -51,6 +51,16 @@ namespace pong { namespace sys
 		if(ini == 0)
 		{
 			wiringPiSetup();
+
+			pinMode(SGpio::P1SWITCH1, INPUT);
+			pinMode(SGpio::P1SWITCH2, INPUT);
+			pinMode(SGpio::P1LED1, OUTPUT);
+			pinMode(SGpio::P1LED2, OUTPUT);
+			pinMode(SGpio::P2SWITCH1, INPUT);
+			pinMode(SGpio::P2SWITCH2, INPUT);
+			pinMode(SGpio::P2LED1, OUTPUT);
+			pinMode(SGpio::P2LED2, OUTPUT);
+
 			ini++;
 		}
 	}
