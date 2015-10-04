@@ -150,6 +150,12 @@ namespace pong
 		// empty
 	}
 
+	PRect::PRect(Rect rect, int colornum)
+		: Rect(rect), color(colornum)
+	{
+		// empty
+	}
+
 	PRect& PRect::Set(int xpos, int ypos, int length, int width, int colornum)
 	{
 		Rect::Set(xpos, ypos, length, width);

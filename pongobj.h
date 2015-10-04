@@ -51,6 +51,7 @@ namespace pong
 	public:
 		PRect(int xpos, int ypos, int length, int width, int colornum=PColor::DEFAULT);
 		PRect(Point& spoint, int length, int width, int colornum=PColor::DEFAULT);
+		PRect(Rect rect, int colornum=PColor::DEFAULT);
 		PRect& Set(int xpos, int ypos, int length, int width, int colornum=PColor::DEFAULT);
 		PRect& Set(Point& spoint, int length, int width, int colornum=PColor::DEFAULT);
 		PRect& SetColor(int colornum=PColor::DEFAULT);

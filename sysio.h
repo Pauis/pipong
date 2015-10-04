@@ -3,18 +3,24 @@
 
 #include <string>
 #include "pongcolor.h"
+#include "pongstring.h"
 
 using std::string;
+using pong::PString;
 using pong::PColor;
 
 namespace pong { namespace sys
 {
 	class SOut
 	{
-	public:
+	private:
 		static void GotoXY(int x, int y);
 		static void PrintColorString(string str, PColor colornum);
 		static void PrintColorString(char* str, PColor colornum);
+	public:
+		static void Out(Point pos);
+		static void Out(PRect rect);
+		static void Out(PString str);
 	};
 
 	class SIn
