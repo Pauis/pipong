@@ -9,6 +9,7 @@
 
 using std::string;
 using pong::PColor;
+using pong::Rect;
 using pong::PRect;
 
 namespace pong { namespace sys
@@ -25,14 +26,15 @@ namespace pong { namespace sys
 		printf("\033[%dm%s\033[0m", colornum.GetNum(), str.c_str());
 	}
 
-	void SOut::PrintColorString(char* str, PColor colornum)
-	{
-		printf("\033[%dm%s\033[0m", colornum.GetNum(), str);
-	}
-
 	void SOut::Out(PRect rect)
 	{
+		GotoXY((rect.GetSpoint()).GetXpos(), (rect.GetSpoint()).GetYpos());
 
+		for(int width=0; width<rect.GetWidth(); width++)
+		{
+			for(int length=0; length<rect.GetLength(); length++)
+				PrintColorString("@", rect.GetColor());
+		}
 	}
 
 	void SOut::Out(PString str)
