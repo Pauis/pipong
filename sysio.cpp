@@ -9,6 +9,7 @@
 
 using std::string;
 using pong::PColor;
+using pong::Prect;
 
 namespace pong { namespace sys
 {
@@ -27,6 +28,16 @@ namespace pong { namespace sys
 	void SOut::PrintColorString(char* str, PColor colornum)
 	{
 		printf("\033[%dm%s\033[0m", colornum.GetNum(), str);
+	}
+
+	void SOut::Out(PRect rect)
+	{
+
+	}
+
+	void SOut::Out(PString str)
+	{
+
 	}
 #endif
 

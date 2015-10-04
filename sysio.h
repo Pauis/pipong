@@ -18,7 +18,6 @@ namespace pong { namespace sys
 		static void PrintColorString(string str, PColor colornum);
 		static void PrintColorString(char* str, PColor colornum);
 	public:
-		static void Out(Point pos);
 		static void Out(PRect rect);
 		static void Out(PString str);
 	};
