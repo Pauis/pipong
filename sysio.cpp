@@ -9,7 +9,7 @@
 
 using std::string;
 using pong::PColor;
-using pong::Prect;
+using pong::PRect;
 
 namespace pong { namespace sys
 {
