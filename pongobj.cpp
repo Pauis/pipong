@@ -133,6 +133,11 @@ namespace pong
 		return width;
 	}
 
+	int Rect::CheckInterference(Rect rect) const
+	{
+
+	}
+
 	Rect::~Rect()
 	{
 		// empty
