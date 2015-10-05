@@ -33,7 +33,7 @@ namespace pong { namespace sys
 			for(int length=0; length<rect.GetLength(); length++)
 			{
 				GotoXY((rect.GetSpoint()).GetXpos() + length, (rect.GetSpoint()).GetYpos() + width);
-				PrintColorString("@", rect.GetColor());
+				PrintColorString("█", rect.GetColor());
 			}
 		}
 	}
