@@ -2,7 +2,6 @@
 #define __PONGOBJ_H__
 
 #include "pongcolor.h"
-using std::ostream;
 using pong::PColor;
 
 namespace pong
