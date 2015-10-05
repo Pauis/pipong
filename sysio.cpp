@@ -30,9 +30,10 @@ namespace pong { namespace sys
 	{
 		for(int width=0; width<rect.GetWidth(); width++)
 		{
+			GotoXY((rect.GetSpoint()).GetXpos(), (rect.GetSpoint()).GetYpos() + width);
+
 			for(int length=0; length<rect.GetLength(); length++)
 			{
-				GotoXY((rect.GetSpoint()).GetXpos() + length, (rect.GetSpoint()).GetYpos() + width);
 				PrintColorString("█", rect.GetColor());
 			}
 		}

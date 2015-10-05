@@ -136,6 +136,7 @@ namespace pong
 	int Rect::CheckInterference(Rect rect) const
 	{
 
+		return 0; // Developing!
 	}
 
 	Rect::~Rect()
