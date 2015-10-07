@@ -133,10 +133,9 @@ namespace pong
 		return width;
 	}
 
-	int Rect::CheckInterference(Rect rect) const
+	bool Rect::CheckInterference(Rect rect) const
 	{
-
-		return 0; // Developing!
+		return true; // Developing!
 	}
 
 	Rect::~Rect()
