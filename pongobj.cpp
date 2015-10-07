@@ -135,7 +135,16 @@ namespace pong
 
 	bool Rect::CheckInterference(Rect rect) const
 	{
-		return true; // Developing!
+		const int baroxpos = spoint.GetXpos();
+		const int baroypos = spoint.GetYpos();
+		const int barolength = length;
+		const int barowidth = width;
+		const int comparexpos = (rect.GetSpoint()).GetXpos();
+		const int compareypos = (rect.GetSpoint()).GetYpos();
+		const int comparelength = rect.GetLength();
+		const int comparewidth = rect.GetWidth();
+
+		
 	}
 
 	Rect::~Rect()
