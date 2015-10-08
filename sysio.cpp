@@ -26,7 +26,7 @@ namespace pong { namespace sys
 		printf("\033[%dm%s\033[0m", colornum.GetNum(), str.c_str());
 	}
 
-	void SOut::Out(PRect rect)
+	SOut& SOut::operator<<(PRect& rect)
 	{
 		for(int width=0; width<rect.GetWidth(); width++)
 		{
@@ -39,42 +39,27 @@ namespace pong { namespace sys
 		}
 	}
 
-	void SOut::Out(PString str)
+	SOut& SOut::operator<<(PString& str)
 	{
 
 	}
 #endif
 
 #ifdef LINUX_GPIO_RPI
-	void SGpio::Setup(void)
+	SGpio::SGpio(void)
 	{
 		static int ini = 0;
 
 		if(ini == 0)
 		{
 			wiringPiSetup();
-
-			pinMode(SGpio::P1SWITCH1, INPUT);
-			pinMode(SGpio::P1SWITCH2, INPUT);
-			pinMode(SGpio::P1LED1, OUTPUT);
-			pinMode(SGpio::P1LED2, OUTPUT);
-			pinMode(SGpio::P2SWITCH1, INPUT);
-			pinMode(SGpio::P2SWITCH2, INPUT);
-			pinMode(SGpio::P2LED1, OUTPUT);
-			pinMode(SGpio::P2LED2, OUTPUT);
-
 			ini++;
 		}
 	}
 
-	int SGpio::Read(int gnum)
+	SGpio::~SGpio()
 	{
-		return digitalRead(gnum);
-	}
-
-	void SGpio::Write(int gnum, int snum)
-	{
-		digitalWrite(gnum, snum);
+		// empty
 	}
 #endif
 }}

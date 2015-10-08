@@ -14,11 +14,11 @@ namespace pong { namespace sys
 	class SOut
 	{
 	private:
-		static void GotoXY(int x, int y);
-		static void PrintColorString(string str, PColor colornum);
+		void GotoXY(int x, int y);
+		void PrintColorString(string str, PColor colornum);
 	public:
-		static void Out(PRect rect);
-		static void Out(PString str);
+		SOut& operator<<(PRect& rect);
+		SOut& operator<<(PString& str);
 	};
 
 	class SIn
@@ -29,8 +29,6 @@ namespace pong { namespace sys
 
 	class SGpio
 	{
-	private:
-		static void Setup(void);
 	public:
 		enum
 		{
@@ -43,8 +41,10 @@ namespace pong { namespace sys
 			P2LED1    = 12,
 			P2LED2    = 13
 		};
-		static int Read(int gnum);
-		static void Write(int gnum, int snum);
+		SGpio(void);
+		int Read(int gnum);
+		void Write(int gnum, int snum);
+		virtual ~SGpio();
 	};
 }}
 
