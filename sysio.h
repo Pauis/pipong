@@ -31,7 +31,6 @@ namespace pong { namespace sys
 	{
 	private:
 		int gpionum;
-		bool gpiostatus;
 	protected:
 		void SetupBasic(void);
 	public:
@@ -48,22 +47,6 @@ namespace pong { namespace sys
 		};
 		virtual bool CheckWrite(void) = 0;
 		virtual ~SGpio();
-	};
-
-	class SGpioOut : public SGpio
-	{
-	public:
-		SGpioOut(int gpionum);
-		virtual bool CheckWrite(void);
-		bool operator<<(int gpionum);
-	};
-
-	class SGpioIn : public SGpio
-	{
-	public:
-		SGpioIn(int gpionum);
-		virtual bool CheckWirte(void);
-		SGpioIn& operator>>(bool sch);
 	};
 }}
 
