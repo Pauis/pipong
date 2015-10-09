@@ -37,11 +37,15 @@ namespace pong { namespace sys
 				PrintColorString("█", rect.GetColor());
 			}
 		}
+
+		return *this;
 	}
 
 	SOut& SOut::operator<<(PString& str)
 	{
 
+
+		return *this;
 	}
 #endif
 
