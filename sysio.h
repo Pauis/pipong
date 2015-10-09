@@ -29,6 +29,11 @@ namespace pong { namespace sys
 
 	class SGpio
 	{
+	private:
+		int gpionum;
+		bool gpiostatus;
+	protected:
+		void SetupBasic(void);
 	public:
 		enum
 		{
@@ -41,10 +46,24 @@ namespace pong { namespace sys
 			P2LED1    = 12,
 			P2LED2    = 13
 		};
-		SGpio(void);
-		int Read(int gnum);
-		void Write(int gnum, int snum);
+		virtual bool CheckWrite(void) = 0;
 		virtual ~SGpio();
+	};
+
+	class SGpioOut : public SGpio
+	{
+	public:
+		SGpioOut(int gpionum);
+		virtual bool CheckWrite(void);
+		bool operator<<(int gpionum);
+	};
+
+	class SGpioIn : public SGpio
+	{
+	public:
+		SGpioIn(int gpionum);
+		virtual bool CheckWirte(void);
+		SGpioIn& operator>>(bool sch);
 	};
 }}
 

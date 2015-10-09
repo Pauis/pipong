@@ -50,7 +50,7 @@ namespace pong { namespace sys
 #endif
 
 #ifdef LINUX_GPIO_RPI
-	SGpio::SGpio(void)
+	void SGpio::SetupBasic(void);
 	{
 		static int ini = 0;
 
