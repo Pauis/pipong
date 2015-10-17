@@ -32,6 +32,7 @@ namespace pong { namespace sys
 		struct termios* regulartset;
 		struct termios* newtset;
 		#endif
+		void ClearBuf(void);
 	public:
 		SIn(void);
 		void operator>>(int& target);

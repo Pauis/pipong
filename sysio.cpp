@@ -58,6 +58,11 @@ namespace pong { namespace sys
 		return *this;
 	}
 
+	void SIn::ClearBuf(void)
+	{
+		while (getchar() != EOF);
+	}
+
 	SIn::SIn(void)
 	{
 		#ifdef POSIX
@@ -78,6 +83,7 @@ namespace pong { namespace sys
 	{
 		#ifdef POSIX
 		target = getchar();
+		ClearBuf();
 		#endif
 	}
 
