@@ -61,13 +61,16 @@ namespace pong { namespace sys
 	SIn::SIn(void)
 	{
 		#ifdef POSIX
-		tcgetattr(0, &regulartset);
-		newtset = regulartset;
-		newtset.c_lflag &= ~ICANON;
-		newtset.c_lflag &= ~ECHO;
-		newtset.c_cc[VTIME] = 0;
-		newtset.c_cc[VMIN] = 0;
-		tcsetattr(0, TCSANOW, &newtset);
+		regulartset = new struct termios;
+		newtset = new struct termios;
+
+		tcgetattr(0, regulartset);
+		*newtset = *regulartset;
+		(*newtset).c_lflag &= ~ICANON;
+		(*newtset).c_lflag &= ~ECHO;
+		(*newtset).c_cc[VTIME] = 0;
+		(*newtset).c_cc[VMIN] = 0;
+		tcsetattr(0, TCSANOW, newtset);
 		#endif
 	}
 
@@ -81,7 +84,10 @@ namespace pong { namespace sys
 	SIn::~SIn(void)
 	{
 		#ifdef POSIX
-		tcsetattr(0, TCSANOW, &regulartset);
+		tcsetattr(0, TCSANOW, regulartset);
+
+		delete regulartset;
+		delete newtset;
 		#endif
 	}
 

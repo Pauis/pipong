@@ -29,8 +29,8 @@ namespace pong { namespace sys
 	{
 	private:
 		#ifdef POSIX
-		struct termios regulartset;
-		struct termios newtset;
+		struct termios* regulartset;
+		struct termios* newtset;
 		#endif
 	public:
 		SIn(void);
