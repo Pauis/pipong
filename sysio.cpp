@@ -74,7 +74,7 @@ namespace pong { namespace sys
 		#endif
 	}
 
-	void SIn::operator>>(char& target)
+	void SIn::operator>>(int& target)
 	{
 		#ifdef POSIX
 		target = getchar();

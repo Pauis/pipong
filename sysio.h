@@ -34,7 +34,7 @@ namespace pong { namespace sys
 		#endif
 	public:
 		SIn(void);
-		void operator>>(char& target);
+		void operator>>(int& target);
 		~SIn();
 	};
 
