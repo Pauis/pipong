@@ -5,6 +5,10 @@
 #include "pongcolor.h"
 #include "pongstring.h"
 
+#ifdef POSIX
+#include <termios.h>
+#endif
+
 using std::string;
 using pong::PString;
 using pong::PColor;
@@ -23,8 +27,15 @@ namespace pong { namespace sys
 
 	class STtyIn
 	{
+	private:
+		#ifdef POSIX
+		struct termios regulartset;
+		struct termios newtset;
+		#endif
 	public:
-
+		STtyIn(void);
+		void operator>>(char& target);
+		~STtyIn();
 	};
 
 	class SGpio
