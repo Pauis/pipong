@@ -10,7 +10,13 @@ namespace pong
 	public:
 		enum
 		{
-			DEFAULT = 0
+			DEFAULT = 0,
+			RED     = 31,
+			GREEN   = 32,
+			BROWN   = 33,
+			BLUE    = 34,
+			MAGENTA = 35,
+			CYAN    = 36,
 		};
 		PColor(int colornum=DEFAULT);
 		PColor& Set(int colornum);
