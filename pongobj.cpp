@@ -144,7 +144,7 @@ namespace pong
 		int comparetop = (rect.GetSpoint()).GetYpos();
 		int comparebottom = comparetop + rect.GetWidth() - 1;
 
-		if(baroleft <= compareright && baroright >= compareleft)
+		if (baroleft <= compareright && baroright >= compareleft)
 		{
 			if(barotop <= comparebottom && barobottom >= comparetop)
 				return true;

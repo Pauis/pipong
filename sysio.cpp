@@ -15,22 +15,22 @@ using pong::PRect;
 namespace pong { namespace sys
 {
 #ifdef POSIX
-	void SOut::GotoXY(int x, int y)
+	void STtyOut::GotoXy(int x, int y)
 	{
 		printf("\033[%d;%df", y, x);
 		fflush(stdout);
 	}
 
-	void SOut::PrintColorString(string str, PColor colornum)
+	void STtyOut::PrintColorString(string str, PColor colornum)
 	{
 		printf("\033[%dm%s\033[0m", colornum.GetNum(), str.c_str());
 	}
 
-	SOut& SOut::operator<<(PRect& rect)
+	STtyOut& STtyOut::operator<<(PRect& rect)
 	{
 		for(int width=0; width<rect.GetWidth(); width++)
 		{
-			GotoXY((rect.GetSpoint()).GetXpos(), (rect.GetSpoint()).GetYpos() + width);
+			GotoXy((rect.GetSpoint()).GetXpos(), (rect.GetSpoint()).GetYpos() + width);
 
 			for(int length=0; length<rect.GetLength(); length++)
 			{
@@ -41,7 +41,7 @@ namespace pong { namespace sys
 		return *this;
 	}
 
-	SOut& SOut::operator<<(PString& str)
+	STtyOut& STtyOut::operator<<(PString& str)
 	{
 
 

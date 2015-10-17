@@ -11,17 +11,17 @@ using pong::PColor;
 
 namespace pong { namespace sys
 {
-	class SOut
+	class STtyOut
 	{
 	private:
-		void GotoXY(int x, int y);
+		void GotoXy(int x, int y);
 		void PrintColorString(string str, PColor colornum);
 	public:
-		SOut& operator<<(PRect& rect);
-		SOut& operator<<(PString& str);
+		STtyOut& operator<<(PRect& rect);
+		STtyOut& operator<<(PString& str);
 	};
 
-	class SIn
+	class STtyIn
 	{
 	public:
 
