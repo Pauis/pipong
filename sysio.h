@@ -15,17 +15,17 @@ using pong::PColor;
 
 namespace pong { namespace sys
 {
-	class STtyOut
+	class SOut
 	{
 	private:
 		void GotoXy(int x, int y);
 		void PrintColorString(string str, PColor colornum);
 	public:
-		STtyOut& operator<<(PRect& rect);
-		STtyOut& operator<<(PString& str);
+		SOut& operator<<(PRect& rect);
+		SOut& operator<<(PString& str);
 	};
 
-	class STtyIn
+	class SIn
 	{
 	private:
 		#ifdef POSIX
@@ -33,9 +33,9 @@ namespace pong { namespace sys
 		struct termios newtset;
 		#endif
 	public:
-		STtyIn(void);
+		SIn(void);
 		void operator>>(char& target);
-		~STtyIn();
+		~SIn();
 	};
 
 	class SGpio

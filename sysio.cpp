@@ -17,7 +17,7 @@ using pong::PRect;
 
 namespace pong { namespace sys
 {
-	void STtyOut::GotoXy(int x, int y)
+	void SOut::GotoXy(int x, int y)
 	{
 		#ifdef POSIX
 		printf("\033[%d;%df", y, x);
@@ -25,14 +25,14 @@ namespace pong { namespace sys
 		#endif
 	}
 
-	void STtyOut::PrintColorString(string str, PColor colornum)
+	void SOut::PrintColorString(string str, PColor colornum)
 	{
 		#ifdef POSIX
 		printf("\033[%dm%s\033[0m", colornum.GetNum(), str.c_str());
 		#endif
 	}
 
-	STtyOut& STtyOut::operator<<(PRect& rect)
+	SOut& SOut::operator<<(PRect& rect)
 	{
 		#ifdef POSIX
 		for(int width=0; width<rect.GetWidth(); width++)
@@ -49,7 +49,7 @@ namespace pong { namespace sys
 		return *this;
 	}
 
-	STtyOut& STtyOut::operator<<(PString& str)
+	SOut& SOut::operator<<(PString& str)
 	{
 		#ifdef POSIX
 
@@ -58,7 +58,7 @@ namespace pong { namespace sys
 		return *this;
 	}
 
-	STtyIn::STtyIn(void)
+	SIn::SIn(void)
 	{
 		#ifdef POSIX
 		tcgetattr(0, &regulartset);
@@ -71,14 +71,14 @@ namespace pong { namespace sys
 		#endif
 	}
 
-	void STtyIn::operator>>(char& target)
+	void SIn::operator>>(char& target)
 	{
 		#ifdef POSIX
 		target = getchar();
 		#endif
 	}
 
-	STtyIn::~STtyIn(void)
+	SIn::~SIn(void)
 	{
 		#ifdef POSIX
 		tcsetattr(0, TCSANOW, &regulartset);
