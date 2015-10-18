@@ -52,7 +52,7 @@ namespace pong
 		// empty
 	}
 
-	Rect::Rect(Point& spoint, int length, int width)
+	Rect::Rect(Point spoint, int length, int width)
 		: spoint(spoint), length(length), width(width)
 	{
 		// empty
@@ -67,7 +67,7 @@ namespace pong
 		return *this;
 	}
 
-	Rect& Rect::Set(Point& spoint, int length, int width)
+	Rect& Rect::Set(Point spoint, int length, int width)
 	{
 		(this->spoint) = spoint;
 		(this->length) = length;
@@ -76,7 +76,7 @@ namespace pong
 		return *this;
 	}
 
-	Rect& Rect::SetSpoint(Point& spoint)
+	Rect& Rect::SetSpoint(Point spoint)
 	{
 		(this->spoint) = spoint;
 
@@ -133,7 +133,7 @@ namespace pong
 		return width;
 	}
 
-	bool Rect::CheckInterference(Rect& rect) const
+	bool Rect::CheckInterference(Rect rect) const
 	{
 		int baroleft = spoint.GetXpos();
 		int baroright = baroleft + length - 1;
@@ -163,7 +163,7 @@ namespace pong
 		// empty
 	}
 
-	PRect::PRect(Point& spoint, int length, int width, int colornum)
+	PRect::PRect(Point spoint, int length, int width, int colornum)
 		: Rect(spoint, length, width), color(colornum)
 	{
 		// empty
@@ -183,7 +183,7 @@ namespace pong
 		return *this;
 	}
 
-	PRect& PRect::Set(Point& spoint, int length, int width, int colornum)
+	PRect& PRect::Set(Point spoint, int length, int width, int colornum)
 	{
 		Rect::Set(spoint, length, width);
 		(this->color).Set(colornum);
