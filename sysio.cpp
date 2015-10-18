@@ -87,7 +87,7 @@ namespace pong { namespace sys
 		#endif
 	}
 
-	SIn::~SIn(void)
+	SIn::~SIn()
 	{
 		#ifdef POSIX
 		tcsetattr(0, TCSANOW, regulartset);
