@@ -76,7 +76,7 @@ namespace pong
 		return *this;
 	}
 
-	Rect& Rect::SetSpoint(Point spoint)
+	Rect& Rect::SetSpoint(Point& spoint)
 	{
 		(this->spoint) = spoint;
 
@@ -133,7 +133,7 @@ namespace pong
 		return width;
 	}
 
-	bool Rect::CheckInterference(Rect rect) const
+	bool Rect::CheckInterference(Rect& rect) const
 	{
 		int baroleft = spoint.GetXpos();
 		int baroright = baroleft + length - 1;

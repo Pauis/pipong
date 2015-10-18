@@ -31,7 +31,7 @@ namespace pong
 		Rect(Point& spoint, int length, int width);
 		Rect& Set(int xpos, int ypos, int length, int width);
 		Rect& Set(Point& spoint, int length, int width);
-		Rect& SetSpoint(Point spoint);
+		Rect& SetSpoint(Point& spoint);
 		Rect& SetSpoint(int xpos, int ypos);
 		Rect& SetSxpos(int xpos);
 		Rect& SetSypos(int ypos);
@@ -40,7 +40,7 @@ namespace pong
 		Point GetSpoint(void) const;
 		int GetLength(void) const;
 		int GetWidth(void) const;
-		bool CheckInterference(Rect rect) const;
+		bool CheckInterference(Rect& rect) const;
 		virtual ~Rect();
 	};
 
