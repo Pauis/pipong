@@ -19,7 +19,7 @@ namespace pong { namespace sys
 	{
 	private:
 		void GotoXy(int x, int y);
-		void PrintColorString(string str, PColor colornum);
+		void PrintColorString(string str, PColor& colornum);
 	public:
 		SOut& operator<<(PRect& rect);
 		SOut& operator<<(PString& str);
@@ -35,7 +35,7 @@ namespace pong { namespace sys
 		void ClearBuf(void);
 	public:
 		SIn(void);
-		void operator>>(int& target);
+		void operator>>(int target);
 		~SIn();
 	};
 

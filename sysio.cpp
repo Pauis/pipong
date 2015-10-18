@@ -25,7 +25,7 @@ namespace pong { namespace sys
 		#endif
 	}
 
-	void SOut::PrintColorString(string str, PColor colornum)
+	void SOut::PrintColorString(string str, PColor& colornum)
 	{
 		#ifdef POSIX
 		printf("\033[%dm%s\033[0m", colornum.GetNum(), str.c_str());
@@ -79,7 +79,7 @@ namespace pong { namespace sys
 		#endif
 	}
 
-	void SIn::operator>>(int& target)
+	void SIn::operator>>(int target)
 	{
 		#ifdef POSIX
 		target = getchar();
