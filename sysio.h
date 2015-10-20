@@ -2,6 +2,7 @@
 #define __SYSIO_H__
 
 #include <string>
+#include <time.h>
 #include "pongcolor.h"
 #include "pongstring.h"
 
@@ -39,26 +40,10 @@ namespace pong { namespace sys
 		~SIn();
 	};
 
-	class SGpio
+	class SCurrent
 	{
-	private:
-		int gpionum;
-	protected:
-		void SetupBasic(void);
 	public:
-		enum
-		{
-			P1SWITCH1 = 0,
-			P1SWITCH2 = 1,
-			P1LED1    = 4,
-			P1LED2    = 5,
-			P2SWITCH1 = 6,
-			P2SWITCH2 = 7,
-			P2LED1    = 12,
-			P2LED2    = 13
-		};
-		virtual bool CheckWrite(void) = 0;
-		virtual ~SGpio();
+		SCurrent& Delay(clock_t tsec);
 	};
 }}
 

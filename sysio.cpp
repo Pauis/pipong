@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <string>
+#include <time.h>
 #include "pongcolor.h"
 #include "sysio.h"
 
@@ -97,21 +98,12 @@ namespace pong { namespace sys
 		#endif
 	}
 
-	void SGpio::SetupBasic(void)
+	SCurrent& SCurrent::Delay(clock_t delay)
 	{
-		#ifdef LINUX_GPIO_RPI
-		static int ini = 0;
+		clock_t start = clock();
 
-		if(ini == 0)
-		{
-			wiringPiSetup();
-			ini++;
-		}
-		#endif
-	}
+		while (clock() - start < delay);
 
-	SGpio::~SGpio()
-	{
-		// empty
+		return *this;
 	}
 }}
