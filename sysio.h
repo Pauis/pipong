@@ -30,15 +30,23 @@ namespace pong { namespace sys
 	class SIn
 	{
 	private:
+		void ClearBuf(void);
+	public:
+		void operator>>(int& target);
+		SIn(void);
+		virtual ~SIn();
+	};
+
+	class SInInitial : public SIn
+	{
+	private:
 		#ifdef POSIX
 		struct termios* regulartset;
 		struct termios* newtset;
 		#endif
-		void ClearBuf(void);
 	public:
-		SIn(void);
-		void operator>>(int& target);
-		~SIn();
+		SInInitial(void);
+		~SInInitial();
 	};
 
 	class SCurrent

@@ -72,7 +72,26 @@ namespace pong { namespace sys
 		while (getchar() != EOF);
 	}
 
+	void SIn::operator>>(int& target)
+	{
+		#ifdef POSIX
+		target = getchar();
+		ClearBuf();
+		#endif
+	}
+
 	SIn::SIn(void)
+	{
+		// empty
+	}
+
+	SIn::~SIn()
+	{
+
+		// empty
+	}
+
+	SInInitial::SInInitial(void)
 	{
 		#ifdef POSIX
 		regulartset = new struct termios;
@@ -84,19 +103,12 @@ namespace pong { namespace sys
 		(*newtset).c_lflag &= ~ECHO;
 		(*newtset).c_cc[VTIME] = 0;
 		(*newtset).c_cc[VMIN] = 0;
+
 		tcsetattr(0, TCSANOW, newtset);
 		#endif
 	}
 
-	void SIn::operator>>(int& target)
-	{
-		#ifdef POSIX
-		target = getchar();
-		ClearBuf();
-		#endif
-	}
-
-	SIn::~SIn()
+	SInInitial::~SInInitial()
 	{
 		#ifdef POSIX
 		tcsetattr(0, TCSANOW, regulartset);
