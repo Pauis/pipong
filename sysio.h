@@ -2,7 +2,7 @@
 #define __SYSIO_H__
 
 #include <string>
-#include <time.h>
+#include <ctime>
 #include "pongcolor.h"
 #include "pongstring.h"
 
@@ -22,6 +22,7 @@ namespace pong { namespace sys
 		void GotoXy(int x, int y);
 		void PrintColorString(string str, PColor colornum);
 	public:
+		SOut& Clear(void);
 		SOut& operator<<(PRect& rect);
 		SOut& operator<<(PString& str);
 	};

@@ -1,6 +1,7 @@
-#include <cstdio>
 #include <string>
-#include <time.h>
+#include <cstdio>
+#include <cstdlib>
+#include <ctime>
 #include "pongcolor.h"
 #include "sysio.h"
 
@@ -30,6 +31,13 @@ namespace pong { namespace sys
 	{
 		#ifdef POSIX
 		printf("\033[%dm%s\033[0m", colornum.GetNum(), str.c_str());
+		#endif
+	}
+
+	SOut& Clear(void)
+	{
+		#ifdef POSIX
+		system("clear");
 		#endif
 	}
 
