@@ -34,7 +34,7 @@ namespace pong { namespace sys
 		#endif
 	}
 
-	SOut& Clear(void)
+	SOut& SOut::Clear(void)
 	{
 		#ifdef POSIX
 		system("clear");
