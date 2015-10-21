@@ -27,6 +27,11 @@ namespace pong { namespace sys
 		#endif
 	}
 
+	void SOut::GotoXy(Point pos)
+	{
+		GotoXy(pos.GetXpos(), pos.GetYpos());
+	}
+
 	void SOut::PrintColorString(string str, PColor colornum)
 	{
 		#ifdef POSIX
@@ -45,7 +50,6 @@ namespace pong { namespace sys
 
 	SOut& SOut::operator<<(PRect& rect)
 	{
-		#ifdef POSIX
 		for(int width=0; width<rect.GetWidth(); width++)
 		{
 			GotoXy((rect.GetSpoint()).GetXpos(), (rect.GetSpoint()).GetYpos() + width);
@@ -55,16 +59,14 @@ namespace pong { namespace sys
 				PrintColorString("█", rect.GetColor());
 			}
 		}
-		#endif
 
 		return *this;
 	}
 
 	SOut& SOut::operator<<(PString& str)
 	{
-		#ifdef POSIX
-
-		#endif
+		GotoXy(str.GetSpoint());
+		PrintColorString(str.GetString(), str.GetColor());
 
 		return *this;
 	}

@@ -13,6 +13,7 @@
 using std::string;
 using pong::PString;
 using pong::PColor;
+using pong::Point;
 
 namespace pong { namespace sys
 {
@@ -20,6 +21,7 @@ namespace pong { namespace sys
 	{
 	private:
 		void GotoXy(int x, int y);
+		void GotoXy(Point pos);
 		void PrintColorString(string str, PColor colornum);
 	public:
 		SOut& Clear(void);
