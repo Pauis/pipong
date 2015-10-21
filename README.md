@@ -14,7 +14,7 @@
 #### Excutable file
 Run the excutable file.
 ```
-$ ./pipong
+$ posix_out/./pipong
 ```
 
 #### Makefile
