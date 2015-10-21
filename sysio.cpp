@@ -76,7 +76,7 @@ namespace pong { namespace sys
 	{
 		#ifdef POSIX
 		target = getchar();
-		ClearBuf();
+		// ClearBuf();
 		#endif
 	}
 
@@ -118,11 +118,20 @@ namespace pong { namespace sys
 		#endif
 	}
 
-	SCurrent& SCurrent::Delay(clock_t delay)
+	SCurrent& SCurrent::DelayMsec(long msec)
 	{
-		clock_t start = clock();
+		#ifdef POSIX
+		static struct timespec tim;
+		static int ini = 0;
 
-		while (clock() - start < delay);
+		if (ini == 0)
+		{
+			tim.tv_sec = 0;
+			tim.tv_nsec = (msec * 1000000L);
+		}
+
+		nanosleep(&tim, NULL);
+		#endif
 
 		return *this;
 	}

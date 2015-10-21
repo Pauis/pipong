@@ -8,8 +8,8 @@ using pong::sys::SCurrent;
 
 typedef enum __gamemode
 {
-	LOBBY = 0,
-	GAME  = 1,
+	LOBBY,
+	INGAME,
 } gamemode;
 
 int main(void)
@@ -18,18 +18,26 @@ int main(void)
 	SInInitial sin;
 	SCurrent scurrent;
 
-	bool signal_terminate;
+	bool signal_terminate = false;
 	int keyinput;
 	gamemode gmode;
 
 	sout.Clear();
+	gmode = LOBBY;
 
 	while (signal_terminate != true)
 	{
 		sin >> keyinput;
 
-		if (keyinput == 'q')
-			signal_terminate = true;
+		if (gmode == LOBBY)
+		{
+			if (keyinput == 's')
+				gmode = INGAME;
+			if (keyinput == 'q')
+				signal_terminate = true;
+		}
+
+		scurrent.DelayMsec(40);
 	}
 
 	return 0;

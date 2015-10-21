@@ -52,7 +52,7 @@ namespace pong { namespace sys
 	class SCurrent
 	{
 	public:
-		SCurrent& Delay(clock_t tsec);
+		SCurrent& DelayMsec(long msec);
 	};
 }}
 
