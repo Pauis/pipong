@@ -1,7 +1,9 @@
 #include <iostream>
 #include "pongobj.h"
 #include "sysio.h"
+#include "pongproperties.h"
 
+using pong::PProperty;
 using pong::sys::SOut;
 using pong::sys::SInInitial;
 using pong::sys::SCurrent;
@@ -37,7 +39,7 @@ int main(void)
 				signal_terminate = true;
 		}
 
-		scurrent.DelayMsec(40);
+		scurrent.DelayMsec(PProperty::PCYCLEDELAY);
 	}
 
 	return 0;
