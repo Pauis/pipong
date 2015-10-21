@@ -5,7 +5,8 @@
 #include "pongproperties.h"
 
 using pong::PString;
-using pong::PProperty;
+using pong::PKProperty;
+using pong::PGProperty;
 using pong::sys::SOut;
 using pong::sys::SInInitial;
 using pong::sys::SCurrent;
@@ -38,12 +39,12 @@ int main(void)
 			{
 				sout.Clear();
 
-				sout << PString("Hello", PColor::DEFAULT, Point(3, 3));
+				sout << PString("Hello", PColor::CYAN, Point(70, 30));
 			}
 
-			if (keyinput == 's')
+			if (keyinput == PKProperty::PSTART)
 				gmode_event = INGAME;
-			else if (keyinput == 'q')
+			else if (keyinput == PKProperty::PEXIT)
 				signal_terminate = true;
 		}
 
@@ -54,12 +55,11 @@ int main(void)
 				sout.Clear();
 			}
 
-			if (keyinput == 'q')
+			if (keyinput == PKProperty::PEXIT)
 				gmode_event = LOBBY;
 		}
 
-		scurrent.DelayMsec(PProperty::PCYCLEDELAY);
+		scurrent.DelayMsec(PGProperty::PCYCLEDELAY);
 	}
-
 	return 0;
 }
