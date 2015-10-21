@@ -1,8 +1,10 @@
 #include <iostream>
 #include "pongobj.h"
+#include "pongstring.h"
 #include "sysio.h"
 #include "pongproperties.h"
 
+using pong::PString;
 using pong::PProperty;
 using pong::sys::SOut;
 using pong::sys::SInInitial;
@@ -35,6 +37,8 @@ int main(void)
 			for (; gmode_stage != LOBBY; gmode_stage = LOBBY)
 			{
 				sout.Clear();
+
+				sout << PString("Hello", PColor::DEFAULT, Point(3, 3));
 			}
 
 			if (keyinput == 's')

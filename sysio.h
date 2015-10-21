@@ -25,8 +25,8 @@ namespace pong { namespace sys
 		void PrintColorString(string str, PColor colornum);
 	public:
 		SOut& Clear(void);
-		SOut& operator<<(PRect& rect);
-		SOut& operator<<(PString& str);
+		SOut& operator<<(PRect rect);
+		SOut& operator<<(PString str);
 	};
 
 	class SIn

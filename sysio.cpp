@@ -48,7 +48,7 @@ namespace pong { namespace sys
 		return *this;
 	}
 
-	SOut& SOut::operator<<(PRect& rect)
+	SOut& SOut::operator<<(PRect rect)
 	{
 		for(int width=0; width<rect.GetWidth(); width++)
 		{
@@ -63,7 +63,7 @@ namespace pong { namespace sys
 		return *this;
 	}
 
-	SOut& SOut::operator<<(PString& str)
+	SOut& SOut::operator<<(PString str)
 	{
 		GotoXy(str.GetSpoint());
 		PrintColorString(str.GetString(), str.GetColor());
