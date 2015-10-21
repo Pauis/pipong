@@ -39,6 +39,8 @@ namespace pong { namespace sys
 		#ifdef POSIX
 		system("clear");
 		#endif
+
+		return *this;
 	}
 
 	SOut& SOut::operator<<(PRect& rect)
