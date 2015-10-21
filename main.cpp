@@ -10,6 +10,7 @@ using pong::sys::SCurrent;
 
 typedef enum __gamemode
 {
+	NONE,
 	LOBBY,
 	INGAME,
 } gamemode;
@@ -22,21 +23,35 @@ int main(void)
 
 	bool signal_terminate = false;
 	int keyinput;
-	gamemode gmode;
-
-	sout.Clear();
-	gmode = LOBBY;
+	gamemode gmode_event = LOBBY;
+	gamemode gmode_stage = NONE;
 
 	while (signal_terminate != true)
 	{
 		sin >> keyinput;
 
-		if (gmode == LOBBY)
+		if (gmode_event == LOBBY)
 		{
+			for (; gmode_stage != LOBBY; gmode_stage = LOBBY)
+			{
+				sout.Clear();
+			}
+
 			if (keyinput == 's')
-				gmode = INGAME;
-			if (keyinput == 'q')
+				gmode_event = INGAME;
+			else if (keyinput == 'q')
 				signal_terminate = true;
+		}
+
+		if (gmode_event == INGAME)
+		{
+			for (; gmode_stage != INGAME; gmode_stage = INGAME)
+			{
+				sout.Clear();
+			}
+
+			if (keyinput == 'q')
+				gmode_event = LOBBY;
 		}
 
 		scurrent.DelayMsec(PProperty::PCYCLEDELAY);
