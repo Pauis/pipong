@@ -5,7 +5,7 @@
 
 ## Support List
 ### x86_64
-| GNU/Linux | OSX | Windows |
+| Linux | OSX | Windows |
 |:-:|:-:|:-:|
 | O | TBD | TBD |
 
