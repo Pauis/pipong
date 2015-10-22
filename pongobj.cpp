@@ -176,7 +176,7 @@ namespace pong
 	}
 
 	PRect::PRect(Rect rect)
-		: Rect(rect), color(PColor(PColor::DEFAULT))
+		: Rect(rect), color(PColor::DEFAULT)
 	{
 		// empty
 	}

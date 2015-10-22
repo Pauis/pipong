@@ -39,9 +39,9 @@ int main(void)
 			{
 				sout.Clear();
 
-				sout << PString("Pipong - A Classic Table Tennis Game", PColor::CYAN, Point(60, 30));
-				sout << PString("Press 's' to start game", PColor::DEFAULT, Point(65, 32));
-				sout << PString("Press 'q' to exit the game", PColor::DEFAULT, Point(65, 33));
+				sout << PString("Pipong - A Classic Table Tennis Game", PColor(PColor::CYAN), Point(60, 30));
+				sout << PString("Press 's' to start game", PColor(PColor::DEFAULT), Point(65, 32));
+				sout << PString("Press 'q' to exit the game", PColor(PColor::DEFAULT), Point(65, 33));
 			}
 
 			if (keyinput == PKProperty::PSTART)

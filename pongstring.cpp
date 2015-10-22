@@ -5,34 +5,35 @@
 
 using std::string;
 using pong::Point;
+using pong::PColor;
 
 namespace pong
 {
-	PString::PString(string str, int color, Point spoint)
+	PString::PString(string str, PColor color, Point spoint)
 		: str(str), color(color), spoint(spoint)
 	{
 		// empty
 	}
 
-	PString::PString(string str, int color, int xpos, int ypos)
+	PString::PString(string str, PColor color, int xpos, int ypos)
 		: str(str), color(color), spoint(xpos, ypos)
 	{
 		// empty
 	}
 
 	PString::PString(string str, Point spoint)
-		: str(str), spoint(spoint)
+		: str(str), spoint(spoint), color(PColor::DEFAULT)
 	{
-		color = PColor::DEFAULT;
+		// empty
 	}
 
 	PString::PString(string str, int xpos, int ypos)
-		: str(str), spoint(xpos, ypos)
+		: str(str), spoint(xpos, ypos), color(PColor::DEFAULT)
 	{
-		color = PColor::DEFAULT;
+		// empty
 	}
 
-	PString& PString::Set(string str, int color, Point spoint)
+	PString& PString::Set(string str, PColor color, Point spoint)
 	{
 		(this->str) = str;
 		(this->color) = color;
@@ -41,7 +42,7 @@ namespace pong
 		return *this;
 	}
 
-	PString& PString::Set(string str, int color, int xpos, int ypos)
+	PString& PString::Set(string str, PColor color, int xpos, int ypos)
 	{
 		(this->str) = str;
 		(this->color) = color;
@@ -57,7 +58,7 @@ namespace pong
 		return *this;
 	}
 
-	PString& PString::SetColor(int color)
+	PString& PString::SetColor(PColor color)
 	{
 		(this->color) = color;
 
