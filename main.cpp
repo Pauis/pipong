@@ -3,21 +3,16 @@
 #include "pongstring.h"
 #include "sysio.h"
 #include "pongproperties.h"
+#include "pongtrigger.h"
 
 using pong::PString;
 using pong::PRect;
 using pong::PKProperty;
 using pong::PGProperty;
+using pong::PGTrigger;
 using pong::sys::SOut;
 using pong::sys::SInInitial;
 using pong::sys::SCurrent;
-
-typedef enum __gamemode
-{
-	NONE,
-	LOBBY,
-	INGAME,
-} gamemode;
 
 int main(void)
 {
@@ -27,16 +22,17 @@ int main(void)
 
 	bool signal_terminate = false;
 	int keyinput;
-	gamemode gmode_event = LOBBY;
-	gamemode gmode_stage = NONE;
+
+	PGTrigger gmode_event = PGTrigger::LOBBY;
+	PGTrigger gmode_stage = PGTrigger::NONE;
 
 	while (signal_terminate != true)
 	{
 		sin >> keyinput;
 
-		if (gmode_event == LOBBY)
+		if (gmode_event == PGTrigger(PGTrigger::LOBBY))
 		{
-			for (; gmode_stage != LOBBY; gmode_stage = LOBBY)
+			for (; gmode_stage != PGTrigger(PGTrigger::LOBBY); gmode_stage = PGTrigger::LOBBY)
 			{
 				sout.Clear();
 
@@ -46,13 +42,13 @@ int main(void)
 			}
 
 			if (keyinput == PKProperty::PSTART)
-				gmode_event = INGAME;
+				gmode_event = PGTrigger::INGAME;
 			else if (keyinput == PKProperty::PEXIT)
 				signal_terminate = true;
 		}
-		else if (gmode_event == INGAME)
+		else if (gmode_event == PGTrigger(PGTrigger::INGAME))
 		{
-			for (; gmode_stage != INGAME; gmode_stage = INGAME)
+			for (; gmode_stage != PGTrigger(PGTrigger::INGAME); gmode_stage = PGTrigger::INGAME)
 			{
 				sout.Clear();
 
@@ -61,7 +57,7 @@ int main(void)
 			}
 
 			if (keyinput == PKProperty::PEXIT)
-				gmode_event = LOBBY;
+				gmode_event = PGTrigger::LOBBY;
 		}
 
 		scurrent.DelayMsec(PGProperty::PCYCLEDELAY);

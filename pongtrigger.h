@@ -16,9 +16,11 @@ namespace pong
 		};
 		PGTrigger(int triggernum);
 		PGTrigger& Set(int triggernum);
-		friend bool operator==(PGTrigger& t1, PGTrigger& t2);
+		friend bool operator==(PGTrigger t1, PGTrigger t2);
+		friend bool operator!=(PGTrigger t1, PGTrigger t2);
 	};
-	bool operator==(PGTrigger& t1, PGTrigger& t2);
+	bool operator==(PGTrigger t1, PGTrigger t2);
+	bool operator!=(PGTrigger t1, PGTrigger t2);
 }
 
 #endif

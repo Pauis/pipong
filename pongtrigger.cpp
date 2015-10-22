@@ -15,9 +15,17 @@ namespace pong
 		return *this;
 	}
 
-	bool operator==(PGTrigger& t1, PGTrigger& t2)
+	bool operator==(PGTrigger t1, PGTrigger t2)
 	{
-		if(t1.triggernum == t2.triggernum)
+		if (t1.triggernum == t2.triggernum)
+			return true;
+		else
+			return false;
+	}
+
+	bool operator!=(PGTrigger t1, PGTrigger t2)
+	{
+		if (t1.triggernum != t2.triggernum)
 			return true;
 		else
 			return false;
