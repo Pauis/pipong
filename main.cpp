@@ -5,6 +5,7 @@
 #include "pongproperties.h"
 
 using pong::PString;
+using pong::PRect;
 using pong::PKProperty;
 using pong::PGProperty;
 using pong::sys::SOut;
@@ -49,12 +50,14 @@ int main(void)
 			else if (keyinput == PKProperty::PEXIT)
 				signal_terminate = true;
 		}
-
-		if (gmode_event == INGAME)
+		else if (gmode_event == INGAME)
 		{
 			for (; gmode_stage != INGAME; gmode_stage = INGAME)
 			{
 				sout.Clear();
+
+				sout << PRect(Point(3, 10), 1, 10, PColor(PColor::DEFAULT));
+				sout << PRect(Point(100, 10), 1, 10, PColor(PColor::CYAN));
 			}
 
 			if (keyinput == PKProperty::PEXIT)
