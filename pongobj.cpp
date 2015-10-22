@@ -157,43 +157,49 @@ namespace pong
 		// empty
 	}
 
-	PRect::PRect(int xpos, int ypos, int length, int width, int colornum)
-		: Rect(xpos, ypos, length, width), color(colornum)
+	PRect::PRect(int xpos, int ypos, int length, int width, PColor color)
+		: Rect(xpos, ypos, length, width), color(color)
 	{
 		// empty
 	}
 
-	PRect::PRect(Point spoint, int length, int width, int colornum)
-		: Rect(spoint, length, width), color(colornum)
+	PRect::PRect(Point spoint, int length, int width, PColor color)
+		: Rect(spoint, length, width), color(color)
 	{
 		// empty
 	}
 
-	PRect::PRect(Rect rect, int colornum)
-		: Rect(rect), color(colornum)
+	PRect::PRect(Rect rect, PColor color)
+		: Rect(rect), color(color)
 	{
 		// empty
 	}
 
-	PRect& PRect::Set(int xpos, int ypos, int length, int width, int colornum)
+	PRect::PRect(Rect rect)
+		: Rect(rect), color(PColor(PColor::DEFAULT))
+	{
+		// empty
+	}
+
+	PRect& PRect::Set(int xpos, int ypos, int length, int width, PColor color)
 	{
 		Rect::Set(xpos, ypos, length, width);
-		(this->color).Set(colornum);
+		(this->color) = color;
 
 		return *this;
 	}
 
-	PRect& PRect::Set(Point spoint, int length, int width, int colornum)
+	PRect& PRect::Set(Point spoint, int length, int width, PColor color)
 	{
 		Rect::Set(spoint, length, width);
-		(this->color).Set(colornum);
+		(this->color) = color;
 
 		return *this;
 	}
 
-	PRect& PRect::SetColor(int colornum)
+	PRect& PRect::SetColor(PColor color)
 	{
-		color.Set(colornum);
+		(this->color) = color;
 
 		return *this;
 	}
