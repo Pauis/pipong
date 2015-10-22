@@ -19,10 +19,9 @@ int main(void)
 	SOut sout;
 	SInInitial sin;
 	SCurrent scurrent;
-
-	bool signal_terminate = false;
 	int keyinput;
 
+	bool signal_terminate = false;
 	PGTrigger gmode_event = PGTrigger::LOBBY;
 	PGTrigger gmode_stage = PGTrigger::NONE;
 
