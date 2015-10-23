@@ -20,6 +20,8 @@ int main(void)
 	SInInitial sin;
 	SCurrent scurrent;
 	int keyinput;
+	int terminal_length = sout.GetLength();
+	int terminal_width = sout.GetWidth();
 
 	bool signal_terminate = false;
 	PGTrigger gmode_event = PGTrigger::LOBBY;
@@ -31,23 +33,26 @@ int main(void)
 
 		if (gmode_event == PGTrigger(PGTrigger::LOBBY))
 		{
-			for (; gmode_stage != PGTrigger(PGTrigger::LOBBY); gmode_stage = PGTrigger::LOBBY)
+			for (; gmode_stage != PGTrigger(PGTrigger::LOBBY); gmode_stage.Set(PGTrigger::LOBBY))
 			{
 				sout.Clear();
 
-				sout << PString("Pipong - A Classic Table Tennis Game", PColor(PColor::CYAN), Point(60, 30));
-				sout << PString("Press 's' to start game", PColor(PColor::DEFAULT), Point(65, 32));
-				sout << PString("Press 'q' to exit the game", PColor(PColor::DEFAULT), Point(65, 33));
+				sout << PRect(1, 1, terminal_length, terminal_width, PColor(PColor::BLUE));
+				sout << PRect(2, 2, terminal_length-2, terminal_width-2, PColor(PColor::BLACK));
+
+				sout << PString("Pipong - A Classic Table Tennis Game", PColor(PColor::CYAN), Point(terminal_length/2-15, terminal_width/2-2));
+				sout << PString("Press 's' to start game", PColor(PColor::DEFAULT), Point(terminal_length/2-10, terminal_width/2));
+				sout << PString("Press 'q' to exit the game", PColor(PColor::DEFAULT), Point(terminal_length/2-10, terminal_width/2+1));
 			}
 
 			if (keyinput == PKProperty::PSTART)
-				gmode_event = PGTrigger::INGAME;
+				gmode_event.Set(PGTrigger::INGAME);
 			else if (keyinput == PKProperty::PEXIT)
 				signal_terminate = true;
 		}
 		else if (gmode_event == PGTrigger(PGTrigger::INGAME))
 		{
-			for (; gmode_stage != PGTrigger(PGTrigger::INGAME); gmode_stage = PGTrigger::INGAME)
+			for (; gmode_stage != PGTrigger(PGTrigger::INGAME); gmode_stage.Set(PGTrigger::INGAME))
 			{
 				sout.Clear();
 
@@ -56,7 +61,7 @@ int main(void)
 			}
 
 			if (keyinput == PKProperty::PEXIT)
-				gmode_event = PGTrigger::LOBBY;
+				gmode_event.Set(PGTrigger::LOBBY);
 		}
 
 		scurrent.DelayMsec(PGProperty::PCYCLEDELAY);
