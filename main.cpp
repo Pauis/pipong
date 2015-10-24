@@ -66,7 +66,23 @@ int main(void)
 				sout << boundary_inner;
 			}
 
-			if (keyinput == PKProperty::PEXIT)
+			if (keyinput == PKProperty::PP1UP)
+			{
+
+			}
+			else if (keyinput == PKProperty::PP1DOWN)
+			{
+
+			}
+			else if (keyinput == PKProperty::PP2UP)
+			{
+
+			}
+			else if (keyinput == PKProperty::PP2DOWN)
+			{
+
+			}
+			else if (keyinput == PKProperty::PEXIT)
 				gmode_event.Set(PGTrigger::LOBBY);
 
 			sout << lcursor << rcursor;
