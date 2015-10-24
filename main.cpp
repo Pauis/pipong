@@ -56,8 +56,8 @@ int main(void)
 			{
 				sout.Clear();
 
-				sout << PRect(Point(3, 10), 1, 10, PColor(PColor::DEFAULT));
-				sout << PRect(Point(100, 10), 1, 10, PColor(PColor::CYAN));
+				sout << PRect(1, 1, terminal_length, terminal_width, PColor(PColor::BROWN));
+				sout << PRect(2, 2, terminal_length-2, terminal_width-2, PColor(PColor::BLACK));
 			}
 
 			if (keyinput == PKProperty::PEXIT)
