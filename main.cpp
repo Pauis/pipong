@@ -68,7 +68,9 @@ int main(void)
 
 			if (keyinput == PKProperty::PP1UP)
 			{
-
+				lcursor.SetSypos((lcursor.GetSpoint()).GetYpos() - 1);
+				if (boundary_inner.CheckInclude(lcursor) == false)
+					lcursor.SetSypos((lcursor.GetSpoint()).GetYpos() + 1);
 			}
 			else if (keyinput == PKProperty::PP1DOWN)
 			{
