@@ -43,9 +43,9 @@ int main(void)
 				sout << boundary_outer;
 				sout << boundary_inner;
 
-				sout << PString("Pipong - A Classic Table Tennis Game", PColor(PColor::CYAN), Point(terminal_length/2-15, terminal_width/2-2));
-				sout << PString("Press 's' to start game", PColor(PColor::DEFAULT), Point(terminal_length/2-10, terminal_width/2));
-				sout << PString("Press 'q' to exit the game", PColor(PColor::DEFAULT), Point(terminal_length/2-10, terminal_width/2+1));
+				sout << PString("Pipong - Classic Table Tennis Game", PColor(PColor::CYAN), Point(terminal_length/2-16, terminal_width/2-2));
+				sout << PString("Press 's' to start game", PColor(PColor::DEFAULT), Point(terminal_length/2-13, terminal_width/2));
+				sout << PString("Press 'q' to exit the game", PColor(PColor::DEFAULT), Point(terminal_length/2-13, terminal_width/2+1));
 			}
 
 			if (keyinput == PKProperty::PSTART)
