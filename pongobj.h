@@ -41,6 +41,7 @@ namespace pong
 		int GetLength(void) const;
 		int GetWidth(void) const;
 		bool CheckInterference(Rect rect) const;
+		bool CheckInclude(Rect rect) const;
 		virtual ~Rect();
 	};
 

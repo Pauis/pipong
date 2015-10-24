@@ -146,7 +146,26 @@ namespace pong
 
 		if (baroleft <= compareright && baroright >= compareleft)
 		{
-			if(barotop <= comparebottom && barobottom >= comparetop)
+			if (barotop <= comparebottom && barobottom >= comparetop)
+				return true;
+		}
+		return false;
+	}
+
+	bool Rect::CheckInclude(Rect rect) const
+	{
+		int baroleft = spoint.GetXpos();
+		int baroright = baroleft + length -  1;
+		int barotop = spoint.GetYpos();
+		int barobottom = barotop + width - 1;
+		int compareleft = (rect.GetSpoint()).GetXpos();
+		int compareright = compareleft + rect.GetLength() - 1;
+		int comparetop = (rect.GetSpoint()).GetYpos();
+		int comparebottom = comparetop + rect.GetWidth() - 1;
+
+		if (baroleft <= compareleft && baroright >= compareright)
+		{
+			if (barotop <= comparetop && barobottom >= comparebottom)
 				return true;
 		}
 		return false;
