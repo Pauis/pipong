@@ -49,12 +49,13 @@ namespace pong
 	private:
 		PColor color;
 	public:
-		PRect(int xpos, int ypos, int length, int width, int colornum=PColor::DEFAULT);
-		PRect(Point spoint, int length, int width, int colornum=PColor::DEFAULT);
-		PRect(Rect rect, int colornum=PColor::DEFAULT);
-		PRect& Set(int xpos, int ypos, int length, int width, int colornum=PColor::DEFAULT);
-		PRect& Set(Point spoint, int length, int width, int colornum=PColor::DEFAULT);
-		PRect& SetColor(int colornum=PColor::DEFAULT);
+		PRect(int xpos, int ypos, int length, int width, PColor color);
+		PRect(Point spoint, int length, int width, PColor color);
+		PRect(Rect rect, PColor color);
+		PRect(Rect rect);
+		PRect& Set(int xpos, int ypos, int length, int width, PColor color);
+		PRect& Set(Point spoint, int length, int width, PColor color);
+		PRect& SetColor(PColor color);
 		PColor GetColor(void) const;
 	};
 }

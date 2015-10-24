@@ -48,6 +48,16 @@ namespace pong { namespace sys
 		return *this;
 	}
 
+	int SOut::GetLength(void)
+	{
+		return 100;
+	}
+
+	int SOut::GetWidth(void)
+	{
+		return 40;
+	}
+
 	SOut& SOut::operator<<(PRect rect)
 	{
 		for(int width=0; width<rect.GetWidth(); width++)

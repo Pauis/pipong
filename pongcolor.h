@@ -11,6 +11,7 @@ namespace pong
 		enum
 		{
 			DEFAULT = 0,
+			BLACK   = 30,
 			RED     = 31,
 			GREEN   = 32,
 			BROWN   = 33,
