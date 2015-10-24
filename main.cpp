@@ -24,6 +24,8 @@ int main(void)
 	int terminal_width = sout.GetWidth();
 	PRect boundary_outer = PRect(1, 1, terminal_length, terminal_width, PColor(PColor::BLUE));
 	PRect boundary_inner = PRect(2, 2, terminal_length-2, terminal_width-2, PColor(PColor::BLACK));
+	PRect lcursor = PRect(5, terminal_width/2-4, 1, 8, PColor(PColor::DEFAULT));
+	PRect rcursor = PRect(terminal_length-5, terminal_width/2-4, 1, 8, PColor(PColor::DEFAULT));
 
 	bool signal_terminate = false;
 	PGTrigger gmode_event = PGTrigger::LOBBY;
@@ -66,6 +68,8 @@ int main(void)
 
 			if (keyinput == PKProperty::PEXIT)
 				gmode_event.Set(PGTrigger::LOBBY);
+
+			sout << lcursor << rcursor;
 		}
 
 		scurrent.DelayMsec(PGProperty::PCYCLEDELAY);
