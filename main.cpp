@@ -20,6 +20,7 @@ int main(void)
 	SInInitial sin;
 	SCurrent scurrent;
 	int keyinput;
+
 	int terminal_length = sout.GetLength();
 	int terminal_width = sout.GetWidth();
 	PRect boundary_outer = PRect(1, 1, terminal_length, terminal_width, PColor(PColor::BLUE));
@@ -27,8 +28,7 @@ int main(void)
 	PRect lcursor = PRect(5, terminal_width/2-4, 1, 8, PColor(PColor::DEFAULT));
 	PRect rcursor = PRect(terminal_length-5, terminal_width/2-4, 1, 8, PColor(PColor::DEFAULT));
 	PRect ball = PRect(1, 1, terminal_length/2, terminal_width/2, PColor(PColor::DEFAULT));
-
-	PRect lcursorbuf, rcursorbuf, ballbuff;
+	PRect prectbuf;
 
 	bool signal_terminate = false;
 	PGTrigger gmode_event = PGTrigger::LOBBY;
@@ -45,8 +45,7 @@ int main(void)
 				sout.Clear();
 
 				boundary_outer.SetColor(PColor(PColor::BLUE));
-				sout << boundary_outer;
-				sout << boundary_inner;
+				sout << boundary_outer << boundary_inner;
 
 				sout << PString("Pipong - Classic Table Tennis Game", PColor(PColor::CYAN), Point(terminal_length/2-16, terminal_width/2-2));
 				sout << PString("Press 's' to start game", PColor(PColor::DEFAULT), Point(terminal_length/2-13, terminal_width/2));
@@ -65,15 +64,18 @@ int main(void)
 				sout.Clear();
 
 				boundary_outer.SetColor(PColor(PColor::BROWN));
-				sout << boundary_outer;
-				sout << boundary_inner;
-			}
+				sout << boundary_outer << boundary_inner << lcursor << rcursor;
+		}
 
 			if (keyinput == PKProperty::PP1UP)
 			{
+				prectbuf = lcursor;
+				prectbuf.SetColor(PColor(PColor::BLACK));
 				lcursor.SetSypos((lcursor.GetSpoint()).GetYpos() - 1);
 				if (boundary_inner.CheckInclude(lcursor) == false)
 					lcursor.SetSypos((lcursor.GetSpoint()).GetYpos() + 1);
+
+				sout << prectbuf << lcursor;
 			}
 			else if (keyinput == PKProperty::PP1DOWN)
 			{
@@ -89,8 +91,6 @@ int main(void)
 			}
 			else if (keyinput == PKProperty::PEXIT)
 				gmode_event.Set(PGTrigger::LOBBY);
-
-			sout << lcursor << rcursor;
 		}
 
 		scurrent.DelayMsec(PGProperty::PCYCLEDELAY);
