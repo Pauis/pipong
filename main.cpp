@@ -64,6 +64,8 @@ int main(void)
 				sout.Clear();
 
 				boundary_outer.SetColor(PColor(PColor::BROWN));
+				lcursor.SetSypos(terminal_width/2-4);
+				rcursor.SetSypos(terminal_width/2-4);
 				sout << boundary_outer << boundary_inner << lcursor << rcursor;
 		}
 
