@@ -29,6 +29,7 @@ namespace pong
 	public:
 		Rect(int xpos, int ypos, int length, int width);
 		Rect(Point spoint, int length, int width);
+		Rect(void);
 		Rect& Set(int xpos, int ypos, int length, int width);
 		Rect& Set(Point spoint, int length, int width);
 		Rect& SetSpoint(Point spoint);
@@ -54,6 +55,7 @@ namespace pong
 		PRect(Point spoint, int length, int width, PColor color);
 		PRect(Rect rect, PColor color);
 		PRect(Rect rect);
+		PRect(void);
 		PRect& Set(int xpos, int ypos, int length, int width, PColor color);
 		PRect& Set(Point spoint, int length, int width, PColor color);
 		PRect& SetColor(PColor color);

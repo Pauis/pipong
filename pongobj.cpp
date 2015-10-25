@@ -58,6 +58,12 @@ namespace pong
 		// empty
 	}
 
+	Rect::Rect(void)
+		: spoint(1, 1), length(1), width(1)
+	{
+		// empty
+	}
+
 	Rect& Rect::Set(int xpos, int ypos, int length, int width)
 	{
 		(this->spoint).Set(xpos, ypos);
@@ -196,6 +202,12 @@ namespace pong
 
 	PRect::PRect(Rect rect)
 		: Rect(rect), color(PColor::DEFAULT)
+	{
+		// empty
+	}
+
+	PRect::PRect(void)
+		: Rect(), color(PColor::DEFAULT)
 	{
 		// empty
 	}
