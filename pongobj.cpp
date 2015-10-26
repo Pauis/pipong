@@ -58,6 +58,12 @@ namespace pong
 		// empty
 	}
 
+	Rect::Rect(void)
+		: spoint(1, 1), length(1), width(1)
+	{
+		// empty
+	}
+
 	Rect& Rect::Set(int xpos, int ypos, int length, int width)
 	{
 		(this->spoint).Set(xpos, ypos);
@@ -146,7 +152,26 @@ namespace pong
 
 		if (baroleft <= compareright && baroright >= compareleft)
 		{
-			if(barotop <= comparebottom && barobottom >= comparetop)
+			if (barotop <= comparebottom && barobottom >= comparetop)
+				return true;
+		}
+		return false;
+	}
+
+	bool Rect::CheckInclude(Rect rect) const
+	{
+		int baroleft = spoint.GetXpos();
+		int baroright = baroleft + length -  1;
+		int barotop = spoint.GetYpos();
+		int barobottom = barotop + width - 1;
+		int compareleft = (rect.GetSpoint()).GetXpos();
+		int compareright = compareleft + rect.GetLength() - 1;
+		int comparetop = (rect.GetSpoint()).GetYpos();
+		int comparebottom = comparetop + rect.GetWidth() - 1;
+
+		if (baroleft <= compareleft && baroright >= compareright)
+		{
+			if (barotop <= comparetop && barobottom >= comparebottom)
 				return true;
 		}
 		return false;
@@ -177,6 +202,12 @@ namespace pong
 
 	PRect::PRect(Rect rect)
 		: Rect(rect), color(PColor::DEFAULT)
+	{
+		// empty
+	}
+
+	PRect::PRect(void)
+		: Rect(), color(PColor::DEFAULT)
 	{
 		// empty
 	}
