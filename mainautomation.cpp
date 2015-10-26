@@ -13,7 +13,7 @@ void MainAM::CursorMove(SOut& sout, PRect& prect, int ud, PRect& crect)
 	prect.SetSypos((prect.GetSpoint()).GetYpos() + ud);
 
 	if (crect.CheckInclude(prect) == false)
-		pbuf = prect;
+		prect = pbuf;
 	else
 	{
 		pbuf.SetColor(PColor(PColor::BLACK));
