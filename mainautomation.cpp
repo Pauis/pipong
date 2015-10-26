@@ -5,7 +5,7 @@
 using pong::sys::SOut;
 using pong::PRect;
 
-void MainAM::AMCursorMove(SOut& sout, PRect& prect, int ud, PRect& crect)
+void MainAM::CursorMove(SOut& sout, PRect& prect, int ud, PRect& crect)
 {
 	static PRect pbuf;
 

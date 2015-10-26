@@ -71,19 +71,19 @@ int main(void)
 
 			if (keyinput == PKProperty::PP1UP)
 			{
-				MainAM::AMCursorMove(sout, lcursor, -1, boundary_inner);
+				MainAM::CursorMove(sout, lcursor, -1, boundary_inner);
 			}
 			else if (keyinput == PKProperty::PP1DOWN)
 			{
-
+				MainAM::CursorMove(sout, lcursor, 1, boundary_inner);
 			}
 			else if (keyinput == PKProperty::PP2UP)
 			{
-
+				MainAM::CursorMove(sout, rcursor, -1, boundary_inner);
 			}
 			else if (keyinput == PKProperty::PP2DOWN)
 			{
-
+				MainAM::CursorMove(sout, rcursor, 1, boundary_inner);
 			}
 			else if (keyinput == PKProperty::PEXIT)
 				gmode_event.Set(PGTrigger::LOBBY);
