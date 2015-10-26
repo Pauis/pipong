@@ -4,6 +4,7 @@
 #include "sysio.h"
 #include "pongproperties.h"
 #include "pongtrigger.h"
+#include "mainautomation.h"
 
 using pong::PString;
 using pong::PRect;
@@ -28,7 +29,6 @@ int main(void)
 	PRect lcursor = PRect(5, terminal_width/2-4, 1, 8, PColor(PColor::DEFAULT));
 	PRect rcursor = PRect(terminal_length-5, terminal_width/2-4, 1, 8, PColor(PColor::DEFAULT));
 	PRect ball = PRect(1, 1, terminal_length/2, terminal_width/2, PColor(PColor::DEFAULT));
-	PRect prectbuf;
 
 	bool signal_terminate = false;
 	PGTrigger gmode_event = PGTrigger::LOBBY;
@@ -71,13 +71,7 @@ int main(void)
 
 			if (keyinput == PKProperty::PP1UP)
 			{
-				prectbuf = lcursor;
-				prectbuf.SetColor(PColor(PColor::BLACK));
-				lcursor.SetSypos((lcursor.GetSpoint()).GetYpos() - 1);
-				if (boundary_inner.CheckInclude(lcursor) == false)
-					lcursor.SetSypos((lcursor.GetSpoint()).GetYpos() + 1);
-
-				sout << prectbuf << lcursor;
+				MainAM::AMCursorMove(sout, lcursor, -1, boundary_inner);
 			}
 			else if (keyinput == PKProperty::PP1DOWN)
 			{

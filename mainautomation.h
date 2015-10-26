@@ -10,7 +10,7 @@ using pong::PRect;
 class MainAM
 {
 public:
-	static void AMRectMove(SOut& sout, PRect& prect, int lr, int ud);
+	static void AMCursorMove(SOut& sout, PRect& prect, int ud, PRect& crect);
 };
 
 #endif
