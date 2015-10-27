@@ -29,6 +29,8 @@ int main(void)
 	PRect lcursor = PRect(5, terminal_width/2-4, 1, 8, PColor(PColor::DEFAULT));
 	PRect rcursor = PRect(terminal_length-5, terminal_width/2-4, 1, 8, PColor(PColor::DEFAULT));
 	PRect ball = PRect(terminal_length/2, terminal_width/2, 1, 1, PColor(PColor::DEFAULT));
+	bool ball_left = true;
+	int ball_ud = 1;
 
 	bool signal_terminate = false;
 	PGTrigger gmode_event = PGTrigger::LOBBY;
@@ -63,7 +65,7 @@ int main(void)
 			{
 				sout.Clear();
 
-				boundary_outer.SetColor(PColor(PColor::BROWN));
+				boundary_outer.SetColor(PColor(PColor::CYAN));
 				lcursor.SetSypos(terminal_width/2-4);
 				rcursor.SetSypos(terminal_width/2-4);
 				ball.SetSxpos(terminal_length/2);
@@ -89,8 +91,6 @@ int main(void)
 			}
 			else if (keyinput == PKProperty::PEXIT)
 				gmode_event.Set(PGTrigger::LOBBY);
-
-			
 		}
 
 		scurrent.DelayMsec(PGProperty::PCYCLEDELAY);
