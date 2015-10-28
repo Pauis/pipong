@@ -57,6 +57,7 @@ namespace pong { namespace sys
 	{
 	public:
 		SCurrent& DelayMsec(long msec);
+		bool TimeTick(clock_t dtime);
 	};
 }}
 

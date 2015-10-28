@@ -149,4 +149,18 @@ namespace pong { namespace sys
 
 		return *this;
 	}
+
+	bool SCurrent::TimeTick(clock_t dtime)
+	{
+		static clock_t stime = clock();
+		clock_t ptime = clock();
+
+		if(ptime - stime >= dtime)
+		{
+			stime = clock();
+			return true;
+		}
+		else
+			return false;
+	}
 }}
