@@ -26,11 +26,11 @@ int main(void)
 	int terminal_width = sout.GetWidth();
 	PRect boundary_up = PRect(3, 1, terminal_length-4, 1, PColor(PColor::DEFAULT));
 	PRect boundary_down = PRect(3, terminal_width, terminal_length-4, 1, PColor(PColor::DEFAULT));
-	PRect boundary_left = PRect(2, 1, 1, terminal_width, PColor(PColor::DEFAULT));
-	PRect boundary_right = PRect(terminal_length-1, 1, 1, terminal_width, PColor(PColor::DEFAULT));
+	PRect boundary_left = PRect(2, 2, 1, terminal_width-2, PColor(PColor::DEFAULT));
+	PRect boundary_right = PRect(terminal_length-1, 2, 1, terminal_width-2, PColor(PColor::DEFAULT));
 	PRect boundary_court = PRect(3, 2, terminal_length-4, terminal_width-2, PColor(PColor::DEFAULT));
-	PRect lcursor = PRect(3, terminal_width/2-2, 1, 8, PColor(PColor::DEFAULT));
-	PRect rcursor = PRect(terminal_length-2, terminal_width/2-2, 1, 8, PColor(PColor::DEFAULT));
+	PRect lcursor = PRect(2, terminal_width/2-2, 1, 8, PColor(PColor::DEFAULT));
+	PRect rcursor = PRect(terminal_length-1, terminal_width/2-2, 1, 8, PColor(PColor::DEFAULT));
 	PRect ball = PRect(terminal_length/2, terminal_width/2, 1, 1, PColor(PColor::DEFAULT));
 	bool ball_left = true;
 	int ball_ud = 1;
@@ -80,19 +80,19 @@ int main(void)
 
 			if (keyinput == PKProperty::PP1UP)
 			{
-				MainAM::CursorMove(sout, lcursor, -1, boundary_court);
+				MainAM::CursorMove(sout, lcursor, -1, boundary_left);
 			}
 			else if (keyinput == PKProperty::PP1DOWN)
 			{
-				MainAM::CursorMove(sout, lcursor, 1, boundary_court);
+				MainAM::CursorMove(sout, lcursor, 1, boundary_left);
 			}
 			else if (keyinput == PKProperty::PP2UP)
 			{
-				MainAM::CursorMove(sout, rcursor, -1, boundary_court);
+				MainAM::CursorMove(sout, rcursor, -1, boundary_right);
 			}
 			else if (keyinput == PKProperty::PP2DOWN)
 			{
-				MainAM::CursorMove(sout, rcursor, 1, boundary_court);
+				MainAM::CursorMove(sout, rcursor, 1, boundary_right);
 			}
 			else if (keyinput == PKProperty::PEXIT)
 				gmode_event.Set(PGTrigger::LOBBY);
