@@ -24,10 +24,10 @@ int main(void)
 
 	int terminal_length = sout.GetLength();
 	int terminal_width = sout.GetWidth();
-	PRect boundary_outer = PRect(1, 1, terminal_length, terminal_width, PColor(PColor::BLUE));
+	PRect boundary_outer = PRect(3, 1, terminal_length-4, terminal_width, PColor(PColor::BLUE));
 	PRect boundary_inner = PRect(2, 2, terminal_length-2, terminal_width-2, PColor(PColor::BLACK));
-	PRect lcursor = PRect(5, terminal_width/2-4, 1, 8, PColor(PColor::DEFAULT));
-	PRect rcursor = PRect(terminal_length-5, terminal_width/2-4, 1, 8, PColor(PColor::DEFAULT));
+	PRect lcursor = PRect(3, terminal_width/2-4, 1, 8, PColor(PColor::DEFAULT));
+	PRect rcursor = PRect(terminal_length-2, terminal_width/2-4, 1, 8, PColor(PColor::DEFAULT));
 	PRect ball = PRect(terminal_length/2, terminal_width/2, 1, 1, PColor(PColor::DEFAULT));
 	bool ball_left = true;
 	int ball_ud = 1;
