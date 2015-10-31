@@ -17,28 +17,35 @@ using pong::sys::SCurrent;
 
 int main(void)
 {
+	// System Object
 	SOut sout;
 	SInInitial sin;
 	SCurrent scurrent;
 	int keyinput;
 
+	// System Setting
 	int terminal_length = sout.GetLength();
 	int terminal_width = sout.GetWidth();
+
+	// Game Object
 	PRect boundary_up = PRect(3, 1, terminal_length-4, 1, PColor(PColor::DEFAULT));
 	PRect boundary_down = PRect(3, terminal_width, terminal_length-4, 1, PColor(PColor::DEFAULT));
-	PRect boundary_left = PRect(2, 2, 1, terminal_width-2, PColor(PColor::DEFAULT));
-	PRect boundary_right = PRect(terminal_length-1, 2, 1, terminal_width-2, PColor(PColor::DEFAULT));
+	PRect boundary_left = PRect(2, 1, 1, terminal_width, PColor(PColor::DEFAULT));
+	PRect boundary_right = PRect(terminal_length-1, 1, 1, terminal_width, PColor(PColor::DEFAULT));
 	PRect boundary_court = PRect(3, 2, terminal_length-4, terminal_width-2, PColor(PColor::DEFAULT));
 	PRect lcursor = PRect(2, terminal_width/2-2, 1, 8, PColor(PColor::DEFAULT));
 	PRect rcursor = PRect(terminal_length-1, terminal_width/2-2, 1, 8, PColor(PColor::DEFAULT));
 	PRect ball = PRect(terminal_length/2, terminal_width/2, 1, 1, PColor(PColor::DEFAULT));
-	bool ball_left = true;
-	int ball_ud = 1;
+	PRect pbuf;
 
+	// Game Setting
+	int ball_lr = -1;
+	int ball_ud = 1;
 	bool signal_terminate = false;
 	PGTrigger gmode_event = PGTrigger::LOBBY;
 	PGTrigger gmode_stage = PGTrigger::NONE;
 
+	// Game Logic
 	while (signal_terminate != true)
 	{
 		sin >> keyinput;
@@ -78,24 +85,40 @@ int main(void)
 				sout << boundary_up << boundary_down << lcursor << rcursor << ball;
 			}
 
-			if (keyinput == PKProperty::PP1UP)
+			if (keyinput == PKProperty::PEXIT)
+				gmode_event.Set(PGTrigger::LOBBY);
+			else if (keyinput == PKProperty::PP1UP)
 			{
-				MainAM::CursorMove(sout, lcursor, -1, boundary_left);
+				MainAM::PRectMove(sout, lcursor, 0, -1, boundary_left);
 			}
 			else if (keyinput == PKProperty::PP1DOWN)
 			{
-				MainAM::CursorMove(sout, lcursor, 1, boundary_left);
+				MainAM::PRectMove(sout, lcursor, 0, 1, boundary_left);
 			}
 			else if (keyinput == PKProperty::PP2UP)
 			{
-				MainAM::CursorMove(sout, rcursor, -1, boundary_right);
+				MainAM::PRectMove(sout, rcursor, 0, -1, boundary_right);
 			}
 			else if (keyinput == PKProperty::PP2DOWN)
 			{
-				MainAM::CursorMove(sout, rcursor, 1, boundary_right);
+				MainAM::PRectMove(sout, rcursor, 0, 1, boundary_right);
 			}
-			else if (keyinput == PKProperty::PEXIT)
-				gmode_event.Set(PGTrigger::LOBBY);
+
+			if (scurrent.TimeTick(PGProperty::PBALLFREQ))
+			{
+				pbuf = MainAM::PRectMove(sout, ball, ball_lr, ball_ud, boundary_court);
+
+				if (boundary_up.CheckInclude(pbuf) || boundary_down.CheckInclude(pbuf))
+					ball_ud = -ball_ud;
+
+				if (boundary_left.CheckInclude(pbuf) || boundary_right.CheckInclude(pbuf))
+				{
+					if (lcursor.CheckInclude(pbuf) || rcursor.CheckInclude(pbuf))
+						ball_lr = -ball_lr;
+					else
+						gmode_event.Set(PGTrigger::LOBBY);
+				}
+			}
 		}
 
 		scurrent.DelayMsec(PGProperty::PCYCLEDELAY);
