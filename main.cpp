@@ -32,7 +32,7 @@ int main(void)
 	PRect lcursor = PRect(2, terminal_width/2-2, 1, 8, PColor(PColor::DEFAULT));
 	PRect rcursor = PRect(terminal_length-1, terminal_width/2-2, 1, 8, PColor(PColor::DEFAULT));
 	PRect ball = PRect(terminal_length/2, terminal_width/2, 1, 1, PColor(PColor::DEFAULT));
-	bool ball_left = true;
+	int ball_lr = -1;
 	int ball_ud = 1;
 
 	bool signal_terminate = false;
@@ -75,10 +75,14 @@ int main(void)
 				rcursor.SetSypos(terminal_width/2-4);
 				ball.SetSxpos(terminal_length/2);
 				ball.SetSypos(terminal_width/2);
-				sout << boundary_up << boundary_down << lcursor << rcursor << ball;
+				sout << boundary_up << boundary_down;
 			}
 
-			if (keyinput == PKProperty::PP1UP)
+			sout << lcursor << rcursor << ball;
+
+			if (keyinput == PKProperty::PEXIT)
+				gmode_event.Set(PGTrigger::LOBBY);
+			else if (keyinput == PKProperty::PP1UP)
 			{
 				MainAM::CursorMove(sout, lcursor, -1, boundary_left);
 			}
@@ -94,7 +98,13 @@ int main(void)
 			{
 				MainAM::CursorMove(sout, rcursor, 1, boundary_right);
 			}
-			else if (keyinput == PKProperty::PEXIT)
+
+			if (true)
+			{
+				ball.SetSxpos((ball.GetSpoint()).GetXpos() + ball_lr);
+			}
+
+			if ((ball.GetSpoint()).GetXpos() <= (boundary_left.GetSpoint()).GetXpos())
 				gmode_event.Set(PGTrigger::LOBBY);
 		}
 
