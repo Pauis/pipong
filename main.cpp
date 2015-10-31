@@ -30,12 +30,13 @@ int main(void)
 	// Game Object
 	PRect boundary_up = PRect(3, 1, terminal_length-4, 1, PColor(PColor::DEFAULT));
 	PRect boundary_down = PRect(3, terminal_width, terminal_length-4, 1, PColor(PColor::DEFAULT));
-	PRect boundary_left = PRect(2, 2, 1, terminal_width-2, PColor(PColor::DEFAULT));
-	PRect boundary_right = PRect(terminal_length-1, 2, 1, terminal_width-2, PColor(PColor::DEFAULT));
+	PRect boundary_left = PRect(2, 1, 1, terminal_width, PColor(PColor::DEFAULT));
+	PRect boundary_right = PRect(terminal_length-1, 1, 1, terminal_width, PColor(PColor::DEFAULT));
 	PRect boundary_court = PRect(3, 2, terminal_length-4, terminal_width-2, PColor(PColor::DEFAULT));
 	PRect lcursor = PRect(2, terminal_width/2-2, 1, 8, PColor(PColor::DEFAULT));
 	PRect rcursor = PRect(terminal_length-1, terminal_width/2-2, 1, 8, PColor(PColor::DEFAULT));
 	PRect ball = PRect(terminal_length/2, terminal_width/2, 1, 1, PColor(PColor::DEFAULT));
+	PRect pbuf;
 
 	// Game Setting
 	int ball_lr = -1;
@@ -105,20 +106,23 @@ int main(void)
 
 			if (scurrent.TimeTick(PGProperty::PBALLFREQ))
 			{
-				if (MainAM::PRectMove(sout, ball, ball_lr, ball_ud, boundary_court) == false)
+				pbuf = MainAM::PRectMove(sout, ball, ball_lr, ball_ud, boundary_court);
+
+				if (boundary_up.CheckInclude(pbuf) || boundary_down.CheckInclude(pbuf))
 				{
-					if (true)
-					{
-						if (ball_ud == 1)
-							ball_ud = -1;
-						else if (ball_ud == -1)
-							ball_ud = 1;
-					}
+					if (ball_ud == 1)
+						ball_ud = -1;
+					else if (ball_ud == -1)
+						ball_ud = 1;
+				}
+
+				if (boundary_left.CheckInclude(pbuf) || boundary_right.CheckInclude(pbuf))
+				{
+					if (lcursor.CheckInclude(pbuf) || rcursor.CheckInclude(pbuf));
+					else
+						gmode_event.Set(PGTrigger::LOBBY);
 				}
 			}
-
-			if ((ball.GetSpoint()).GetXpos() <= (boundary_left.GetSpoint()).GetXpos())
-				gmode_event.Set(PGTrigger::LOBBY);
 		}
 
 		scurrent.DelayMsec(PGProperty::PCYCLEDELAY);
