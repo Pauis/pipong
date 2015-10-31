@@ -17,13 +17,17 @@ using pong::sys::SCurrent;
 
 int main(void)
 {
+	// System Object
 	SOut sout;
 	SInInitial sin;
 	SCurrent scurrent;
 	int keyinput;
 
+	// System Setting
 	int terminal_length = sout.GetLength();
 	int terminal_width = sout.GetWidth();
+
+	// Game Object
 	PRect boundary_up = PRect(3, 1, terminal_length-4, 1, PColor(PColor::DEFAULT));
 	PRect boundary_down = PRect(3, terminal_width, terminal_length-4, 1, PColor(PColor::DEFAULT));
 	PRect boundary_left = PRect(2, 2, 1, terminal_width-2, PColor(PColor::DEFAULT));
@@ -32,13 +36,15 @@ int main(void)
 	PRect lcursor = PRect(2, terminal_width/2-2, 1, 8, PColor(PColor::DEFAULT));
 	PRect rcursor = PRect(terminal_length-1, terminal_width/2-2, 1, 8, PColor(PColor::DEFAULT));
 	PRect ball = PRect(terminal_length/2, terminal_width/2, 1, 1, PColor(PColor::DEFAULT));
+
+	// Game Setting
 	int ball_lr = -1;
 	int ball_ud = 1;
-
 	bool signal_terminate = false;
 	PGTrigger gmode_event = PGTrigger::LOBBY;
 	PGTrigger gmode_stage = PGTrigger::NONE;
 
+	// Game Logic
 	while (signal_terminate != true)
 	{
 		sin >> keyinput;
