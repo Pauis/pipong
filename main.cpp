@@ -105,7 +105,16 @@ int main(void)
 
 			if (scurrent.TimeTick(PGProperty::PBALLFREQ))
 			{
-				MainAM::PRectMove(sout, ball, ball_lr, ball_ud, boundary_court);
+				if (MainAM::PRectMove(sout, ball, ball_lr, ball_ud, boundary_court) == false)
+				{
+					if (true)
+					{
+						if (ball_ud == 1)
+							ball_ud = -1;
+						else if (ball_ud == -1)
+							ball_ud = 1;
+					}
+				}
 			}
 
 			if ((ball.GetSpoint()).GetXpos() <= (boundary_left.GetSpoint()).GetXpos())
