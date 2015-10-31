@@ -5,7 +5,7 @@
 using pong::sys::SOut;
 using pong::PRect;
 
-void MainAM::PRectMove(SOut& sout, PRect& prect, int lr, int ud, PRect& crect)
+bool MainAM::PRectMove(SOut& sout, PRect& prect, int lr, int ud, PRect& crect)
 {
 	static PRect pbuf;
 
@@ -14,10 +14,14 @@ void MainAM::PRectMove(SOut& sout, PRect& prect, int lr, int ud, PRect& crect)
 	prect.SetSypos((prect.GetSpoint()).GetYpos() + ud);
 
 	if (crect.CheckInclude(prect) == false)
+	{
 		prect = pbuf;
+		return false;
+	}
 	else
 	{
 		pbuf.SetColor(PColor(PColor::BLACK));
 		sout << pbuf << prect;
+		return true;
 	}
 }
