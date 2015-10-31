@@ -109,16 +109,12 @@ int main(void)
 				pbuf = MainAM::PRectMove(sout, ball, ball_lr, ball_ud, boundary_court);
 
 				if (boundary_up.CheckInclude(pbuf) || boundary_down.CheckInclude(pbuf))
-				{
-					if (ball_ud == 1)
-						ball_ud = -1;
-					else if (ball_ud == -1)
-						ball_ud = 1;
-				}
+					ball_ud = -ball_ud;
 
 				if (boundary_left.CheckInclude(pbuf) || boundary_right.CheckInclude(pbuf))
 				{
-					if (lcursor.CheckInclude(pbuf) || rcursor.CheckInclude(pbuf));
+					if (lcursor.CheckInclude(pbuf) || rcursor.CheckInclude(pbuf))
+						ball_lr = -ball_lr;
 					else
 						gmode_event.Set(PGTrigger::LOBBY);
 				}
