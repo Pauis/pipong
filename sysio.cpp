@@ -150,17 +150,23 @@ namespace pong { namespace sys
 		return *this;
 	}
 
-	bool SCurrent::TimeTick(clock_t dtime)
+	bool SCurrent::TimeTick(int cyclenum)
 	{
-		static clock_t stime = clock();
-		clock_t ptime = clock();
+		static int cycount = 0;
 
-		if(ptime - stime >= dtime)
+		if (cycount == 0)
 		{
-			stime = clock();
+			cycount++;
 			return true;
 		}
 		else
-			return false;
+		{
+			cycount++;
+		}
+
+		if (cycount >= cyclenum)
+			cycount = 0;
+
+		return false;
 	}
 }}

@@ -97,9 +97,9 @@ int main(void)
 				MainAM::PRectMove(sout, rcursor, 0, 1, boundary_right);
 			}
 
-			if (true)
+			if (scurrent.TimeTick(PGProperty::PBALLFREQ))
 			{
-				ball.SetSxpos((ball.GetSpoint()).GetXpos() + ball_lr);
+				MainAM::PRectMove(sout, ball, ball_lr, ball_ud, boundary_court);
 			}
 
 			if ((ball.GetSpoint()).GetXpos() <= (boundary_left.GetSpoint()).GetXpos())
