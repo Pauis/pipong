@@ -75,28 +75,26 @@ int main(void)
 				rcursor.SetSypos(terminal_width/2-4);
 				ball.SetSxpos(terminal_length/2);
 				ball.SetSypos(terminal_width/2);
-				sout << boundary_up << boundary_down;
+				sout << boundary_up << boundary_down << lcursor << rcursor << ball;
 			}
-
-			sout << lcursor << rcursor << ball;
 
 			if (keyinput == PKProperty::PEXIT)
 				gmode_event.Set(PGTrigger::LOBBY);
 			else if (keyinput == PKProperty::PP1UP)
 			{
-				MainAM::CursorMove(sout, lcursor, -1, boundary_left);
+				MainAM::PRectMove(sout, lcursor, 0, -1, boundary_left);
 			}
 			else if (keyinput == PKProperty::PP1DOWN)
 			{
-				MainAM::CursorMove(sout, lcursor, 1, boundary_left);
+				MainAM::PRectMove(sout, lcursor, 0, 1, boundary_left);
 			}
 			else if (keyinput == PKProperty::PP2UP)
 			{
-				MainAM::CursorMove(sout, rcursor, -1, boundary_right);
+				MainAM::PRectMove(sout, rcursor, 0, -1, boundary_right);
 			}
 			else if (keyinput == PKProperty::PP2DOWN)
 			{
-				MainAM::CursorMove(sout, rcursor, 1, boundary_right);
+				MainAM::PRectMove(sout, rcursor, 0, 1, boundary_right);
 			}
 
 			if (true)
