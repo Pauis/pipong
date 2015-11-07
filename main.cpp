@@ -19,7 +19,7 @@ int main(void)
 {
 	// System Object
 	SOut sout;
-	SInInitial sin;
+	SInInitial shin;
 	SCurrent scurrent;
 	int keyinput;
 
@@ -48,7 +48,7 @@ int main(void)
 	// Game Logic
 	while (signal_terminate != true)
 	{
-		sin >> keyinput;
+		shin >> keyinput;
 
 		if (gmode_event == PGTrigger(PGTrigger::LOBBY))
 		{
