@@ -12,7 +12,7 @@
 ### Command
 #### Linux, OSX
 ```
-// Run the excutable file.
+// Run the executable.
 ~/pipong $ posix_out/./pipong
 ```
 ### Default Key
@@ -34,7 +34,7 @@
 // Go to Pipong directory.
 ~ $ cd pipong
 
-// Build excutable using Make.
+// Build executable using Make.
 ~/pipong $ make
 ```
 
