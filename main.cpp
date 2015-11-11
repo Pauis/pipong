@@ -104,7 +104,7 @@ int main(void)
 				MainAM::PRectMove(sout, rcursor, 0, 1, boundary_right);
 			}
 
-			if (scurrent.TimeTick(PGProperty::PBALLFREQ))
+			if (scurrent.CycleTick(PGProperty::PBALLFREQ))
 			{
 				pbuf = MainAM::PRectMove(sout, ball, ball_lr, ball_ud, boundary_court);
 
@@ -123,5 +123,6 @@ int main(void)
 
 		scurrent.DelayMsec(PGProperty::PCYCLEDELAY);
 	}
+
 	return 0;
 }

@@ -57,7 +57,7 @@ namespace pong { namespace sys
 	{
 	public:
 		SCurrent& DelayMsec(long msec);
-		bool TimeTick(int cyclenum);
+		bool CycleTick(int cyclenum);
 	};
 }}
 

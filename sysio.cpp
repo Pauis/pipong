@@ -150,7 +150,7 @@ namespace pong { namespace sys
 		return *this;
 	}
 
-	bool SCurrent::TimeTick(int cyclenum)
+	bool SCurrent::CycleTick(int cyclenum)
 	{
 		static int cycount = 0;
 
