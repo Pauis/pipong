@@ -10,9 +10,10 @@
 
 ## Usage
 ### Command
+#### Linux, OSX
 ```
 // Run the excutable file.
-$ posix_out/./pipong
+~/pipong $ posix_out/./pipong
 ```
 ### Default Key
 | Description | Default Key |
@@ -25,6 +26,7 @@ $ posix_out/./pipong
 | Lower Player 2's Cursor | k |
 
 ## Download and Install
+### Linux, OSX
 ```
 // Download Pipong code anywhere you want. It's an example for beginners.
 ~ $ git clone https://github.com/pauis/pipong.git
@@ -37,12 +39,13 @@ $ posix_out/./pipong
 ```
 
 ## Update
+### Linux, OSX
 ```
 // Go to Pipong directory.
 ~ $ cd ~/pipong
 
-// Download latest code.
-~/pipong $ git pull origin
+// Download the latest code.
+~/pipong $ git pull
 
 // Run Make.
 ~/pipong $ make
