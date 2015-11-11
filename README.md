@@ -4,86 +4,52 @@
 > **Notice: This application is currently under development.**
 
 ## Support List
-### x86_64
 | Linux | OSX | Windows |
 |:-:|:-:|:-:|
 | O | TBD | TBD |
 
 ## Usage
-### Software
-#### Excutable file
-Run the excutable file.
+### Command
 ```
+// Run the excutable file.
 $ posix_out/./pipong
 ```
-
-#### Makefile
-This project supports [Make](http://www.gnu.org/software/make/). Makefile in this project supports some functions.
-```
-// Build excutable file
-$ make
-
-// (Optional) Remove excutable file and .o files
-$ make clean
-```
+### Default Key
+| Description | Default Key |
+|:-:|:-:|
+| Start | s |
+| Exit | q |
+| Lift Player 1's Cursor | e |
+| Lower Player 1's Curosr | f |
+| Lift Player 2's Cursor | o |
+| Lower Player 2's Cursor | k |
 
 ## Download and Install
-### WiringPi
 ```
-// Download wiringPi code.
-$ git clone git://git.drogon.net/wiringPi
-
-// Go to wiringPi directory.
-$ cd wiringPi
-
-// Run the 'build' script. It will automatically install the library.
-$ ./build
-```
-### Pipong
-```
-// Download Pipong code.
-$ git clone https://github.com/Pauis/pipong.git
+// Download Pipong code anywhere you want. It's an example for beginners.
+~ $ git clone https://github.com/pauis/pipong.git
 
 // Go to Pipong directory.
-$ cd pipong
+~ $ cd pipong
 
-// Build excutable file using Make.
-$ make
-
-// (If you want to build the project with Clang, attach arguments)
-$ make CXX=clang++
+// Build excutable using Make.
+~/pipong $ make
 ```
+
 ## Update
-### WiringPi
-```
-// Go to wiringPi directory.
-$ cd wiringPi
-
-// Download new code.
-$ git pull origin
-
-// Run the script.
-$ ./build
-```
-### Pipong
 ```
 // Go to Pipong directory.
-$ cd pipong
+~ $ cd ~/pipong
 
-// Download new code.
-$ git pull origin
+// Download latest code.
+~/pipong $ git pull origin
 
 // Run Make.
-$ make
-
-// (If you want to build the project with Clang, attach arguments)
-$ make CXX=clang++
+~/pipong $ make
 ```
 
 ## Notice
 * This project is for Command Line Interface.
-* This project uses [wiringPi](http://wiringpi.com/) library, [GCC](https://gcc.gnu.org/) (or Clang) and [Make](http://www.gnu.org/software/make/), so you need them before compiling Pipong.
 
 ## License
-This project is based on Dong-jun Lim's contribution including *.c, *.h and Makefile.
-Source code is distributed with MIT License.
+This project is based on Dong-jun Lim's contribution. It is distributed with MIT License.
