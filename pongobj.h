@@ -52,7 +52,9 @@ namespace pong
 		PColor color;
 	public:
 		PRect(int xpos, int ypos, int length, int width, PColor color);
+		PRect(int xpos, int ypos, int length, int width);
 		PRect(Point spoint, int length, int width, PColor color);
+		PRect(Point spoint, int length, int width);
 		PRect(Rect rect, PColor color);
 		PRect(Rect rect);
 		PRect(void);

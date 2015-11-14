@@ -188,8 +188,20 @@ namespace pong
 		// empty
 	}
 
+	PRect::PRect(int xpos, int ypos, int length, int width)
+		: Rect(xpos, ypos, length, width), color(PColor::DEFAULT)
+	{
+		// empty
+	}
+
 	PRect::PRect(Point spoint, int length, int width, PColor color)
 		: Rect(spoint, length, width), color(color)
+	{
+		// empty
+	}
+
+	PRect::PRect(Point spoint, int length, int width)
+		: Rect(spoint, length, width), color(PColor::DEFAULT)
 	{
 		// empty
 	}

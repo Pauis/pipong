@@ -28,14 +28,14 @@ int main(void)
 	int terminal_width = sout.GetWidth();
 
 	// Game Object
-	PRect boundary_up = PRect(3, 1, terminal_length-4, 1, PColor(PColor::DEFAULT));
-	PRect boundary_down = PRect(3, terminal_width, terminal_length-4, 1, PColor(PColor::DEFAULT));
-	PRect boundary_left = PRect(2, 1, 1, terminal_width, PColor(PColor::DEFAULT));
-	PRect boundary_right = PRect(terminal_length-1, 1, 1, terminal_width, PColor(PColor::DEFAULT));
-	PRect boundary_court = PRect(3, 2, terminal_length-4, terminal_width-2, PColor(PColor::DEFAULT));
-	PRect lcursor = PRect(2, terminal_width/2-2, 1, 8, PColor(PColor::DEFAULT));
-	PRect rcursor = PRect(terminal_length-1, terminal_width/2-2, 1, 8, PColor(PColor::DEFAULT));
-	PRect ball = PRect(terminal_length/2, terminal_width/2, 1, 1, PColor(PColor::DEFAULT));
+	PRect boundary_up = PRect(3, 1, terminal_length-4, 1);
+	PRect boundary_down = PRect(3, terminal_width, terminal_length-4, 1);
+	PRect boundary_left = PRect(2, 1, 1, terminal_width);
+	PRect boundary_right = PRect(terminal_length-1, 1, 1, terminal_width);
+	PRect boundary_court = PRect(3, 2, terminal_length-4, terminal_width-2);
+	PRect lcursor = PRect(2, terminal_width/2-2, 1, 8);
+	PRect rcursor = PRect(terminal_length-1, terminal_width/2-2, 1, 8);
+	PRect ball = PRect(terminal_length/2, terminal_width/2, 1, 1);
 	PRect pbuf;
 	string appdesc = "Pipong - Classic Table Tennis Game";
 	string startdesc = "Press 's' to start game";
