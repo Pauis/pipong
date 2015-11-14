@@ -37,6 +37,10 @@ int main(void)
 	PRect rcursor = PRect(terminal_length-1, terminal_width/2-2, 1, 8, PColor(PColor::DEFAULT));
 	PRect ball = PRect(terminal_length/2, terminal_width/2, 1, 1, PColor(PColor::DEFAULT));
 	PRect pbuf;
+	string appdesc = "Pipong - Classic Table Tennis Game";
+	string startdesc = "Press 's' to start game";
+	string quitdesc = "Press 'q' to exit the game";
+	string detaildesc = "See more details on https://github.com/pauis/pipong.";
 
 	// Game Setting
 	int ball_lr = -1;
@@ -60,9 +64,10 @@ int main(void)
 				boundary_down.SetColor(PColor(PColor::BLUE));
 				sout << boundary_up << boundary_down;
 
-				sout << PString("Pipong - Classic Table Tennis Game", PColor(PColor::CYAN), Point(terminal_length/2-16, terminal_width/2-2));
-				sout << PString("Press 's' to start game", PColor(PColor::DEFAULT), Point(terminal_length/2-13, terminal_width/2));
-				sout << PString("Press 'q' to exit the game", PColor(PColor::DEFAULT), Point(terminal_length/2-13, terminal_width/2+1));
+				sout << PString(appdesc, PColor(PColor::CYAN), Point(terminal_length/2-20, terminal_width/2-2));
+				sout << PString(startdesc, PColor(PColor::DEFAULT), Point(terminal_length/2-12, terminal_width/2));
+				sout << PString(quitdesc, PColor(PColor::DEFAULT), Point(terminal_length/2-12, terminal_width/2+1));
+				sout << PString(detaildesc, PColor(PColor::DEFAULT), Point(terminal_length/2-20, terminal_width/2+3));
 			}
 
 			if (keyinput == PKProperty::PSTART)
@@ -88,21 +93,13 @@ int main(void)
 			if (keyinput == PKProperty::PEXIT)
 				gmode_event.Set(PGTrigger::LOBBY);
 			else if (keyinput == PKProperty::PP1UP)
-			{
 				MainAM::PRectMove(sout, lcursor, 0, -1, boundary_left);
-			}
 			else if (keyinput == PKProperty::PP1DOWN)
-			{
 				MainAM::PRectMove(sout, lcursor, 0, 1, boundary_left);
-			}
 			else if (keyinput == PKProperty::PP2UP)
-			{
 				MainAM::PRectMove(sout, rcursor, 0, -1, boundary_right);
-			}
 			else if (keyinput == PKProperty::PP2DOWN)
-			{
 				MainAM::PRectMove(sout, rcursor, 0, 1, boundary_right);
-			}
 
 			if (scurrent.CycleTick(PGProperty::PBALLFREQ))
 			{
