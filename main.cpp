@@ -65,9 +65,9 @@ int main(void)
 				sout << boundary_up << boundary_down;
 
 				sout << PString(appdesc, PColor(PColor::CYAN), Point(terminal_length/2-20, terminal_width/2-2));
-				sout << PString(startdesc, PColor(PColor::DEFAULT), Point(terminal_length/2-12, terminal_width/2));
-				sout << PString(quitdesc, PColor(PColor::DEFAULT), Point(terminal_length/2-12, terminal_width/2+1));
-				sout << PString(detaildesc, PColor(PColor::DEFAULT), Point(terminal_length/2-20, terminal_width/2+3));
+				sout << PString(startdesc, Point(terminal_length/2-12, terminal_width/2));
+				sout << PString(quitdesc, Point(terminal_length/2-12, terminal_width/2+1));
+				sout << PString(detaildesc, Point(terminal_length/2-20, terminal_width/2+3));
 			}
 
 			if (keyinput == PKProperty::PSTART)
