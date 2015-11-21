@@ -44,7 +44,7 @@ namespace pong
 		int GetWidth(void) const;
 		bool CheckInterference(Rect rect) const;
 		bool CheckInclude(Rect rect) const;
-		bool MoveOnRect(Rect& crect, Point pos);
+		bool MoveOnObject(Rect& crect, Point pos);
 		virtual ~Rect();
 	};
 

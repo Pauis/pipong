@@ -185,7 +185,7 @@ namespace pong
 		return false;
 	}
 
-	bool Rect::MoveOnRect(Rect& crect, Point pos)
+	bool Rect::MoveOnObject(Rect& crect, Point pos)
 	{
 		static Rect rbuf;
 
