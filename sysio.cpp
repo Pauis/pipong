@@ -58,7 +58,7 @@ namespace pong { namespace sys
 		return 40;
 	}
 
-	SOut& SOut::MoveWithErase(PRect drect, PRect wrect)
+	SOut& SOut::EraseWrite(PRect drect, PRect wrect)
 	{
 		SOut sout;
 		drect.SetColor(PColor::BLACK);
