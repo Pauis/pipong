@@ -58,6 +58,16 @@ namespace pong { namespace sys
 		return 40;
 	}
 
+	SOut& SOut::MoveWithErase(PRect drect, PRect wrect)
+	{
+		SOut sout;
+		drect.SetColor(PColor::BLACK);
+
+		sout << drect << wrect;
+
+		return *this;
+	}
+
 	SOut& SOut::operator<<(PRect rect)
 	{
 		for(int width=0; width<rect.GetWidth(); width++)
