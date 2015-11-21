@@ -46,6 +46,14 @@ namespace pong
 		return ypos;
 	}
 
+	Point Point::operator+(Point pos) const
+	{
+		int x = xpos + pos.GetXpos();
+		int y = ypos + pos.GetYpos();
+
+		return Point(x, y);
+	}
+
 	Rect::Rect(int xpos, int ypos, int length, int width)
 		: spoint(xpos, ypos), length(length), width(width)
 	{
@@ -175,6 +183,23 @@ namespace pong
 				return true;
 		}
 		return false;
+	}
+
+	bool Rect::MoveOnRect(Rect& crect, Point pos)
+	{
+		static Rect rbuf;
+
+		rbuf.SetSpoint(spoint + crect.GetSpoint());
+		rbuf.SetLength(length);
+		rbuf.SetWidth(width);
+
+		if (crect.CheckInclude(rbuf) == false)
+			return false;
+		else
+		{
+			spoint = spoint + crect.GetSpoint();
+			return true;
+		}
 	}
 
 	Rect::~Rect()

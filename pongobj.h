@@ -18,6 +18,7 @@ namespace pong
 		Point& SetYpos(int ypos);
 		int GetXpos(void) const;
 		int GetYpos(void) const;
+		Point operator+(Point pos) const;
 	};
 
 	class Rect
@@ -43,6 +44,7 @@ namespace pong
 		int GetWidth(void) const;
 		bool CheckInterference(Rect rect) const;
 		bool CheckInclude(Rect rect) const;
+		bool MoveOnRect(Rect& crect, Point pos);
 		virtual ~Rect();
 	};
 
