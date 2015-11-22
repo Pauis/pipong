@@ -50,15 +50,17 @@ int main(void)
 	bool signal_terminate = false;
 	PGTrigger gmode_event = PGTrigger::LOBBY;
 	PGTrigger gmode_stage = PGTrigger::NONE;
+	PGTrigger gmode_lobby = PGTrigger::LOBBY;
+	PGTrigger gmode_ingame = PGTrigger::INGAME;
 
 	// Game Logic
 	while (signal_terminate != true)
 	{
 		shin >> keyinput;
 
-		if (gmode_event == PGTrigger(PGTrigger::LOBBY))
+		if (gmode_event == gmode_lobby)
 		{
-			for (; gmode_stage != PGTrigger(PGTrigger::LOBBY); gmode_stage.Set(PGTrigger::LOBBY))
+			for (; gmode_stage != gmode_lobby; gmode_stage.Set(PGTrigger::LOBBY))
 			{
 				sout.Clear();
 
@@ -77,9 +79,9 @@ int main(void)
 			else if (keyinput == PKProperty::PEXIT)
 				signal_terminate = true;
 		}
-		else if (gmode_event == PGTrigger(PGTrigger::INGAME))
+		else if (gmode_event == gmode_ingame)
 		{
-			for (; gmode_stage != PGTrigger(PGTrigger::INGAME); gmode_stage.Set(PGTrigger::INGAME))
+			for (; gmode_stage != gmode_ingame; gmode_stage.Set(PGTrigger::INGAME))
 			{
 				sout.Clear();
 
