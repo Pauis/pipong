@@ -3,15 +3,15 @@
 #include "pongobj.h"
 
 using pong::sys::SOut;
+using pong::Point;
 using pong::PRect;
 
-PRect MainAM::PRectMove(SOut& sout, PRect& prect, int lr, int ud, PRect& crect)
+PRect MainAM::PRectMove(SOut& sout, PRect& prect, Point& pos, PRect& crect)
 {
 	static PRect pbuf, pfinal;
 
 	pbuf = prect;
-	prect.SetSxpos((prect.GetSpoint()).GetXpos() + lr);
-	prect.SetSypos((prect.GetSpoint()).GetYpos() + ud);
+	prect.SetSpoint(prect.GetSpoint() + pos);
 	pfinal = prect;
 
 	if (crect.CheckInclude(prect) == false)
@@ -21,8 +21,7 @@ PRect MainAM::PRectMove(SOut& sout, PRect& prect, int lr, int ud, PRect& crect)
 	}
 	else
 	{
-		pbuf.SetColor(PColor(PColor::BLACK));
-		sout << pbuf << prect;
+		sout.EraseWrite(pbuf, prect);
 		return pfinal;
 	}
 }

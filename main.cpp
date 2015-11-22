@@ -7,6 +7,7 @@
 #include "mainautomation.h"
 
 using pong::PString;
+using pong::Point;
 using pong::PRect;
 using pong::PKProperty;
 using pong::PGProperty;
@@ -28,6 +29,8 @@ int main(void)
 	int terminal_width = sout.GetWidth();
 
 	// Game Object
+	Point upmovevector(0, -1);
+	Point downmovevector(0, 1);
 	PRect boundary_up(3, 1, terminal_length-4, 1);
 	PRect boundary_down(3, terminal_width, terminal_length-4, 1);
 	PRect boundary_left(2, 1, 1, terminal_width);
@@ -43,8 +46,7 @@ int main(void)
 	string detaildesc = "See more details on https://github.com/pauis/pipong.";
 
 	// Game Setting
-	int ball_lr = -1;
-	int ball_ud = 1;
+	Point ballmovevector(-1, 1);
 	bool signal_terminate = false;
 	PGTrigger gmode_event = PGTrigger::LOBBY;
 	PGTrigger gmode_stage = PGTrigger::NONE;
@@ -93,25 +95,25 @@ int main(void)
 			if (keyinput == PKProperty::PEXIT)
 				gmode_event.Set(PGTrigger::LOBBY);
 			else if (keyinput == PKProperty::PP1UP)
-				MainAM::PRectMove(sout, lcursor, 0, -1, boundary_left);
+				MainAM::PRectMove(sout, lcursor, upmovevector, boundary_left);
 			else if (keyinput == PKProperty::PP1DOWN)
-				MainAM::PRectMove(sout, lcursor, 0, 1, boundary_left);
+				MainAM::PRectMove(sout, lcursor, downmovevector, boundary_left);
 			else if (keyinput == PKProperty::PP2UP)
-				MainAM::PRectMove(sout, rcursor, 0, -1, boundary_right);
+				MainAM::PRectMove(sout, rcursor, upmovevector, boundary_right);
 			else if (keyinput == PKProperty::PP2DOWN)
-				MainAM::PRectMove(sout, rcursor, 0, 1, boundary_right);
+				MainAM::PRectMove(sout, rcursor, downmovevector, boundary_right);
 
 			if (scurrent.CycleTick(PGProperty::PBALLFREQ))
 			{
-				pbuf = MainAM::PRectMove(sout, ball, ball_lr, ball_ud, boundary_court);
+				pbuf = MainAM::PRectMove(sout, ball, ballmovevector, boundary_court);
 
 				if (boundary_up.CheckInclude(pbuf) || boundary_down.CheckInclude(pbuf))
-					ball_ud = -ball_ud;
+					ballmovevector.SetYpos(-(ballmovevector.GetYpos()));
 
 				if (boundary_left.CheckInclude(pbuf) || boundary_right.CheckInclude(pbuf))
 				{
 					if (lcursor.CheckInclude(pbuf) || rcursor.CheckInclude(pbuf))
-						ball_lr = -ball_lr;
+						ballmovevector.SetXpos(-(ballmovevector.GetXpos()));
 					else
 						gmode_event.Set(PGTrigger::LOBBY);
 				}

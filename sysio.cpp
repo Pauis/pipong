@@ -60,7 +60,7 @@ namespace pong { namespace sys
 
 	SOut& SOut::EraseWrite(PRect drect, PRect wrect)
 	{
-		SOut sout;
+		static SOut sout;
 		drect.SetColor(PColor::BLACK);
 
 		sout << drect << wrect;
