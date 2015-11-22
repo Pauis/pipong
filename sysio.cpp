@@ -23,7 +23,6 @@ namespace pong { namespace sys
 	{
 		#ifdef POSIX
 		printf("\033[%d;%df", y, x);
-		fflush(stdout);
 		#endif
 	}
 
@@ -36,6 +35,7 @@ namespace pong { namespace sys
 	{
 		#ifdef POSIX
 		printf("\033[%dm%s\033[0m", colornum.GetNum(), str.c_str());
+		fflush(stdout);
 		#endif
 	}
 
