@@ -50,12 +50,16 @@ namespace pong { namespace sys
 
 	int SOut::GetLength(void)
 	{
+		#ifdef POSIX
 		return 100;
+		#endif
 	}
 
 	int SOut::GetWidth(void)
 	{
+		#ifdef POSIX
 		return 40;
+		#endif
 	}
 
 	SOut& SOut::EraseWrite(PRect drect, PRect wrect)
@@ -100,7 +104,7 @@ namespace pong { namespace sys
 	{
 		#ifdef POSIX
 		target = getchar();
-		// ClearBuf();
+		//ClearBuf();
 		#endif
 	}
 
