@@ -8,7 +8,7 @@ namespace pong
 	public:
 		enum
 		{
-			PBALLFREQ   = 1,
+			PBALLFREQ   = 2,
 			PCYCLEDELAY = 40,
 		};
 	};

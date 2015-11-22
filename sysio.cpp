@@ -149,10 +149,8 @@ namespace pong { namespace sys
 		static int ini = 0;
 
 		if (ini == 0)
-		{
 			tim.tv_sec = 0;
-			tim.tv_nsec = (msec * 1000000L);
-		}
+		tim.tv_nsec = (msec * 1000000L);
 
 		nanosleep(&tim, NULL);
 		#endif
@@ -164,19 +162,14 @@ namespace pong { namespace sys
 	{
 		static int cycount = 0;
 
-		if (cycount == 0)
+		cycount++;
+
+		if (cycount >= cyclenum)
 		{
-			cycount++;
+			cycount = 0;
 			return true;
 		}
 		else
-		{
-			cycount++;
-		}
-
-		if (cycount >= cyclenum)
-			cycount = 0;
-
-		return false;
+			return false;
 	}
 }}
