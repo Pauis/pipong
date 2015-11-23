@@ -18,6 +18,7 @@ namespace pong
 		Point& SetYpos(int ypos);
 		int GetXpos(void) const;
 		int GetYpos(void) const;
+		Point operator+(Point pos) const;
 	};
 
 	class Rect
@@ -43,6 +44,7 @@ namespace pong
 		int GetWidth(void) const;
 		bool CheckInterference(Rect rect) const;
 		bool CheckInclude(Rect rect) const;
+		bool MoveOnObject(Rect& crect, Point pos);
 		virtual ~Rect();
 	};
 
@@ -52,7 +54,9 @@ namespace pong
 		PColor color;
 	public:
 		PRect(int xpos, int ypos, int length, int width, PColor color);
+		PRect(int xpos, int ypos, int length, int width);
 		PRect(Point spoint, int length, int width, PColor color);
+		PRect(Point spoint, int length, int width);
 		PRect(Rect rect, PColor color);
 		PRect(Rect rect);
 		PRect(void);

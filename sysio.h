@@ -20,13 +20,14 @@ namespace pong { namespace sys
 	class SOut
 	{
 	private:
-		void GotoXy(int x, int y);
-		void GotoXy(Point pos);
+		void GotoPos(int x, int y);
+		void GotoPos(Point pos);
 		void PrintColorString(string str, PColor colornum);
 	public:
 		SOut& Clear(void);
 		int GetLength(void);
 		int GetWidth(void);
+		SOut& EraseWrite(PRect drect, PRect wrect);
 		SOut& operator<<(PRect rect);
 		SOut& operator<<(PString str);
 	};

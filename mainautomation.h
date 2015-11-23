@@ -5,12 +5,13 @@
 #include "pongobj.h"
 
 using pong::sys::SOut;
+using pong::Point;
 using pong::PRect;
 
 class MainAM
 {
 public:
-	static PRect PRectMove(SOut& sout, PRect& prect, int lr, int ud, PRect& crect);
+	static PRect PRectMove(SOut& sout, PRect& prect, Point& pos, PRect& crect);
 };
 
 #endif

@@ -46,6 +46,14 @@ namespace pong
 		return ypos;
 	}
 
+	Point Point::operator+(Point pos) const
+	{
+		int x = xpos + pos.GetXpos();
+		int y = ypos + pos.GetYpos();
+
+		return Point(x, y);
+	}
+
 	Rect::Rect(int xpos, int ypos, int length, int width)
 		: spoint(xpos, ypos), length(length), width(width)
 	{
@@ -177,6 +185,23 @@ namespace pong
 		return false;
 	}
 
+	bool Rect::MoveOnObject(Rect& crect, Point pos)
+	{
+		static Rect rbuf;
+
+		rbuf.SetSpoint(spoint + crect.GetSpoint());
+		rbuf.SetLength(length);
+		rbuf.SetWidth(width);
+
+		if (crect.CheckInclude(rbuf) == false)
+			return false;
+		else
+		{
+			spoint = spoint + crect.GetSpoint();
+			return true;
+		}
+	}
+
 	Rect::~Rect()
 	{
 		// empty
@@ -188,8 +213,20 @@ namespace pong
 		// empty
 	}
 
+	PRect::PRect(int xpos, int ypos, int length, int width)
+		: Rect(xpos, ypos, length, width), color(PColor::DEFAULT)
+	{
+		// empty
+	}
+
 	PRect::PRect(Point spoint, int length, int width, PColor color)
 		: Rect(spoint, length, width), color(color)
+	{
+		// empty
+	}
+
+	PRect::PRect(Point spoint, int length, int width)
+		: Rect(spoint, length, width), color(PColor::DEFAULT)
 	{
 		// empty
 	}

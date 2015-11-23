@@ -19,23 +19,23 @@ using pong::PRect;
 
 namespace pong { namespace sys
 {
-	void SOut::GotoXy(int x, int y)
+	void SOut::GotoPos(int x, int y)
 	{
 		#ifdef POSIX
 		printf("\033[%d;%df", y, x);
-		fflush(stdout);
 		#endif
 	}
 
-	void SOut::GotoXy(Point pos)
+	void SOut::GotoPos(Point pos)
 	{
-		GotoXy(pos.GetXpos(), pos.GetYpos());
+		GotoPos(pos.GetXpos(), pos.GetYpos());
 	}
 
 	void SOut::PrintColorString(string str, PColor colornum)
 	{
 		#ifdef POSIX
 		printf("\033[%dm%s\033[0m", colornum.GetNum(), str.c_str());
+		fflush(stdout);
 		#endif
 	}
 
@@ -50,19 +50,33 @@ namespace pong { namespace sys
 
 	int SOut::GetLength(void)
 	{
+		#ifdef POSIX
 		return 100;
+		#endif
 	}
 
 	int SOut::GetWidth(void)
 	{
+		#ifdef POSIX
 		return 40;
+		#endif
+	}
+
+	SOut& SOut::EraseWrite(PRect drect, PRect wrect)
+	{
+		static SOut sout;
+		drect.SetColor(PColor::BLACK);
+
+		sout << drect << wrect;
+
+		return *this;
 	}
 
 	SOut& SOut::operator<<(PRect rect)
 	{
 		for(int width=0; width<rect.GetWidth(); width++)
 		{
-			GotoXy((rect.GetSpoint()).GetXpos(), (rect.GetSpoint()).GetYpos() + width);
+			GotoPos((rect.GetSpoint()).GetXpos(), (rect.GetSpoint()).GetYpos() + width);
 
 			for(int length=0; length<rect.GetLength(); length++)
 			{
@@ -75,7 +89,7 @@ namespace pong { namespace sys
 
 	SOut& SOut::operator<<(PString str)
 	{
-		GotoXy(str.GetSpoint());
+		GotoPos(str.GetSpoint());
 		PrintColorString(str.GetString(), str.GetColor());
 
 		return *this;
@@ -90,7 +104,7 @@ namespace pong { namespace sys
 	{
 		#ifdef POSIX
 		target = getchar();
-		// ClearBuf();
+		//ClearBuf();
 		#endif
 	}
 
@@ -139,10 +153,8 @@ namespace pong { namespace sys
 		static int ini = 0;
 
 		if (ini == 0)
-		{
 			tim.tv_sec = 0;
-			tim.tv_nsec = (msec * 1000000L);
-		}
+		tim.tv_nsec = (msec * 1000000L);
 
 		nanosleep(&tim, NULL);
 		#endif
@@ -154,19 +166,14 @@ namespace pong { namespace sys
 	{
 		static int cycount = 0;
 
-		if (cycount == 0)
+		cycount++;
+
+		if (cycount >= cyclenum)
 		{
-			cycount++;
+			cycount = 0;
 			return true;
 		}
 		else
-		{
-			cycount++;
-		}
-
-		if (cycount >= cyclenum)
-			cycount = 0;
-
-		return false;
+			return false;
 	}
 }}
