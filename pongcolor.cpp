@@ -20,4 +20,12 @@ namespace pong
 	{
 		return colornum;
 	}
+
+	bool operator==(PColor p1, PColor p2)
+	{
+		if (p1.GetNum() == p2.GetNum())
+			return true;
+		else
+			return false;
+	}
 }

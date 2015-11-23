@@ -10,6 +10,7 @@ namespace pong
 	public:
 		enum
 		{
+			TRANSPARENT = -1,
 			DEFAULT = 0,
 			BLACK   = 30,
 			RED     = 31,
@@ -22,7 +23,9 @@ namespace pong
 		PColor(int colornum=DEFAULT);
 		PColor& Set(int colornum);
 		int GetNum(void) const;
+		friend bool operator==(PColor p1, PColor p2);
 	};
+	bool operator==(PColor p1, PColor p2);
 }
 
 #endif
