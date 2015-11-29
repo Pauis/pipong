@@ -72,18 +72,6 @@ namespace pong { namespace sys
 		return *this;
 	}
 
-	SOut& SOut::TerminalCursor(bool on)
-	{
-		#ifdef POSIX
-		if (on == false)
-			printf("\e[?25l");
-		else
-			printf("\e[?25h");
-		#endif
-
-		return *this;
-	}
-
 	SOut& SOut::operator<<(PRect rect)
 	{
 		static PColor transp(PColor::TRANSPARENT);

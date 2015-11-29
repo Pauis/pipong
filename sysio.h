@@ -28,7 +28,6 @@ namespace pong { namespace sys
 		int GetLength(void);
 		int GetWidth(void);
 		SOut& EraseWrite(PRect drect, PRect wrect);
-		SOut& TerminalCursor(bool on);
 		SOut& operator<<(PRect rect);
 		SOut& operator<<(PString str);
 	};
