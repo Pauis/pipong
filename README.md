@@ -18,12 +18,12 @@
 ### Default Key
 | Description | Default Key |
 |:-:|:-:|
-| Start | s |
-| Exit | q |
-| Lift Player 1's Cursor | e |
-| Lower Player 1's Curosr | f |
-| Lift Player 2's Cursor | o |
-| Lower Player 2's Cursor | k |
+| Start | <kbd>s</kbd> |
+| Exit | <kbd>q</kbd> |
+| Move Player 1's Paddle Up | <kbd>e</kbd> |
+| Move Player 1's Paddle Down | <kbd>f</kbd> |
+| Move Player 2's Paddle Up | <kbd>o</kbd> |
+| Move Player 2's Paddle Down | <kbd>k</kbd> |
 
 ## Download and Install
 ### Linux, OSX
