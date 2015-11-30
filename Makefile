@@ -1,20 +1,12 @@
 .SUFFIXES : .cpp .o
 
 SOURCES = $(wildcard *.cpp)
-ifneq ($(CXX), g++)
-ifneq ($(CXX), clang++)
+ifeq ($(CXX),)
 CXX            = g++
 endif
-endif
-ifeq ($(LINUX_GPIO_RPI), 1)
-MODENAME       = linux_gpio_rpi
-SDEFINEFLAG    = -DPOSIX -DLINUX_GPIO_RPI
-SLINKFLAG      = -lwiringPi
-else
 MODENAME       = posix
 SDEFINEFLAG    = -DPOSIX
 SLINKFLAG      =
-endif
 
 OBJDIRNAME     = $(MODENAME)_out
 OBJECTS        = $(SOURCES:%.cpp=$(OBJDIRNAME)/%.o)
