@@ -65,7 +65,7 @@ namespace pong { namespace sys
 	SOut& SOut::EraseWrite(PRect drect, PRect wrect)
 	{
 		static SOut sout;
-		drect.SetColor(PColor::BLACK);
+		drect.SetColor(PColor::TRANSPARENT);
 
 		sout << drect << wrect;
 
@@ -74,13 +74,19 @@ namespace pong { namespace sys
 
 	SOut& SOut::operator<<(PRect rect)
 	{
+		static PColor transp(PColor::TRANSPARENT);
+		static PColor dful(PColor::DEFAULT);
+
 		for(int width=0; width<rect.GetWidth(); width++)
 		{
 			GotoPos((rect.GetSpoint()).GetXpos(), (rect.GetSpoint()).GetYpos() + width);
 
 			for(int length=0; length<rect.GetLength(); length++)
 			{
-				PrintColorString("█", rect.GetColor());
+				if (rect.GetColor() == transp)
+					PrintColorString(" ", dful);
+				else
+					PrintColorString("█", rect.GetColor());
 			}
 		}
 
