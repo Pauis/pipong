@@ -19,6 +19,20 @@ using pong::PRect;
 
 namespace pong { namespace sys
 {
+	int SOut::objnum = 0;
+
+	SOut::SOut(void)
+	{
+		if (objnum == 0)
+		{
+			#ifdef POSIX
+			printf("\e[?25l");
+			#endif
+		}
+
+		objnum++;
+	}
+
 	void SOut::GotoPos(int x, int y)
 	{
 		#ifdef POSIX
@@ -101,6 +115,43 @@ namespace pong { namespace sys
 		return *this;
 	}
 
+	SOut::~SOut()
+	{
+		objnum--;
+
+		if (objnum == 0)
+		{
+			#ifdef POSIX
+			printf("\e[?25h");
+			#endif
+		}
+	}
+
+	#ifdef POSIX
+	struct termios* SIn::regulartset = new struct termios;
+	struct termios* SIn::newtset = new struct termios;
+	#endif
+	int SIn::objnum = 0;
+
+	SIn::SIn(void)
+	{
+		if (objnum == 0)
+		{
+			#ifdef POSIX
+			tcgetattr(0, regulartset);
+			*newtset = *regulartset;
+			(*newtset).c_lflag &= ~ICANON;
+			(*newtset).c_lflag &= ~ECHO;
+			(*newtset).c_cc[VTIME] = 0;
+			(*newtset).c_cc[VMIN] = 0;
+
+			tcsetattr(0, TCSANOW, newtset);
+			#endif
+		}
+
+		objnum++;
+	}
+
 	void SIn::ClearBuf(void)
 	{
 		while (getchar() != EOF);
@@ -114,41 +165,13 @@ namespace pong { namespace sys
 		#endif
 	}
 
-	SIn::SIn(void)
-	{
-		// empty
-	}
-
 	SIn::~SIn()
 	{
+		objnum--;
 
-		// empty
-	}
-
-	SInInitial::SInInitial(void)
-	{
 		#ifdef POSIX
-		regulartset = new struct termios;
-		newtset = new struct termios;
-
-		tcgetattr(0, regulartset);
-		*newtset = *regulartset;
-		(*newtset).c_lflag &= ~ICANON;
-		(*newtset).c_lflag &= ~ECHO;
-		(*newtset).c_cc[VTIME] = 0;
-		(*newtset).c_cc[VMIN] = 0;
-
-		tcsetattr(0, TCSANOW, newtset);
-		#endif
-	}
-
-	SInInitial::~SInInitial()
-	{
-		#ifdef POSIX
-		tcsetattr(0, TCSANOW, regulartset);
-
-		delete regulartset;
-		delete newtset;
+		if (objnum == 0)
+			tcsetattr(0, TCSANOW, regulartset);
 		#endif
 	}
 
