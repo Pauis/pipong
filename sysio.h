@@ -20,38 +20,34 @@ namespace pong { namespace sys
 	class SOut
 	{
 	private:
+		static int objnum;
 		void GotoPos(int x, int y);
 		void GotoPos(Point pos);
 		void PrintColorString(string str, PColor colornum);
 	public:
+		SOut(void);
 		SOut& Clear(void);
 		int GetLength(void);
 		int GetWidth(void);
 		SOut& EraseWrite(PRect drect, PRect wrect);
 		SOut& operator<<(PRect rect);
 		SOut& operator<<(PString str);
+		~SOut();
 	};
 
 	class SIn
 	{
 	private:
+		#ifdef POSIX
+		static struct termios* regulartset;
+		static struct termios* newtset;
+		#endif
+		static int objnum;
 		void ClearBuf(void);
 	public:
-		void operator>>(int& target);
 		SIn(void);
-		virtual ~SIn();
-	};
-
-	class SInInitial : public SIn
-	{
-	private:
-		#ifdef POSIX
-		struct termios* regulartset;
-		struct termios* newtset;
-		#endif
-	public:
-		SInInitial(void);
-		~SInInitial();
+		void operator>>(int& target);
+		~SIn();
 	};
 
 	class SCurrent

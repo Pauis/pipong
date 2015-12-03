@@ -13,14 +13,14 @@ using pong::PKProperty;
 using pong::PGProperty;
 using pong::PGTrigger;
 using pong::sys::SOut;
-using pong::sys::SInInitial;
+using pong::sys::SIn;
 using pong::sys::SCurrent;
 
 int main(void)
 {
 	// System Object
 	SOut sout;
-	SInInitial shin;
+	SIn ssin;
 	SCurrent scurrent;
 	int keyinput;
 
@@ -56,7 +56,7 @@ int main(void)
 	// Game Logic
 	while (signal_terminate != true)
 	{
-		shin >> keyinput;
+		ssin >> keyinput;
 
 		if (gmode_event == gmode_lobby)
 		{

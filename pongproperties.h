@@ -1,3 +1,9 @@
+/*
+	This file is a temporary source.
+	If parser class is completed,
+	this file will be deleted.
+*/
+
 #ifndef __PONGPROPERTIES_H__
 #define __PONGPROPERTIES_H__
 
