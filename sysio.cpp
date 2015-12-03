@@ -133,6 +133,11 @@ namespace pong { namespace sys
 	#endif
 	int SIn::objnum = 0;
 
+	void SIn::ClearBuf(void)
+	{
+		while (getchar() != EOF);
+	}
+
 	SIn::SIn(void)
 	{
 		if (objnum == 0)
@@ -150,11 +155,6 @@ namespace pong { namespace sys
 		}
 
 		objnum++;
-	}
-
-	void SIn::ClearBuf(void)
-	{
-		while (getchar() != EOF);
 	}
 
 	void SIn::operator>>(int& target)
