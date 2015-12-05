@@ -45,7 +45,8 @@ namespace pong { namespace sys
 		if (objnum == 0)
 		{
 			#ifdef POSIX
-			printf("\033[?25l"); // Hide cursor
+			printf("\033[?25l");   // Hide cursor
+			printf("\033[?1049h"); // Use alternate screen buffer
 			#endif
 		}
 
@@ -128,7 +129,8 @@ namespace pong { namespace sys
 		if (objnum == 0)
 		{
 			#ifdef POSIX
-			printf("\033[?25h"); // Show cursor
+			printf("\033[?25h");   // Show cursor
+			printf("\033[?1049l"); // Use normal buffer
 			#endif
 		}
 	}
