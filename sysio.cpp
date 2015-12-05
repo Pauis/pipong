@@ -21,18 +21,6 @@ namespace pong { namespace sys
 {
 	int SOut::objnum = 0;
 
-	SOut::SOut(void)
-	{
-		if (objnum == 0)
-		{
-			#ifdef POSIX
-			printf("\e[?25l");
-			#endif
-		}
-
-		objnum++;
-	}
-
 	void SOut::GotoPos(int x, int y)
 	{
 		#ifdef POSIX
@@ -49,6 +37,25 @@ namespace pong { namespace sys
 	{
 		#ifdef POSIX
 		printf("\033[%dm%s\033[0m", colornum.GetNum(), str.c_str());
+		#endif
+	}
+
+	SOut::SOut(void)
+	{
+		if (objnum == 0)
+		{
+			#ifdef POSIX
+			printf("\033[?25l");   // Hide cursor
+			printf("\033[?1049h"); // Use alternate screen buffer
+			#endif
+		}
+
+		objnum++;
+	}
+
+	SOut& SOut::Refresh(void)
+	{
+		#ifdef POSIX
 		fflush(stdout);
 		#endif
 	}
@@ -56,7 +63,7 @@ namespace pong { namespace sys
 	SOut& SOut::Clear(void)
 	{
 		#ifdef POSIX
-		system("clear");
+		printf("\033[2J");
 		#endif
 
 		return *this;
@@ -122,7 +129,8 @@ namespace pong { namespace sys
 		if (objnum == 0)
 		{
 			#ifdef POSIX
-			printf("\e[?25h");
+			printf("\033[?25h");   // Show cursor
+			printf("\033[?1049l"); // Use normal screen buffer
 			#endif
 		}
 	}
@@ -143,14 +151,14 @@ namespace pong { namespace sys
 		if (objnum == 0)
 		{
 			#ifdef POSIX
-			tcgetattr(0, regulartset);
-			*newtset = *regulartset;
-			(*newtset).c_lflag &= ~ICANON;
-			(*newtset).c_lflag &= ~ECHO;
-			(*newtset).c_cc[VTIME] = 0;
-			(*newtset).c_cc[VMIN] = 0;
+			tcgetattr(0, regulartset);      // Get current attribution
+			*newtset = *regulartset;        // Substitute
+			(*newtset).c_lflag &= ~ICANON;  // Set noncanonical mode
+			(*newtset).c_lflag &= ~ECHO;    // Turn off the echo
+			(*newtset).c_cc[VTIME] = 0;     // Zero delay time
+			(*newtset).c_cc[VMIN] = 0;      // Don't need any buffer delay
 
-			tcsetattr(0, TCSANOW, newtset);
+			tcsetattr(0, TCSANOW, newtset); // Apply new setting
 			#endif
 		}
 
@@ -171,7 +179,7 @@ namespace pong { namespace sys
 
 		#ifdef POSIX
 		if (objnum == 0)
-			tcsetattr(0, TCSANOW, regulartset);
+			tcsetattr(0, TCSANOW, regulartset); // Apply the original setting
 		#endif
 	}
 
