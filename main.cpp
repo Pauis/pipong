@@ -122,6 +122,7 @@ int main(void)
 			}
 		}
 
+		sout.Refresh();
 		scurrent.DelayMsec(PGProperty::PCYCLEDELAY);
 	}
 
