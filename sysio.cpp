@@ -130,7 +130,7 @@ namespace pong { namespace sys
 		{
 			#ifdef POSIX
 			printf("\033[?25h");   // Show cursor
-			printf("\033[?1049l"); // Use normal buffer
+			printf("\033[?1049l"); // Use normal screen buffer
 			#endif
 		}
 	}
