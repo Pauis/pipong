@@ -31,11 +31,11 @@ int main(void)
 	// Game Object
 	Point upmovevector(0, -1);
 	Point downmovevector(0, 1);
-	PRect boundary_up(3, 1, terminal_length-4, 1);
-	PRect boundary_down(3, terminal_width, terminal_length-4, 1);
-	PRect boundary_left(2, 1, 1, terminal_width);
-	PRect boundary_right(terminal_length-1, 1, 1, terminal_width);
-	PRect boundary_court(3, 2, terminal_length-4, terminal_width-2);
+	PRect boundary_up(3, 2, terminal_length-4, 1);
+	PRect boundary_down(3, terminal_width-1, terminal_length-4, 1);
+	PRect boundary_left(2, 2, 1, terminal_width-2);
+	PRect boundary_right(terminal_length-1, 2, 1, terminal_width-2);
+	PRect boundary_court(3, 3, terminal_length-4, terminal_width-4);
 	PRect lcursor(2, terminal_width/2-2, 1, 8);
 	PRect rcursor(terminal_length-1, terminal_width/2-2, 1, 8);
 	PRect ball(terminal_length/2, terminal_width/2, 1, 1);
