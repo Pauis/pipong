@@ -129,8 +129,9 @@ namespace pong { namespace sys
 		if (objnum == 0)
 		{
 			#ifdef POSIX
-			printf("\033[?25h");   // Show cursor
-			printf("\033[?1049l"); // Use normal screen buffer
+			GotoPos(Point(1, GetWidth())); // Move cursor to the end of the command line
+			printf("\033[?25h");           // Show cursor
+			printf("\033[?1049l");         // Use normal screen buffer
 			#endif
 		}
 	}
