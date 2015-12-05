@@ -58,6 +58,8 @@ namespace pong { namespace sys
 		#ifdef POSIX
 		fflush(stdout);
 		#endif
+
+		return *this;
 	}
 
 	SOut& SOut::Clear(void)
