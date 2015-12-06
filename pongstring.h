@@ -4,32 +4,28 @@
 #include "pongobj.h"
 #include "pongcolor.h"
 
-using std::string;
-using pong::Point;
-using pong::PColor;
-
 namespace pong
 {
 	class PString
 	{
 	private:
-		string str;
-		PColor color;
-		Point spoint;
+		std::string str;
+		pong::PColor color;
+		pong::Point spoint;
 	public:
-		PString(string str, PColor color, Point spoint);
-		PString(string str, PColor color, int xpos, int ypos);
-		PString(string str, Point spoint);
-		PString(string str, int xpos, int ypos);
-		PString& Set(string str, PColor color, Point spoint);
-		PString& Set(string str, PColor color, int xpos, int ypos);
-		PString& SetString(string str);
-		PString& SetColor(PColor color);
-		PString& SetSpoint(Point spoint);
+		PString(std::string str, pong::PColor color, pong::Point spoint);
+		PString(std::string str, pong::PColor color, int xpos, int ypos);
+		PString(std::string str, pong::Point spoint);
+		PString(std::string str, int xpos, int ypos);
+		PString& Set(std::string str, pong::PColor color, pong::Point spoint);
+		PString& Set(std::string str, pong::PColor color, int xpos, int ypos);
+		PString& SetString(std::string str);
+		PString& SetColor(pong::PColor color);
+		PString& SetSpoint(pong::Point spoint);
 		PString& SetSpoint(int xpos, int ypos);
 		PString& SetSxpos(int xpos);
 		PString& SetSypos(int ypos);
-		string GetString(void) const;
+		std::string GetString(void) const;
 		PColor GetColor(void) const;
 		Point GetSpoint(void) const;
 		const char* c_str(void) const;

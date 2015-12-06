@@ -4,14 +4,11 @@
 #include "sysio.h"
 #include "pongobj.h"
 
-using pong::sys::SOut;
-using pong::Point;
-using pong::PRect;
 
 class MainAM
 {
 public:
-	static PRect PRectMove(SOut& sout, PRect& prect, Point& pos, PRect& crect);
+	static pong::PRect PRectMove(pong::sys::SOut& sout, pong::PRect& prect, pong::Point& pos, pong::PRect& crect);
 };
 
 #endif
