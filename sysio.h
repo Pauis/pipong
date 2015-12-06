@@ -10,11 +10,6 @@
 #include <termios.h>
 #endif
 
-using std::string;
-using pong::PString;
-using pong::PColor;
-using pong::Point;
-
 namespace pong { namespace sys
 {
 	class SOut
@@ -22,17 +17,17 @@ namespace pong { namespace sys
 	private:
 		static int objnum;
 		void GotoPos(int x, int y);
-		void GotoPos(Point pos);
-		void PrintColorString(string str, PColor colornum);
+		void GotoPos(pong::Point pos);
+		void PrintColorString(std::string str, pong::PColor colornum);
 	public:
 		SOut(void);
 		SOut& Refresh(void);
 		SOut& Clear(void);
 		int GetLength(void);
 		int GetWidth(void);
-		SOut& EraseWrite(PRect drect, PRect wrect);
-		SOut& operator<<(PRect rect);
-		SOut& operator<<(PString str);
+		SOut& EraseWrite(pong::PRect drect, pong::PRect wrect);
+		SOut& operator<<(pong::PRect rect);
+		SOut& operator<<(pong::PString str);
 		~SOut();
 	};
 

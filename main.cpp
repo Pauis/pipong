@@ -6,7 +6,9 @@
 #include "pongtrigger.h"
 #include "mainautomation.h"
 
+using std::string;
 using pong::PString;
+using pong::PColor;
 using pong::Point;
 using pong::PRect;
 using pong::PKProperty;
