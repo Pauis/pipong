@@ -2,7 +2,6 @@
 #define __PONGOBJ_H__
 
 #include "pongcolor.h"
-using pong::PColor;
 
 namespace pong
 {
@@ -51,18 +50,18 @@ namespace pong
 	class PRect : public Rect
 	{
 	private:
-		PColor color;
+		pong::PColor color;
 	public:
-		PRect(int xpos, int ypos, int length, int width, PColor color);
+		PRect(int xpos, int ypos, int length, int width, pong::PColor color);
 		PRect(int xpos, int ypos, int length, int width);
-		PRect(Point spoint, int length, int width, PColor color);
+		PRect(Point spoint, int length, int width, pong::PColor color);
 		PRect(Point spoint, int length, int width);
-		PRect(Rect rect, PColor color);
+		PRect(Rect rect, pong::PColor color);
 		PRect(Rect rect);
 		PRect(void);
-		PRect& Set(int xpos, int ypos, int length, int width, PColor color);
-		PRect& Set(Point spoint, int length, int width, PColor color);
-		PRect& SetColor(PColor color);
+		PRect& Set(int xpos, int ypos, int length, int width, pong::PColor color);
+		PRect& Set(Point spoint, int length, int width, pong::PColor color);
+		PRect& SetColor(pong::PColor color);
 		PColor GetColor(void) const;
 	};
 }
