@@ -47,8 +47,9 @@ namespace pong { namespace sys
 		if (objnum == 0)
 		{
 			#ifdef POSIX
-			printf("\033[?25l");   // Hide cursor
-			printf("\033[?1049h"); // Use alternate screen buffer
+			printf("\033[?25l");                     // Hide cursor
+			printf("\033[?1049h");                   // Use alternate screen buffer
+			ioctl(STDOUT_FILENO, TIOCGWINSZ, wsize); // Get the terminal size
 			#endif
 		}
 
@@ -76,7 +77,6 @@ namespace pong { namespace sys
 	int SOut::GetLength(void)
 	{
 		#ifdef POSIX
-		ioctl(STDOUT_FILENO, TIOCGWINSZ, wsize);
 		return wsize->ws_col;
 		#endif
 	}
@@ -84,7 +84,6 @@ namespace pong { namespace sys
 	int SOut::GetWidth(void)
 	{
 		#ifdef POSIX
-		ioctl(STDOUT_FILENO, TIOCGWINSZ, wsize);
 		return wsize->ws_row;
 		#endif
 	}
