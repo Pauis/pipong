@@ -13,7 +13,7 @@
 #### Linux, OSX
 ```
 // Run the executable.
-~/pipong $ posix_out/./pipong
+~/pipong $ posix_out/pipong
 ```
 ### Default Key
 | Description | Default Key |
@@ -51,8 +51,5 @@
 ~/pipong $ make
 ```
 
-## Notice
-* This project is for Command Line Interface.
-
 ## License
-This project is based on Dong-jun Lim's contribution. It is distributed with MIT License.
+This project is distributed with MIT License.
