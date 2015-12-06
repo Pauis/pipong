@@ -7,6 +7,7 @@
 #include "pongstring.h"
 
 #ifdef POSIX
+#include <sys/ioctl.h>
 #include <termios.h>
 #endif
 
@@ -15,6 +16,9 @@ namespace pong { namespace sys
 	class SOut
 	{
 	private:
+		#ifdef POSIX
+		static struct winsize* wsize;
+		#endif
 		static int objnum;
 		void GotoPos(int x, int y);
 		void GotoPos(pong::Point pos);
