@@ -1,7 +1,6 @@
 # Pipong
 [![Build Status](https://travis-ci.org/pauis/pipong.svg)](https://travis-ci.org/pauis/pipong)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-> **Notice: This application is currently under development.**
 
 ## Support List
 | Linux | OSX | Windows |
