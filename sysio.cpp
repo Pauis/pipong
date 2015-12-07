@@ -6,10 +6,9 @@
 #include "sysio.h"
 
 #ifdef POSIX
+#include <sys/ioctl.h>
 #include <termios.h>
-#endif
-#ifdef LINUX_GPIO_RPI
-#include <wiringPi.h>
+#include <unistd.h>
 #endif
 
 using std::string;
@@ -19,6 +18,9 @@ using pong::PRect;
 
 namespace pong { namespace sys
 {
+	#ifdef POSIX
+	struct winsize* SOut::wsize = new struct winsize;
+	#endif
 	int SOut::objnum = 0;
 
 	void SOut::GotoPos(int x, int y)
@@ -45,8 +47,9 @@ namespace pong { namespace sys
 		if (objnum == 0)
 		{
 			#ifdef POSIX
-			printf("\033[?25l");   // Hide cursor
-			printf("\033[?1049h"); // Use alternate screen buffer
+			printf("\033[?25l");                     // Hide cursor
+			printf("\033[?1049h");                   // Use alternate screen buffer
+			ioctl(STDOUT_FILENO, TIOCGWINSZ, wsize); // Get the terminal size
 			#endif
 		}
 
@@ -74,14 +77,14 @@ namespace pong { namespace sys
 	int SOut::GetLength(void)
 	{
 		#ifdef POSIX
-		return 100;
+		return wsize->ws_col;
 		#endif
 	}
 
 	int SOut::GetWidth(void)
 	{
 		#ifdef POSIX
-		return 40;
+		return wsize->ws_row;
 		#endif
 	}
 
