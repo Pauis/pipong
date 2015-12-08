@@ -17,7 +17,7 @@ namespace pong { namespace sys
 	{
 	private:
 		#ifdef POSIX
-		static struct winsize* wsize;
+		static struct winsize wsize;
 		#endif
 		static int objnum;
 		void GotoPos(int x, int y);
@@ -39,8 +39,8 @@ namespace pong { namespace sys
 	{
 	private:
 		#ifdef POSIX
-		static struct termios* regulartset;
-		static struct termios* newtset;
+		static struct termios regulartset;
+		static struct termios newtset;
 		#endif
 		static int objnum;
 		void ClearBuf(void);

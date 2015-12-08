@@ -19,7 +19,7 @@ using pong::PRect;
 namespace pong { namespace sys
 {
 	#ifdef POSIX
-	struct winsize* SOut::wsize = new struct winsize;
+	struct winsize SOut::wsize = {};
 	#endif
 	int SOut::objnum = 0;
 
@@ -49,7 +49,7 @@ namespace pong { namespace sys
 			#ifdef POSIX
 			printf("\033[?25l");                     // Hide cursor
 			printf("\033[?1049h");                   // Use alternate screen buffer
-			ioctl(STDOUT_FILENO, TIOCGWINSZ, wsize); // Get the terminal size
+			ioctl(STDOUT_FILENO, TIOCGWINSZ, &wsize); // Get the terminal size
 			#endif
 		}
 
@@ -77,14 +77,14 @@ namespace pong { namespace sys
 	int SOut::GetLength(void)
 	{
 		#ifdef POSIX
-		return wsize->ws_col;
+		return wsize.ws_col;
 		#endif
 	}
 
 	int SOut::GetWidth(void)
 	{
 		#ifdef POSIX
-		return wsize->ws_row;
+		return wsize.ws_row;
 		#endif
 	}
 
@@ -142,8 +142,8 @@ namespace pong { namespace sys
 	}
 
 	#ifdef POSIX
-	struct termios* SIn::regulartset = new struct termios;
-	struct termios* SIn::newtset = new struct termios;
+	struct termios SIn::regulartset = {};
+	struct termios SIn::newtset = {};
 	#endif
 	int SIn::objnum = 0;
 
@@ -157,14 +157,14 @@ namespace pong { namespace sys
 		if (objnum == 0)
 		{
 			#ifdef POSIX
-			tcgetattr(0, regulartset);      // Get current attribution
-			*newtset = *regulartset;        // Substitute
-			(*newtset).c_lflag &= ~ICANON;  // Set noncanonical mode
-			(*newtset).c_lflag &= ~ECHO;    // Turn off the echo
-			(*newtset).c_cc[VTIME] = 0;     // Zero delay time
-			(*newtset).c_cc[VMIN] = 0;      // Don't need any buffer delay
+			tcgetattr(0, &regulartset);      // Get current attribution
+			newtset = regulartset;        // Substitute
+			newtset.c_lflag &= ~ICANON;  // Set noncanonical mode
+			newtset.c_lflag &= ~ECHO;    // Turn off the echo
+			newtset.c_cc[VTIME] = 0;     // Zero delay time
+			newtset.c_cc[VMIN] = 0;      // Don't need any buffer delay
 
-			tcsetattr(0, TCSANOW, newtset); // Apply new setting
+			tcsetattr(0, TCSANOW, &newtset); // Apply new setting
 			#endif
 		}
 
@@ -185,7 +185,7 @@ namespace pong { namespace sys
 
 		#ifdef POSIX
 		if (objnum == 0)
-			tcsetattr(0, TCSANOW, regulartset); // Apply the original setting
+			tcsetattr(0, TCSANOW, &regulartset); // Apply the original setting
 		#endif
 	}
 
