@@ -20,9 +20,9 @@ namespace pong { namespace sys
 		static struct winsize wsize;
 		#endif
 		static int objnum;
-		void GotoPos(int x, int y);
-		void GotoPos(pong::Point pos);
-		void PrintColorString(std::string str, pong::PColor colornum);
+		void GotoPos(const int& x, const int& y);
+		void GotoPos(const pong::Point& pos);
+		void PrintColorString(const std::string& str, const pong::PColor& colornum);
 	public:
 		SOut(void);
 		SOut& Refresh(void);
@@ -53,8 +53,8 @@ namespace pong { namespace sys
 	class SCurrent
 	{
 	public:
-		SCurrent& DelayMsec(long msec);
-		bool CycleTick(int cyclenum);
+		SCurrent& DelayMsec(const long& msec);
+		bool CycleTick(const int& cyclenum);
 	};
 }}
 

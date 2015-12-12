@@ -11,13 +11,13 @@ namespace pong
 		int xpos;
 		int ypos;
 	public:
-		Point(int xpos=0, int ypos=0);
-		Point& Set(int xpos, int ypos);
-		Point& SetXpos(int xpos);
-		Point& SetYpos(int ypos);
+		Point(const int& xpos=0, const int& ypos=0);
+		Point& Set(const int& xpos, const int& ypos);
+		Point& SetXpos(const int& xpos);
+		Point& SetYpos(const int& ypos);
 		int GetXpos(void) const;
 		int GetYpos(void) const;
-		Point operator+(Point pos) const;
+		Point operator+(const Point& pos) const;
 	};
 
 	class Rect
@@ -27,22 +27,22 @@ namespace pong
 		int length;
 		int width;
 	public:
-		Rect(int xpos, int ypos, int length, int width);
-		Rect(Point spoint, int length, int width);
+		Rect(const int& xpos, const int& ypos, const int& length, const int& width);
+		Rect(const Point& spoint, const int& length, const int& width);
 		Rect(void);
-		Rect& Set(int xpos, int ypos, int length, int width);
-		Rect& Set(Point spoint, int length, int width);
-		Rect& SetSpoint(Point spoint);
-		Rect& SetSpoint(int xpos, int ypos);
-		Rect& SetSxpos(int xpos);
-		Rect& SetSypos(int ypos);
-		Rect& SetLength(int length);
-		Rect& SetWidth(int width);
+		Rect& Set(const int& xpos, const int& ypos, const int& length, const int& width);
+		Rect& Set(const Point& spoint, const int& length, const int& width);
+		Rect& SetSpoint(const Point& spoint);
+		Rect& SetSpoint(const int& xpos, const int& ypos);
+		Rect& SetSxpos(const int& xpos);
+		Rect& SetSypos(const int& ypos);
+		Rect& SetLength(const int& length);
+		Rect& SetWidth(const int& width);
 		Point GetSpoint(void) const;
 		int GetLength(void) const;
 		int GetWidth(void) const;
-		bool CheckInterference(Rect rect) const;
-		bool CheckInclude(Rect rect) const;
+		bool CheckInterference(const Rect& rect) const;
+		bool CheckInclude(const Rect& rect) const;
 		bool MoveOnObject(Rect& crect, Point pos);
 		virtual ~Rect();
 	};
@@ -52,16 +52,16 @@ namespace pong
 	private:
 		pong::PColor color;
 	public:
-		PRect(int xpos, int ypos, int length, int width, pong::PColor color);
-		PRect(int xpos, int ypos, int length, int width);
-		PRect(Point spoint, int length, int width, pong::PColor color);
-		PRect(Point spoint, int length, int width);
-		PRect(Rect rect, pong::PColor color);
-		PRect(Rect rect);
+		PRect(const int& xpos, const int& ypos, const int& length, const int& width, const pong::PColor& color);
+		PRect(const int& xpos, const int& ypos, const int& length, const int& width);
+		PRect(const Point& spoint, const int& length, const int& width, const pong::PColor& color);
+		PRect(const Point& spoint, const int& length, const int& width);
+		PRect(const Rect& rect, const pong::PColor& color);
+		PRect(const Rect& rect);
 		PRect(void);
-		PRect& Set(int xpos, int ypos, int length, int width, pong::PColor color);
-		PRect& Set(Point spoint, int length, int width, pong::PColor color);
-		PRect& SetColor(pong::PColor color);
+		PRect& Set(const int& xpos, const int& ypos, const int& length, const int& width, const pong::PColor& color);
+		PRect& Set(const Point& spoint, const int& length, const int& width, const pong::PColor& color);
+		PRect& SetColor(const pong::PColor& color);
 		PColor GetColor(void) const;
 	};
 }

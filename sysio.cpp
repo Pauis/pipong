@@ -23,19 +23,19 @@ namespace pong { namespace sys
 	#endif
 	int SOut::objnum = 0;
 
-	void SOut::GotoPos(int x, int y)
+	void SOut::GotoPos(const int& x, const int& y)
 	{
 		#ifdef POSIX
 		printf("\033[%d;%df", y, x);
 		#endif
 	}
 
-	void SOut::GotoPos(Point pos)
+	void SOut::GotoPos(const Point& pos)
 	{
 		GotoPos(pos.GetXpos(), pos.GetYpos());
 	}
 
-	void SOut::PrintColorString(string str, PColor colornum)
+	void SOut::PrintColorString(const string& str, const PColor& colornum)
 	{
 		#ifdef POSIX
 		printf("\033[%dm%s\033[0m", colornum.GetNum(), str.c_str());
@@ -189,7 +189,7 @@ namespace pong { namespace sys
 		#endif
 	}
 
-	SCurrent& SCurrent::DelayMsec(long msec)
+	SCurrent& SCurrent::DelayMsec(const long& msec)
 	{
 		#ifdef POSIX
 		static struct timespec tim;
@@ -205,7 +205,7 @@ namespace pong { namespace sys
 		return *this;
 	}
 
-	bool SCurrent::CycleTick(int cyclenum)
+	bool SCurrent::CycleTick(const int& cyclenum)
 	{
 		static int cycount = 0;
 

@@ -9,31 +9,31 @@ using pong::PColor;
 
 namespace pong
 {
-	PString::PString(string str, PColor color, Point spoint)
+	PString::PString(const string& str, const PColor& color, const Point& spoint)
 		: str(str), color(color), spoint(spoint)
 	{
 		// empty
 	}
 
-	PString::PString(string str, PColor color, int xpos, int ypos)
+	PString::PString(const string& str, const PColor& color, const int& xpos, const int& ypos)
 		: str(str), color(color), spoint(xpos, ypos)
 	{
 		// empty
 	}
 
-	PString::PString(string str, Point spoint)
+	PString::PString(const string& str, const Point& spoint)
 		: str(str), spoint(spoint), color(PColor::DEFAULT)
 	{
 		// empty
 	}
 
-	PString::PString(string str, int xpos, int ypos)
+	PString::PString(const string& str, const int& xpos, const int& ypos)
 		: str(str), spoint(xpos, ypos), color(PColor::DEFAULT)
 	{
 		// empty
 	}
 
-	PString& PString::Set(string str, PColor color, Point spoint)
+	PString& PString::Set(const string& str, const PColor& color, const Point& spoint)
 	{
 		(this->str) = str;
 		(this->color) = color;
@@ -42,7 +42,7 @@ namespace pong
 		return *this;
 	}
 
-	PString& PString::Set(string str, PColor color, int xpos, int ypos)
+	PString& PString::Set(const string& str, const PColor& color, const int& xpos, const int& ypos)
 	{
 		(this->str) = str;
 		(this->color) = color;
@@ -51,42 +51,42 @@ namespace pong
 		return *this;
 	}
 
-	PString& PString::SetString(string str)
+	PString& PString::SetString(const string& str)
 	{
 		(this->str) = str;
 
 		return *this;
 	}
 
-	PString& PString::SetColor(PColor color)
+	PString& PString::SetColor(const PColor& color)
 	{
 		(this->color) = color;
 
 		return *this;
 	}
 
-	PString& PString::SetSpoint(Point spoint)
+	PString& PString::SetSpoint(const Point& spoint)
 	{
 		(this->spoint) = spoint;
 
 		return *this;
 	}
 
-	PString& PString::SetSpoint(int xpos, int ypos)
+	PString& PString::SetSpoint(const int& xpos, const int& ypos)
 	{
 		(this->spoint).Set(xpos, ypos);
 
 		return *this;
 	}
 
-	PString& PString::SetSxpos(int xpos)
+	PString& PString::SetSxpos(const int& xpos)
 	{
 		(this->spoint).SetXpos(xpos);
 
 		return *this;
 	}
 
-	PString& PString::SetSypos(int ypos)
+	PString& PString::SetSypos(const int& ypos)
 	{
 		(this->spoint).SetYpos(ypos);
 

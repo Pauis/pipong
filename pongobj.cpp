@@ -8,13 +8,13 @@ using pong::PRect;
 
 namespace pong
 {
-	Point::Point(int xpos, int ypos)
+	Point::Point(const int& xpos, const int& ypos)
 		: xpos(xpos), ypos(ypos)
 	{
 		// empty
 	}
 
-	Point& Point::Set(int xpos, int ypos)
+	Point& Point::Set(const int& xpos, const int& ypos)
 	{
 		(this->xpos) = xpos;
 		(this->ypos) = ypos;
@@ -22,14 +22,14 @@ namespace pong
 		return *this;
 	}
 
-	Point& Point::SetXpos(int xpos)
+	Point& Point::SetXpos(const int& xpos)
 	{
 		(this->xpos) = xpos;
 
 		return *this;
 	}
 
-	Point& Point::SetYpos(int ypos)
+	Point& Point::SetYpos(const int& ypos)
 	{
 		(this->ypos) = ypos;
 
@@ -46,7 +46,7 @@ namespace pong
 		return ypos;
 	}
 
-	Point Point::operator+(Point pos) const
+	Point Point::operator+(const Point& pos) const
 	{
 		int x = xpos + pos.GetXpos();
 		int y = ypos + pos.GetYpos();
@@ -54,13 +54,13 @@ namespace pong
 		return Point(x, y);
 	}
 
-	Rect::Rect(int xpos, int ypos, int length, int width)
+	Rect::Rect(const int& xpos, const int& ypos, const int& length, const int& width)
 		: spoint(xpos, ypos), length(length), width(width)
 	{
 		// empty
 	}
 
-	Rect::Rect(Point spoint, int length, int width)
+	Rect::Rect(const Point& spoint, const int& length, const int& width)
 		: spoint(spoint), length(length), width(width)
 	{
 		// empty
@@ -72,7 +72,7 @@ namespace pong
 		// empty
 	}
 
-	Rect& Rect::Set(int xpos, int ypos, int length, int width)
+	Rect& Rect::Set(const int& xpos, const int& ypos, const int& length, const int& width)
 	{
 		(this->spoint).Set(xpos, ypos);
 		(this->length) = length;
@@ -81,7 +81,7 @@ namespace pong
 		return *this;
 	}
 
-	Rect& Rect::Set(Point spoint, int length, int width)
+	Rect& Rect::Set(const Point& spoint, const int& length, const int& width)
 	{
 		(this->spoint) = spoint;
 		(this->length) = length;
@@ -90,42 +90,42 @@ namespace pong
 		return *this;
 	}
 
-	Rect& Rect::SetSpoint(Point spoint)
+	Rect& Rect::SetSpoint(const Point& spoint)
 	{
 		(this->spoint) = spoint;
 
 		return *this;
 	}
 
-	Rect& Rect::SetSpoint(int xpos, int ypos)
+	Rect& Rect::SetSpoint(const int& xpos, const int& ypos)
 	{
 		(this->spoint).Set(xpos, ypos);
 
 		return *this;
 	}
 
-	Rect& Rect::SetSxpos(int xpos)
+	Rect& Rect::SetSxpos(const int& xpos)
 	{
 		(this->spoint).SetXpos(xpos);
 
 		return *this;
 	}
 
-	Rect& Rect::SetSypos(int ypos)
+	Rect& Rect::SetSypos(const int& ypos)
 	{
 		(this->spoint).SetYpos(ypos);
 
 		return *this;
 	}
 
-	Rect& Rect::SetLength(int length)
+	Rect& Rect::SetLength(const int& length)
 	{
 		(this->length) = length;
 
 		return *this;
 	}
 
-	Rect& Rect::SetWidth(int width)
+	Rect& Rect::SetWidth(const int& width)
 	{
 		(this->width) = width;
 
@@ -147,7 +147,7 @@ namespace pong
 		return width;
 	}
 
-	bool Rect::CheckInterference(Rect rect) const
+	bool Rect::CheckInterference(const Rect& rect) const
 	{
 		int baroleft = spoint.GetXpos();
 		int baroright = baroleft + length - 1;
@@ -166,7 +166,7 @@ namespace pong
 		return false;
 	}
 
-	bool Rect::CheckInclude(Rect rect) const
+	bool Rect::CheckInclude(const Rect& rect) const
 	{
 		int baroleft = spoint.GetXpos();
 		int baroright = baroleft + length -  1;
@@ -207,37 +207,37 @@ namespace pong
 		// empty
 	}
 
-	PRect::PRect(int xpos, int ypos, int length, int width, PColor color)
+	PRect::PRect(const int& xpos, const int& ypos, const int& length, const int& width, const PColor& color)
 		: Rect(xpos, ypos, length, width), color(color)
 	{
 		// empty
 	}
 
-	PRect::PRect(int xpos, int ypos, int length, int width)
+	PRect::PRect(const int& xpos, const int& ypos, const int& length, const int& width)
 		: Rect(xpos, ypos, length, width), color(PColor::DEFAULT)
 	{
 		// empty
 	}
 
-	PRect::PRect(Point spoint, int length, int width, PColor color)
+	PRect::PRect(const Point& spoint, const int& length, const int& width, const PColor& color)
 		: Rect(spoint, length, width), color(color)
 	{
 		// empty
 	}
 
-	PRect::PRect(Point spoint, int length, int width)
+	PRect::PRect(const Point& spoint, const int& length, const int& width)
 		: Rect(spoint, length, width), color(PColor::DEFAULT)
 	{
 		// empty
 	}
 
-	PRect::PRect(Rect rect, PColor color)
+	PRect::PRect(const Rect& rect, const PColor& color)
 		: Rect(rect), color(color)
 	{
 		// empty
 	}
 
-	PRect::PRect(Rect rect)
+	PRect::PRect(const Rect& rect)
 		: Rect(rect), color(PColor::DEFAULT)
 	{
 		// empty
@@ -249,7 +249,7 @@ namespace pong
 		// empty
 	}
 
-	PRect& PRect::Set(int xpos, int ypos, int length, int width, PColor color)
+	PRect& PRect::Set(const int& xpos, const int& ypos, const int& length, const int& width, const PColor& color)
 	{
 		Rect::Set(xpos, ypos, length, width);
 		(this->color) = color;
@@ -257,7 +257,7 @@ namespace pong
 		return *this;
 	}
 
-	PRect& PRect::Set(Point spoint, int length, int width, PColor color)
+	PRect& PRect::Set(const Point& spoint, const int& length, const int& width, const PColor& color)
 	{
 		Rect::Set(spoint, length, width);
 		(this->color) = color;
@@ -265,7 +265,7 @@ namespace pong
 		return *this;
 	}
 
-	PRect& PRect::SetColor(PColor color)
+	PRect& PRect::SetColor(const PColor& color)
 	{
 		(this->color) = color;
 
