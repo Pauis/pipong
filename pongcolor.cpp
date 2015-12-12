@@ -3,13 +3,13 @@
 
 namespace pong
 {
-	PColor::PColor(int colornum)
+	PColor::PColor(const int& colornum)
 		: colornum(colornum)
 	{
 		// empty
 	}
 
-	PColor& PColor::Set(int colornum)
+	PColor& PColor::Set(const int& colornum)
 	{
 		(this->colornum) = colornum;
 
@@ -21,7 +21,7 @@ namespace pong
 		return colornum;
 	}
 
-	bool operator==(PColor p1, PColor p2)
+	bool operator==(const PColor& p1, const PColor& p2)
 	{
 		if (p1.GetNum() == p2.GetNum())
 			return true;

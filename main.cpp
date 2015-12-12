@@ -42,10 +42,6 @@ int main(void)
 	PRect rcursor(terminal_length-1, terminal_width/2-2, 1, 8);
 	PRect ball(terminal_length/2, terminal_width/2, 1, 1);
 	PRect pbuf;
-	string appdesc = "Pipong - Classic Table Tennis Game";
-	string startdesc = "Press 's' to start game";
-	string quitdesc = "Press 'q' to exit the game";
-	string detaildesc = "See more details on https://github.com/pauis/pipong.";
 
 	// Game Setting
 	Point ballmovevector(-1, 1);
@@ -70,10 +66,10 @@ int main(void)
 				boundary_down.SetColor(PColor(PColor::BLUE));
 				sout << boundary_up << boundary_down;
 
-				sout << PString(appdesc, PColor(PColor::CYAN), Point(terminal_length/2-20, terminal_width/2-2));
-				sout << PString(startdesc, Point(terminal_length/2-12, terminal_width/2));
-				sout << PString(quitdesc, Point(terminal_length/2-12, terminal_width/2+1));
-				sout << PString(detaildesc, Point(terminal_length/2-20, terminal_width/2+3));
+				sout << PString("Pipong - Classic Table Tennis Game", PColor(PColor::CYAN), Point(terminal_length/2-20, terminal_width/2-2));
+				sout << PString(string("Press '") + string("s") + string("' to start"), Point(terminal_length/2-12, terminal_width/2));
+				sout << PString(string("Press '") + string("q") + string("' to end"), Point(terminal_length/2-12, terminal_width/2+1));
+				sout << PString("See more details on https://github.com/pauis/pipong.", Point(terminal_length/2-20, terminal_width/2+3));
 			}
 
 			if (keyinput == PKProperty::PSTART)

@@ -14,13 +14,13 @@ namespace pong
 			LOBBY,
 			INGAME,
 		};
-		PGTrigger(int triggernum);
-		PGTrigger& Set(int triggernum);
-		friend bool operator==(PGTrigger t1, PGTrigger t2);
-		friend bool operator!=(PGTrigger t1, PGTrigger t2);
+		PGTrigger(const int& triggernum);
+		PGTrigger& Set(const int& triggernum);
+		friend bool operator==(const PGTrigger& t1, const PGTrigger& t2);
+		friend bool operator!=(const PGTrigger& t1, const PGTrigger& t2);
 	};
-	bool operator==(PGTrigger t1, PGTrigger t2);
-	bool operator!=(PGTrigger t1, PGTrigger t2);
+	bool operator==(const PGTrigger& t1, const PGTrigger& t2);
+	bool operator!=(const PGTrigger& t1, const PGTrigger& t2);
 }
 
 #endif

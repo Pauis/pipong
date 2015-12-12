@@ -20,12 +20,12 @@ namespace pong
 			MAGENTA = 35,
 			CYAN    = 36,
 		};
-		PColor(int colornum=DEFAULT);
-		PColor& Set(int colornum);
+		PColor(const int& colornum=DEFAULT);
+		PColor& Set(const int& colornum);
 		int GetNum(void) const;
-		friend bool operator==(PColor p1, PColor p2);
+		friend bool operator==(const PColor& p1, const PColor& p2);
 	};
-	bool operator==(PColor p1, PColor p2);
+	bool operator==(const PColor& p1, const PColor& p2);
 }
 
 #endif
