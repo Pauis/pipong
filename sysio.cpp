@@ -19,7 +19,7 @@ using pong::PRect;
 namespace pong { namespace sys
 {
 	#ifdef POSIX
-	struct winsize SOut::wsize = {};
+	struct winsize SOut::wsize = {0,};
 	#endif
 	int SOut::objnum = 0;
 
@@ -142,8 +142,8 @@ namespace pong { namespace sys
 	}
 
 	#ifdef POSIX
-	struct termios SIn::regulartset = {};
-	struct termios SIn::newtset = {};
+	struct termios SIn::regulartset = {0,};
+	struct termios SIn::newtset = {0,};
 	#endif
 	int SIn::objnum = 0;
 
