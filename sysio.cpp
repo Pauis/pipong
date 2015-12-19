@@ -53,8 +53,8 @@ namespace pong { namespace sys
 		if (objnum == 0)
 		{
 #ifdef POSIX
-			printf("\033[?25l");                     // Hide cursor
-			printf("\033[?1049h");                   // Use alternate screen buffer
+			printf("\033[?25l");                      // Hide cursor
+			printf("\033[?1049h");                    // Use alternate screen buffer
 			ioctl(STDOUT_FILENO, TIOCGWINSZ, &wsize); // Get the terminal size
 #endif
 		}
@@ -168,11 +168,11 @@ namespace pong { namespace sys
 		{
 #ifdef POSIX
 			tcgetattr(0, &regulartset);      // Get current attribution
-			newtset = regulartset;        // Substitute
-			newtset.c_lflag &= ~ICANON;  // Set noncanonical mode
-			newtset.c_lflag &= ~ECHO;    // Turn off the echo
-			newtset.c_cc[VTIME] = 0;     // Zero delay time
-			newtset.c_cc[VMIN] = 0;      // Don't need any buffer delay
+			newtset = regulartset;           // Substitute
+			newtset.c_lflag &= ~ICANON;      // Set noncanonical mode
+			newtset.c_lflag &= ~ECHO;        // Turn off the echo
+			newtset.c_cc[VTIME] = 0;         // Zero delay time
+			newtset.c_cc[VMIN] = 0;          // Don't need any buffer delay
 
 			tcsetattr(0, TCSANOW, &newtset); // Apply new setting
 #endif
