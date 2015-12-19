@@ -1,4 +1,4 @@
-﻿#include <string>
+#include <string>
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
