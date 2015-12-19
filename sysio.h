@@ -16,9 +16,9 @@ namespace pong { namespace sys
 	class SOut
 	{
 	private:
-		#ifdef POSIX
+#ifdef POSIX
 		static struct winsize wsize;
-		#endif
+#endif
 		static int objnum;
 		void GotoPos(const int& x, const int& y);
 		void GotoPos(const pong::Point& pos);
@@ -38,10 +38,10 @@ namespace pong { namespace sys
 	class SIn
 	{
 	private:
-		#ifdef POSIX
+#ifdef POSIX
 		static struct termios regulartset;
 		static struct termios newtset;
-		#endif
+#endif
 		static int objnum;
 		void ClearBuf(void);
 	public:
