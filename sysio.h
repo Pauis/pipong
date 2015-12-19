@@ -10,6 +10,9 @@
 #include <sys/ioctl.h>
 #include <termios.h>
 #endif
+#ifdef WIN32
+#include <Windows.h>
+#endif
 
 namespace pong { namespace sys
 {
@@ -18,6 +21,9 @@ namespace pong { namespace sys
 	private:
 #ifdef POSIX
 		static struct winsize wsize;
+#endif
+#ifdef WIN32
+		static HANDLE windows_console_handle;
 #endif
 		static int objnum;
 		void GotoPos(const int& x, const int& y);

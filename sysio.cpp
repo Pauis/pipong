@@ -10,6 +10,9 @@
 #include <termios.h>
 #include <unistd.h>
 #endif
+#ifdef WIN32
+#include <Windows.h>
+#endif
 
 using std::string;
 using pong::PColor;
@@ -20,6 +23,9 @@ namespace pong { namespace sys
 {
 #ifdef POSIX
 	struct winsize SOut::wsize = {0,};
+#endif
+#ifdef WIN32
+	HANDLE SOut::windows_console_handle = GetStdHandle(STD_OUTPUT_HANDLE);
 #endif
 	int SOut::objnum = 0;
 
@@ -93,7 +99,7 @@ namespace pong { namespace sys
 	SOut& SOut::EraseWrite(PRect drect, PRect wrect)
 	{
 		static SOut sout;
-		drect.SetColor(PColor::TRANSPARENT);
+		drect.SetColor(PColor::VOIDSPACE);
 
 		sout << drect << wrect;
 
@@ -102,7 +108,7 @@ namespace pong { namespace sys
 
 	SOut& SOut::operator<<(PRect rect)
 	{
-		static PColor transp(PColor::TRANSPARENT);
+		static PColor transp(PColor::VOIDSPACE);
 		static PColor dful(PColor::DEFAULT);
 
 		for(int width=0; width<rect.GetWidth(); width++)
