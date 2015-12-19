@@ -1,5 +1,6 @@
 # Pipong
-[![Build Status](https://travis-ci.org/pauis/pipong.svg)](https://travis-ci.org/pauis/pipong)
+[![Build Status](https://travis-ci.org/pauis/pipong.svg?branch=master)](https://travis-ci.org/pauis/pipong)
+[![Build status](https://ci.appveyor.com/api/projects/status/9ow6e8p23wff3ilx/branch/master?svg=true)](https://ci.appveyor.com/project/pauis/pipong/branch/master)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ## Support List
