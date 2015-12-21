@@ -1,6 +1,5 @@
+#include <iostream>
 #include <string>
-#include <cstdio>
-#include <cstdlib>
 #include <ctime>
 #include "pongcolor.h"
 #include "sysio.h"
@@ -14,6 +13,7 @@
 #include <Windows.h>
 #endif
 
+using std::cout;
 using std::string;
 using pong::PColor;
 using pong::Rect;
@@ -32,7 +32,7 @@ namespace pong { namespace sys
 	void SOut::GotoPos(const int& x, const int& y)
 	{
 #ifdef POSIX
-		printf("\033[%d;%df", y, x);
+		cout << "\033[" << y << ";" << x << "f";
 #endif
 #ifdef WIN32
 		static COORD wintermpos = {static_cast<SHORT>(x-1), static_cast<SHORT>(y-1)};
@@ -48,7 +48,10 @@ namespace pong { namespace sys
 	void SOut::PrintColorString(const string& str, const PColor& colornum)
 	{
 #ifdef POSIX
-		printf("\033[%dm%s\033[0m", colornum.GetNum(), str.c_str());
+		cout << "\033[" << colornum.GetNum() << "m" << str.c_str() << "\033[0m";
+#endif
+#ifdef WIN32
+		cout << str;
 #endif
 	}
 
@@ -57,8 +60,8 @@ namespace pong { namespace sys
 		if (objnum == 0)
 		{
 #ifdef POSIX
-			printf("\033[?25l");                      // Hide cursor
-			printf("\033[?1049h");                    // Use alternate screen buffer
+			cout << "\033[?25l";                      // Hide cursor
+			cout << "\033[?1049h";                    // Use alternate screen buffer
 			ioctl(STDOUT_FILENO, TIOCGWINSZ, &wsize); // Get the terminal size
 #endif
 		}
@@ -78,7 +81,7 @@ namespace pong { namespace sys
 	SOut& SOut::Clear(void)
 	{
 #ifdef POSIX
-		printf("\033[2J");
+		cout << "\033[2J";
 #endif
 
 		return *this;
@@ -153,8 +156,8 @@ namespace pong { namespace sys
 		{
 #ifdef POSIX
 			GotoPos(Point(1, GetWidth())); // Move cursor to the end of the command line
-			printf("\033[?25h");           // Show cursor
-			printf("\033[?1049l");         // Use normal screen buffer
+			cout << "\033[? 25h";          // Show cursor
+			cout << "\033[?1049l";         // Use normal screen buffer
 #endif
 		}
 	}
