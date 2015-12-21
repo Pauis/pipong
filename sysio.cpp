@@ -25,7 +25,7 @@ namespace pong { namespace sys
 	struct winsize SOut::wsize = {0,};
 #endif
 #ifdef WIN32
-	HANDLE SOut::windows_console_handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	HANDLE SOut::windows_cout_handle = GetStdHandle(STD_OUTPUT_HANDLE);
 #endif
 	int SOut::objnum = 0;
 
