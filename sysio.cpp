@@ -123,6 +123,10 @@ namespace pong { namespace sys
 				else
 					PrintColorString("█", rect.GetColor());
 #endif
+#ifdef WIN32
+				else
+					PrintColorString("@", rect.GetColor());
+#endif
 			}
 		}
 
