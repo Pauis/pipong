@@ -15,6 +15,10 @@
 // Run the executable.
 ~/pipong $ posix_out/pipong
 ```
+
+#### Windows
+Double-click the executable file, or run it on the Command Prompt.
+
 ### Default Key
 | Description | Default Key |
 |:-:|:-:|
@@ -38,6 +42,11 @@
 ~/pipong $ make
 ```
 
+### Windows
+First, you need the latest Visual Studio. You can [download Visual Studio Community for limited purposes](https://www.visualstudio.com/).
+After finishing the installation, click 'Open repository with...' and 'Visual Studio'.
+Use Control+F5 hotkey to build the app.
+
 ## Update
 ### Linux, OSX
 ```
@@ -50,6 +59,9 @@
 // Run Make.
 ~/pipong $ make
 ```
+
+### Windows
+On Visual Studio's default screen, you may see the Team Explorer screen. Pull the latest code with it.
 
 ## License
 This project is distributed with MIT License.
