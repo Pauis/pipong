@@ -45,7 +45,7 @@ Double-click the executable file, or run it on the Command Prompt.
 ### Windows
 First, you need the latest Visual Studio. You can [download Visual Studio Community for limited purposes](https://www.visualstudio.com/).
 After finishing the installation, click 'Open repository with...' and 'Visual Studio'.
-Use Control+F5 hotkey to build the app.
+Use Control+F5 to build the app.
 
 ## Update
 ### Linux, OSX
