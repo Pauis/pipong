@@ -177,8 +177,9 @@ namespace pong { namespace sys
 
 		if (objnum == 0)
 		{
-#ifdef POSIX
 			GotoPos(Point(1, GetWidth())); // Move cursor to the end of the command line
+
+#ifdef POSIX
 			cout << "\033[?25h";           // Show cursor
 			cout << "\033[?1049l";         // Use normal screen buffer
 #endif
