@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cstdio>
 #include <ctime>
 #include "pongcolor.h"
 #include "sysio.h"
@@ -156,7 +157,7 @@ namespace pong { namespace sys
 		{
 #ifdef POSIX
 			GotoPos(Point(1, GetWidth())); // Move cursor to the end of the command line
-			cout << "\033[? 25h";          // Show cursor
+			cout << "\033[?25h";           // Show cursor
 			cout << "\033[?1049l";         // Use normal screen buffer
 #endif
 		}
