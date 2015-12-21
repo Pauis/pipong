@@ -10,7 +10,7 @@ namespace pong
 	public:
 		enum
 		{
-			TRANSPARENT = -1,
+			VOIDSPACE = -1,
 			DEFAULT = 0,
 			BLACK   = 30,
 			RED     = 31,
