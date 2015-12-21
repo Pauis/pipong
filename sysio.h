@@ -23,7 +23,7 @@ namespace pong { namespace sys
 		static struct winsize wsize;
 #endif
 #ifdef WIN32
-		static HANDLE win_termout_handle;
+		static HANDLE windows_termout_handle;
 #endif
 		static int objnum;
 		void GotoPos(const int& x, const int& y);

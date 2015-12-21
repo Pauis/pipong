@@ -11,6 +11,7 @@
 #include <unistd.h>
 #endif
 #ifdef WIN32
+#include <conio.h>
 #include <Windows.h>
 #endif
 
@@ -26,7 +27,7 @@ namespace pong { namespace sys
 	struct winsize SOut::wsize = {0,};
 #endif
 #ifdef WIN32
-	HANDLE SOut::win_termout_handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	HANDLE SOut::windows_termout_handle = GetStdHandle(STD_OUTPUT_HANDLE);
 #endif
 	int SOut::objnum = 0;
 
@@ -36,8 +37,8 @@ namespace pong { namespace sys
 		cout << "\033[" << y << ";" << x << "f";
 #endif
 #ifdef WIN32
-		static COORD wintermpos = {static_cast<SHORT>(x-1), static_cast<SHORT>(y-1)};
-		SetConsoleCursorPosition(win_termout_handle, wintermpos);
+		COORD wintermpos = {static_cast<SHORT>(x-1), static_cast<SHORT>(y-1)};
+		SetConsoleCursorPosition(windows_termout_handle, wintermpos);
 #endif
 	}
 
@@ -65,6 +66,12 @@ namespace pong { namespace sys
 			cout << "\033[?1049h";                    // Use alternate screen buffer
 			ioctl(STDOUT_FILENO, TIOCGWINSZ, &wsize); // Get the terminal size
 #endif
+#ifdef WIN32
+			CONSOLE_CURSOR_INFO windows_curinfo;
+			GetConsoleCursorInfo(windows_termout_handle, &windows_curinfo);
+			windows_curinfo.bVisible = 0;
+			SetConsoleCursorInfo(windows_termout_handle, &windows_curinfo);
+#endif
 		}
 
 		objnum++;
@@ -72,9 +79,7 @@ namespace pong { namespace sys
 
 	SOut& SOut::Refresh(void)
 	{
-#ifdef POSIX
 		fflush(stdout);
-#endif
 
 		return *this;
 	}
@@ -83,6 +88,17 @@ namespace pong { namespace sys
 	{
 #ifdef POSIX
 		cout << "\033[2J";
+#endif
+#ifdef WIN32 // Highly experimental code
+		int length = GetLength();
+		int width = GetWidth();
+
+		for (int y = 1; y <= width; y++)
+		{
+			GotoPos(1, y);
+			for (int x = 1; x <= length; x++)
+				PrintColorString(" ", PColor::DEFAULT);
+		}
 #endif
 
 		return *this;
@@ -93,6 +109,9 @@ namespace pong { namespace sys
 #ifdef POSIX
 		return wsize.ws_col;
 #endif
+#ifdef WIN32
+		return 100;
+#endif
 		return 0;
 	}
 
@@ -100,6 +119,9 @@ namespace pong { namespace sys
 	{
 #ifdef POSIX
 		return wsize.ws_row;
+#endif
+#ifdef WIN32
+		return 50;
 #endif
 		return 0;
 	}
@@ -160,6 +182,12 @@ namespace pong { namespace sys
 			cout << "\033[?25h";           // Show cursor
 			cout << "\033[?1049l";         // Use normal screen buffer
 #endif
+#ifdef WIN32
+			CONSOLE_CURSOR_INFO windows_curinfo;
+			GetConsoleCursorInfo(windows_termout_handle, &windows_curinfo);
+			windows_curinfo.bVisible = 1;
+			SetConsoleCursorInfo(windows_termout_handle, &windows_curinfo);
+#endif
 		}
 	}
 
@@ -199,6 +227,12 @@ namespace pong { namespace sys
 		target = getchar();
 		//ClearBuf();
 #endif
+#ifdef WIN32
+		if (_kbhit())
+			target = _getch();
+		else
+			target = -1;
+#endif
 	}
 
 	SIn::~SIn()
@@ -222,6 +256,9 @@ namespace pong { namespace sys
 		tim.tv_nsec = (msec * static_cast<long>(1000000));
 
 		nanosleep(&tim, NULL);
+#endif
+#ifdef WIN32
+		Sleep(msec);
 #endif
 
 		return *this;

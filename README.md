@@ -6,7 +6,7 @@
 ## Support List
 | Linux | OSX | Windows |
 |:-:|:-:|:-:|
-| O | TBD | TBD |
+| O | TBD | Experimental |
 
 ## Usage
 ### Command
