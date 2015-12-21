@@ -25,7 +25,7 @@ namespace pong { namespace sys
 	struct winsize SOut::wsize = {0,};
 #endif
 #ifdef WIN32
-	HANDLE SOut::windows_cout_handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	HANDLE SOut::win_termout_handle = GetStdHandle(STD_OUTPUT_HANDLE);
 #endif
 	int SOut::objnum = 0;
 
@@ -33,6 +33,10 @@ namespace pong { namespace sys
 	{
 #ifdef POSIX
 		printf("\033[%d;%df", y, x);
+#endif
+#ifdef WIN32
+		static COORD wintermpos = {static_cast<SHORT>(x-1), static_cast<SHORT>(y-1)};
+		SetConsoleCursorPosition(win_termout_handle, wintermpos);
 #endif
 	}
 
@@ -211,7 +215,7 @@ namespace pong { namespace sys
 
 		if (ini == 0)
 			tim.tv_sec = 0;
-		tim.tv_nsec = (msec * 1000000L);
+		tim.tv_nsec = (msec * static_cast<long>(1000000));
 
 		nanosleep(&tim, NULL);
 #endif
