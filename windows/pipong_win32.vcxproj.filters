@@ -67,5 +67,8 @@
     <None Include="..\README.md">
       <Filter>Information Files</Filter>
     </None>
+    <None Include="..\Makefile">
+      <Filter>Information Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

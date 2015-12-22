@@ -5,12 +5,12 @@
 #include "pongcolor.h"
 #include "sysio.h"
 
-#ifdef POSIX
+#ifdef TARGET_IS_POSIX
 #include <sys/ioctl.h>
 #include <termios.h>
 #include <unistd.h>
 #endif
-#ifdef WIN32
+#ifdef TARGET_IS_WIN32
 #include <conio.h>
 #include <Windows.h>
 #endif
@@ -23,20 +23,20 @@ using pong::PRect;
 
 namespace pong { namespace sys
 {
-#ifdef POSIX
+#ifdef TARGET_IS_POSIX
 	struct winsize SOut::wsize = {0,};
 #endif
-#ifdef WIN32
+#ifdef TARGET_IS_WIN32
 	HANDLE SOut::windows_termout_handle = GetStdHandle(STD_OUTPUT_HANDLE);
 #endif
 	int SOut::objnum = 0;
 
 	void SOut::GotoPos(const int& x, const int& y)
 	{
-#ifdef POSIX
+#ifdef TARGET_IS_POSIX
 		cout << "\033[" << y << ";" << x << "f";
 #endif
-#ifdef WIN32
+#ifdef TARGET_IS_WIN32
 		COORD wintermpos = {static_cast<SHORT>(x-1), static_cast<SHORT>(y-1)};
 		SetConsoleCursorPosition(windows_termout_handle, wintermpos);
 #endif
@@ -49,10 +49,10 @@ namespace pong { namespace sys
 
 	void SOut::PrintColorString(const string& str, const PColor& colornum)
 	{
-#ifdef POSIX
+#ifdef TARGET_IS_POSIX
 		cout << "\033[" << colornum.GetNum() << "m" << str.c_str() << "\033[0m";
 #endif
-#ifdef WIN32
+#ifdef TARGET_IS_WIN32
 		cout << str;
 #endif
 	}
@@ -61,12 +61,12 @@ namespace pong { namespace sys
 	{
 		if (objnum == 0)
 		{
-#ifdef POSIX
+#ifdef TARGET_IS_POSIX
 			cout << "\033[?25l";                      // Hide cursor
 			cout << "\033[?1049h";                    // Use alternate screen buffer
 			ioctl(STDOUT_FILENO, TIOCGWINSZ, &wsize); // Get the terminal size
 #endif
-#ifdef WIN32
+#ifdef TARGET_IS_WIN32
 			CONSOLE_CURSOR_INFO windows_curinfo;
 			GetConsoleCursorInfo(windows_termout_handle, &windows_curinfo);
 			windows_curinfo.bVisible = 0;
@@ -79,17 +79,19 @@ namespace pong { namespace sys
 
 	SOut& SOut::Refresh(void)
 	{
+#ifdef TARGET_IS_POSIX
 		fflush(stdout);
+#endif
 
 		return *this;
 	}
 
 	SOut& SOut::Clear(void)
 	{
-#ifdef POSIX
+#ifdef TARGET_IS_POSIX
 		cout << "\033[2J";
 #endif
-#ifdef WIN32 // Highly experimental code
+#ifdef TARGET_IS_WIN32 // Highly experimental code
 		int length = GetLength();
 		int width = GetWidth();
 
@@ -106,10 +108,10 @@ namespace pong { namespace sys
 
 	int SOut::GetLength(void)
 	{
-#ifdef POSIX
+#ifdef TARGET_IS_POSIX
 		return wsize.ws_col;
 #endif
-#ifdef WIN32
+#ifdef TARGET_IS_WIN32
 		return 100;
 #endif
 		return 0;
@@ -117,10 +119,10 @@ namespace pong { namespace sys
 
 	int SOut::GetWidth(void)
 	{
-#ifdef POSIX
+#ifdef TARGET_IS_POSIX
 		return wsize.ws_row;
 #endif
-#ifdef WIN32
+#ifdef TARGET_IS_WIN32
 		return 50;
 #endif
 		return 0;
@@ -149,11 +151,11 @@ namespace pong { namespace sys
 			{
 				if (rect.GetColor() == transp)
 					PrintColorString(" ", dful);
-#ifdef POSIX
+#ifdef TARGET_IS_POSIX
 				else
 					PrintColorString("█", rect.GetColor());
 #endif
-#ifdef WIN32
+#ifdef TARGET_IS_WIN32
 				else
 					PrintColorString("@", rect.GetColor());
 #endif
@@ -179,11 +181,11 @@ namespace pong { namespace sys
 		{
 			GotoPos(Point(1, GetWidth())); // Move cursor to the end of the command line
 
-#ifdef POSIX
+#ifdef TARGET_IS_POSIX
 			cout << "\033[?25h";           // Show cursor
 			cout << "\033[?1049l";         // Use normal screen buffer
 #endif
-#ifdef WIN32
+#ifdef TARGET_IS_WIN32
 			CONSOLE_CURSOR_INFO windows_curinfo;
 			GetConsoleCursorInfo(windows_termout_handle, &windows_curinfo);
 			windows_curinfo.bVisible = 1;
@@ -192,7 +194,7 @@ namespace pong { namespace sys
 		}
 	}
 
-#ifdef POSIX
+#ifdef TARGET_IS_POSIX
 	struct termios SIn::regulartset = {0,};
 	struct termios SIn::newtset = {0,};
 #endif
@@ -207,7 +209,7 @@ namespace pong { namespace sys
 	{
 		if (objnum == 0)
 		{
-#ifdef POSIX
+#ifdef TARGET_IS_POSIX
 			tcgetattr(0, &regulartset);      // Get current attribution
 			newtset = regulartset;           // Substitute
 			newtset.c_lflag &= ~ICANON;      // Set noncanonical mode
@@ -224,11 +226,11 @@ namespace pong { namespace sys
 
 	void SIn::operator>>(int& target)
 	{
-#ifdef POSIX
+#ifdef TARGET_IS_POSIX
 		target = getchar();
 		//ClearBuf();
 #endif
-#ifdef WIN32
+#ifdef TARGET_IS_WIN32
 		if (_kbhit())
 			target = _getch();
 		else
@@ -240,7 +242,7 @@ namespace pong { namespace sys
 	{
 		objnum--;
 
-#ifdef POSIX
+#ifdef TARGET_IS_POSIX
 		if (objnum == 0)
 			tcsetattr(0, TCSANOW, &regulartset); // Apply the original setting
 #endif
@@ -248,7 +250,7 @@ namespace pong { namespace sys
 
 	SCurrent& SCurrent::DelayMsec(const long& msec)
 	{
-#ifdef POSIX
+#ifdef TARGET_IS_POSIX
 		static struct timespec tim;
 		static int ini = 0;
 
@@ -258,7 +260,7 @@ namespace pong { namespace sys
 
 		nanosleep(&tim, NULL);
 #endif
-#ifdef WIN32
+#ifdef TARGET_IS_WIN32
 		Sleep(msec);
 #endif
 
