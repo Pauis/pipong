@@ -61,7 +61,7 @@ Use Control+F5 to build the app.
 ```
 
 ### Windows
-On Visual Studio's default screen, you may see the Team Explorer screen. Pull the latest code with it.
+On Visual Studio's default screen, you can see the Team Explorer screen. Pull the latest code with it.
 
 ## License
 This project is distributed with MIT License.
