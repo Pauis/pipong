@@ -6,11 +6,11 @@
 #include "pongcolor.h"
 #include "pongstring.h"
 
-#ifdef POSIX
+#ifdef TARGET_IS_POSIX
 #include <sys/ioctl.h>
 #include <termios.h>
 #endif
-#ifdef WIN32
+#ifdef TARGET_IS_WIN32
 #include <Windows.h>
 #endif
 
@@ -19,10 +19,10 @@ namespace pong { namespace sys
 	class SOut
 	{
 	private:
-#ifdef POSIX
+#ifdef TARGET_IS_POSIX
 		static struct winsize wsize;
 #endif
-#ifdef WIN32
+#ifdef TARGET_IS_WIN32
 		static HANDLE windows_termout_handle;
 #endif
 		static int objnum;
@@ -44,7 +44,7 @@ namespace pong { namespace sys
 	class SIn
 	{
 	private:
-#ifdef POSIX
+#ifdef TARGET_IS_POSIX
 		static struct termios regulartset;
 		static struct termios newtset;
 #endif

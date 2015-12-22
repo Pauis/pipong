@@ -38,8 +38,8 @@ int main(void)
 	PRect boundary_left(2, 2, 1, terminal_width-2);
 	PRect boundary_right(terminal_length-1, 2, 1, terminal_width-2);
 	PRect boundary_court(3, 3, terminal_length-4, terminal_width-4);
-	PRect lcursor(2, terminal_width/2-2, 1, 8);
-	PRect rcursor(terminal_length-1, terminal_width/2-2, 1, 8);
+	PRect lcursor(2, terminal_width/2-2, 1, 6);
+	PRect rcursor(terminal_length-1, terminal_width/2-2, 1, 6);
 	PRect ball(terminal_length/2, terminal_width/2, 1, 1);
 	PRect pbuf;
 

@@ -5,7 +5,7 @@ ifeq ($(CXX),)
 CXX            = g++
 endif
 MODENAME       = posix
-SDEFINEFLAG    = -DPOSIX
+SDEFINEFLAG    = -DTARGET_IS_POSIX
 SLINKFLAG      =
 
 OBJDIRNAME     = $(MODENAME)_out
