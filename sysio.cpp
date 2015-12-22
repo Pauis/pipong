@@ -67,10 +67,10 @@ namespace pong { namespace sys
 			ioctl(STDOUT_FILENO, TIOCGWINSZ, &wsize); // Get the terminal size
 #endif
 #ifdef TARGET_IS_WIN32
-			CONSOLE_CURSOR_INFO windows_curinfo;
-			GetConsoleCursorInfo(windows_termout_handle, &windows_curinfo);
-			windows_curinfo.bVisible = 0;
-			SetConsoleCursorInfo(windows_termout_handle, &windows_curinfo);
+			CONSOLE_CURSOR_INFO windows_termout_curinfo;
+			GetConsoleCursorInfo(windows_termout_handle, &windows_termout_curinfo);
+			windows_termout_curinfo.bVisible = 0;
+			SetConsoleCursorInfo(windows_termout_handle, &windows_termout_curinfo);
 #endif
 		}
 
@@ -91,16 +91,14 @@ namespace pong { namespace sys
 #ifdef TARGET_IS_POSIX
 		cout << "\033[2J";
 #endif
-#ifdef TARGET_IS_WIN32 // Highly experimental code
-		int length = GetLength();
-		int width = GetWidth();
+#ifdef TARGET_IS_WIN32
+		CONSOLE_SCREEN_BUFFER_INFO windows_termout_sbufinfo;
+		COORD startpoint = {0, 0};
+		DWORD dw;
 
-		for (int y = 1; y <= width; y++)
-		{
-			GotoPos(1, y);
-			for (int x = 1; x <= length; x++)
-				PrintColorString(" ", PColor::DEFAULT);
-		}
+		GetConsoleScreenBufferInfo(windows_termout_handle, &windows_termout_sbufinfo);
+		FillConsoleOutputCharacterA(windows_termout_handle, ' ', windows_termout_sbufinfo.dwSize.X * windows_termout_sbufinfo.dwSize.Y, startpoint, &dw);
+		FillConsoleOutputAttribute(windows_termout_handle, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE,windows_termout_sbufinfo.dwSize.X * windows_termout_sbufinfo.dwSize.Y, startpoint, &dw);
 #endif
 
 		return *this;
@@ -112,7 +110,9 @@ namespace pong { namespace sys
 		return wsize.ws_col;
 #endif
 #ifdef TARGET_IS_WIN32
-		return 100;
+		CONSOLE_SCREEN_BUFFER_INFO windows_termout_sbufinfo;
+		GetConsoleScreenBufferInfo(windows_termout_handle, &windows_termout_sbufinfo);
+		return static_cast<int>(windows_termout_sbufinfo.dwSize.X);
 #endif
 		return 0;
 	}
@@ -123,7 +123,9 @@ namespace pong { namespace sys
 		return wsize.ws_row;
 #endif
 #ifdef TARGET_IS_WIN32
-		return 50;
+		CONSOLE_SCREEN_BUFFER_INFO windows_termout_sbufinfo;
+		GetConsoleScreenBufferInfo(windows_termout_handle, &windows_termout_sbufinfo);
+		return (static_cast<int>(windows_termout_sbufinfo.dwSize.X))/4;
 #endif
 		return 0;
 	}
@@ -186,10 +188,10 @@ namespace pong { namespace sys
 			cout << "\033[?1049l";         // Use normal screen buffer
 #endif
 #ifdef TARGET_IS_WIN32
-			CONSOLE_CURSOR_INFO windows_curinfo;
-			GetConsoleCursorInfo(windows_termout_handle, &windows_curinfo);
-			windows_curinfo.bVisible = 1;
-			SetConsoleCursorInfo(windows_termout_handle, &windows_curinfo);
+			CONSOLE_CURSOR_INFO windows_termout_curinfo;
+			GetConsoleCursorInfo(windows_termout_handle, &windows_termout_curinfo);
+			windows_termout_curinfo.bVisible = 1;
+			SetConsoleCursorInfo(windows_termout_handle, &windows_termout_curinfo);
 #endif
 		}
 	}
