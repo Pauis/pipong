@@ -53,7 +53,41 @@ namespace pong { namespace sys
 		cout << "\033[" << colornum.GetNum() << "m" << str.c_str() << "\033[0m";
 #endif
 #ifdef TARGET_IS_WIN32
+		CONSOLE_SCREEN_BUFFER_INFO windows_termout_sbufinfo;
+		WORD windows_termout_attributes;
+		char windows_colornum;
+
+		GetConsoleScreenBufferInfo(windows_termout_handle, &windows_termout_sbufinfo);
+		windows_termout_attributes = windows_termout_sbufinfo.wAttributes;
+
+		// Using if - else if, because switch has a performance issue on some embedded machines
+		if (colornum == PColor(PColor::DEFAULT))
+			windows_colornum = 7;
+		else if (colornum == PColor(PColor::BLACK))
+			windows_colornum = 0;
+		else if (colornum == PColor(PColor::RED))
+			windows_colornum = 4;
+		else if (colornum == PColor(PColor::GREEN))
+			windows_colornum = 2;
+		/*
+		else if (colornum == PColor::(PColor::BROWN))
+		*/
+		else if (colornum == PColor(PColor::BLUE))
+			windows_colornum = 1;
+		/*
+		else if (colornum == PColor(PColor::MAGENTA))
+			windows_colornum = 0;
+		*/
+		else if (colornum == PColor(PColor::CYAN))
+			windows_colornum = 9;
+		else
+			windows_colornum = 7;
+
+		SetConsoleTextAttribute(windows_termout_handle, windows_colornum);
+
 		cout << str;
+
+		SetConsoleTextAttribute(windows_termout_handle, windows_termout_attributes);
 #endif
 	}
 

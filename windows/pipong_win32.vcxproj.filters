@@ -73,5 +73,8 @@
     <None Include="..\appveyor.yml">
       <Filter>Information Files</Filter>
     </None>
+    <None Include="..\.travis.yml">
+      <Filter>Information Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
