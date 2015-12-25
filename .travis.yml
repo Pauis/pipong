@@ -9,6 +9,3 @@ script: "make"
 env: TARGETMODEL=POSIX
 notifications:
   email: false
-matrix:
-  allow_failures:
-    - os: osx
