@@ -18,9 +18,8 @@ using pong::sys::SOut;
 using pong::sys::SIn;
 using pong::sys::SCurrent;
 
-int main(void)
-{
-	// System Object
+int main(void) {
+	// Customized System Object
 	SOut sout;
 	SIn ssin;
 	SCurrent scurrent;
@@ -52,70 +51,77 @@ int main(void)
 	PGTrigger gmode_ingame = PGTrigger::INGAME;
 
 	// Game Logic
-	while (signal_terminate != true)
-	{
+	while (signal_terminate != true) {
 		ssin >> keyinput;
 
-		if (gmode_event == gmode_lobby)
-		{
-			for (; gmode_stage != gmode_lobby; gmode_stage.Set(PGTrigger::LOBBY))
-			{
+		if (gmode_event == gmode_lobby) {
+			for (; gmode_stage != gmode_lobby; gmode_stage.Set(PGTrigger::LOBBY)) {
 				sout.Clear();
 
 				boundary_up.SetColor(PColor(PColor::BLUE));
 				boundary_down.SetColor(PColor(PColor::BLUE));
-				sout << boundary_up << boundary_down;
 
-				sout << PString("Pipong - Classic Table Tennis Game", PColor(PColor::CYAN), Point(terminal_length/2-20, terminal_width/2-2));
-				sout << PString(string("Press '") + string("s") + string("' to start"), Point(terminal_length/2-12, terminal_width/2));
-				sout << PString(string("Press '") + string("q") + string("' to end"), Point(terminal_length/2-12, terminal_width/2+1));
-				sout << PString("See more details on https://github.com/pauis/pipong.", Point(terminal_length/2-20, terminal_width/2+3));
+				sout << boundary_up << boundary_down
+					<< PString("Pipong - Classic Table Tennis Game",
+							PColor(PColor::CYAN),
+							Point(terminal_length/2-20, terminal_width/2-2))
+					<< PString(string("Press '") + string("s") + string("' to start"),
+							Point(terminal_length/2-12, terminal_width/2))
+					<< PString(string("Press '") + string("q") + string("' to end"),
+							Point(terminal_length/2-12, terminal_width/2+1))
+					<< PString("See more details on https://github.com/pauis/pipong.",
+							Point(terminal_length/2-20, terminal_width/2+3));
 			}
 
-			if (keyinput == PKProperty::PSTART)
+			if (keyinput == PKProperty::PSTART) {
 				gmode_event.Set(PGTrigger::INGAME);
-			else if (keyinput == PKProperty::PEXIT)
+			}
+			else if (keyinput == PKProperty::PEXIT) {
 				signal_terminate = true;
+			}
 		}
-		else if (gmode_event == gmode_ingame)
-		{
-			for (; gmode_stage != gmode_ingame; gmode_stage.Set(PGTrigger::INGAME))
-			{
+		else if (gmode_event == gmode_ingame) {
+			for (; gmode_stage != gmode_ingame; gmode_stage.Set(PGTrigger::INGAME)) {
 				sout.Clear();
 
 				boundary_up.SetColor(PColor(PColor::CYAN));
 				boundary_down.SetColor(PColor(PColor::CYAN));
 				lcursor.SetSypos(terminal_width/2-4);
 				rcursor.SetSypos(terminal_width/2-4);
-				ball.SetSxpos(terminal_length/2);
-				ball.SetSypos(terminal_width/2);
+				ball.SetSpoint(terminal_length/2, terminal_width/2);
 				sout << boundary_up << boundary_down << lcursor << rcursor << ball;
 			}
 
-			if (keyinput == PKProperty::PEXIT)
+			if (keyinput == PKProperty::PEXIT) {
 				gmode_event.Set(PGTrigger::LOBBY);
-			else if (keyinput == PKProperty::PP1UP)
+			}
+			else if (keyinput == PKProperty::PP1UP) {
 				MainAM::PRectMove(sout, lcursor, upmovevector, boundary_left);
-			else if (keyinput == PKProperty::PP1DOWN)
+			}
+			else if (keyinput == PKProperty::PP1DOWN) {
 				MainAM::PRectMove(sout, lcursor, downmovevector, boundary_left);
-			else if (keyinput == PKProperty::PP2UP)
+			}
+			else if (keyinput == PKProperty::PP2UP) {
 				MainAM::PRectMove(sout, rcursor, upmovevector, boundary_right);
-			else if (keyinput == PKProperty::PP2DOWN)
+			}
+			else if (keyinput == PKProperty::PP2DOWN) {
 				MainAM::PRectMove(sout, rcursor, downmovevector, boundary_right);
+			}
 
-			if (scurrent.CycleTick(PGProperty::PBALLFREQ))
-			{
+			if (scurrent.CycleTick(PGProperty::PBALLFREQ)) {
 				pbuf = MainAM::PRectMove(sout, ball, ballmovevector, boundary_court);
 
-				if (boundary_up.CheckInclude(pbuf) || boundary_down.CheckInclude(pbuf))
+				if (boundary_up.CheckInclude(pbuf) || boundary_down.CheckInclude(pbuf)) {
 					ballmovevector.SetYpos(-(ballmovevector.GetYpos()));
+				}
 
-				if (boundary_left.CheckInclude(pbuf) || boundary_right.CheckInclude(pbuf))
-				{
-					if (lcursor.CheckInclude(pbuf) || rcursor.CheckInclude(pbuf))
+				if (boundary_left.CheckInclude(pbuf) || boundary_right.CheckInclude(pbuf)) {
+					if (lcursor.CheckInclude(pbuf) || rcursor.CheckInclude(pbuf)) {
 						ballmovevector.SetXpos(-(ballmovevector.GetXpos()));
-					else
+					}
+					else {
 						gmode_event.Set(PGTrigger::LOBBY);
+					}
 				}
 			}
 		}
