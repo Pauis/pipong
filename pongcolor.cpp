@@ -1,31 +1,28 @@
 #include <iostream>
 #include "pongcolor.h"
 
-namespace pong
-{
+namespace pong {
 	PColor::PColor(const int& colornum)
-		: colornum(colornum)
-	{
+		: colornum(colornum) {
 		// empty
 	}
 
-	PColor& PColor::Set(const int& colornum)
-	{
+	PColor& PColor::Set(const int& colornum) {
 		(this->colornum) = colornum;
 
 		return *this;
 	}
 
-	int PColor::GetNum(void) const
-	{
+	int PColor::GetNum(void) const {
 		return colornum;
 	}
 
-	bool operator==(const PColor& p1, const PColor& p2)
-	{
-		if (p1.GetNum() == p2.GetNum())
+	bool operator==(const PColor& p1, const PColor& p2) {
+		if (p1.GetNum() == p2.GetNum()) {
 			return true;
-		else
+		}
+		else {
 			return false;
+		}
 	}
 }

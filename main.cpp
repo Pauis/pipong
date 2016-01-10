@@ -1,10 +1,10 @@
 #include <string>
 #include "pongobj.h"
-#include "pongstring.h"
-#include "sysio.h"
 #include "pongproperties.h"
+#include "pongstring.h"
 #include "pongtrigger.h"
-#include "mainautomation.h"
+#include "pongutility.h"
+#include "sysio.h"
 
 using std::string;
 using pong::PString;
@@ -14,6 +14,7 @@ using pong::PRect;
 using pong::PKProperty;
 using pong::PGProperty;
 using pong::PGTrigger;
+using pong::MainAM;
 using pong::sys::SOut;
 using pong::sys::SIn;
 using pong::sys::SCurrent;

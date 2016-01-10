@@ -1,15 +1,12 @@
 #ifndef __PONGCOLOR_H__
 #define __PONGCOLOR_H__
 
-namespace pong
-{
-	class PColor
-	{
+namespace pong {
+	class PColor {
 	private:
 		int colornum;
 	public:
-		enum
-		{
+		enum {
 			VOIDSPACE = -1,
 			DEFAULT = 0,
 			BLACK   = 30,
