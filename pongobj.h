@@ -3,10 +3,8 @@
 
 #include "pongcolor.h"
 
-namespace pong
-{
-	class Point
-	{
+namespace pong {
+	class Point {
 	private:
 		int xpos;
 		int ypos;
@@ -20,8 +18,7 @@ namespace pong
 		Point operator+(const Point& pos) const;
 	};
 
-	class Rect
-	{
+	class Rect {
 	private:
 		Point spoint;
 		int length;
@@ -47,20 +44,23 @@ namespace pong
 		virtual ~Rect();
 	};
 
-	class PRect : public Rect
-	{
+	class PRect : public Rect {
 	private:
 		pong::PColor color;
 	public:
-		PRect(const int& xpos, const int& ypos, const int& length, const int& width, const pong::PColor& color);
+		PRect(const int& xpos, const int& ypos, const int& length, const int& width,
+			const pong::PColor& color);
 		PRect(const int& xpos, const int& ypos, const int& length, const int& width);
-		PRect(const Point& spoint, const int& length, const int& width, const pong::PColor& color);
+		PRect(const Point& spoint, const int& length, const int& width,
+			const pong::PColor& color);
 		PRect(const Point& spoint, const int& length, const int& width);
 		PRect(const Rect& rect, const pong::PColor& color);
 		PRect(const Rect& rect);
 		PRect(void);
-		PRect& Set(const int& xpos, const int& ypos, const int& length, const int& width, const pong::PColor& color);
-		PRect& Set(const Point& spoint, const int& length, const int& width, const pong::PColor& color);
+		PRect& Set(const int& xpos, const int& ypos, const int& length,
+				const int& width, const pong::PColor& color);
+		PRect& Set(const Point& spoint, const int& length, const int& width,
+				const pong::PColor& color);
 		PRect& SetColor(const pong::PColor& color);
 		PColor GetColor(void) const;
 	};

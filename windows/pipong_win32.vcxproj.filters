@@ -21,9 +21,6 @@
     <ClCompile Include="..\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\mainautomation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\pongcolor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -33,17 +30,17 @@
     <ClCompile Include="..\pongstring.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\sysio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\pongtrigger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sysio.cpp">
+    <ClCompile Include="..\pongutility.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\mainautomation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\pongcolor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -56,10 +53,10 @@
     <ClInclude Include="..\pongstring.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\pongtrigger.h">
+    <ClInclude Include="..\sysio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\sysio.h">
+    <ClInclude Include="..\pongtrigger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

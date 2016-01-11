@@ -14,10 +14,9 @@
 #include <Windows.h>
 #endif
 
-namespace pong { namespace sys
-{
-	class SOut
-	{
+namespace pong {
+namespace sys {
+	class SOut {
 	private:
 #ifdef TARGET_IS_POSIX
 		static struct winsize wsize;
@@ -41,8 +40,7 @@ namespace pong { namespace sys
 		~SOut();
 	};
 
-	class SIn
-	{
+	class SIn {
 	private:
 #ifdef TARGET_IS_POSIX
 		static struct termios regulartset;
@@ -56,8 +54,7 @@ namespace pong { namespace sys
 		~SIn();
 	};
 
-	class SCurrent
-	{
+	class SCurrent {
 	public:
 		SCurrent& DelayMsec(const long& msec);
 		bool CycleTick(const int& cyclenum);

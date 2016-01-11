@@ -21,8 +21,8 @@ using pong::PColor;
 using pong::Rect;
 using pong::PRect;
 
-namespace pong { namespace sys
-{
+namespace pong {
+namespace sys {
 #ifdef TARGET_IS_POSIX
 	struct winsize SOut::wsize = {0,};
 #endif
@@ -31,8 +31,7 @@ namespace pong { namespace sys
 #endif
 	int SOut::objnum = 0;
 
-	void SOut::GotoPos(const int& x, const int& y)
-	{
+	void SOut::GotoPos(const int& x, const int& y) {
 #ifdef TARGET_IS_POSIX
 		cout << "\033[" << y << ";" << x << "f";
 #endif
@@ -42,13 +41,11 @@ namespace pong { namespace sys
 #endif
 	}
 
-	void SOut::GotoPos(const Point& pos)
-	{
+	void SOut::GotoPos(const Point& pos) {
 		GotoPos(pos.GetXpos(), pos.GetYpos());
 	}
 
-	void SOut::PrintColorString(const string& str, const PColor& colornum)
-	{
+	void SOut::PrintColorString(const string& str, const PColor& colornum) {
 #ifdef TARGET_IS_POSIX
 		cout << "\033[" << colornum.GetNum() << "m" << str.c_str() << "\033[0m";
 #endif
@@ -60,41 +57,46 @@ namespace pong { namespace sys
 		GetConsoleScreenBufferInfo(windows_termout_handle, &windows_termout_sbufinfo);
 		windows_termout_attributes = windows_termout_sbufinfo.wAttributes;
 
-		// Using if - else if, because switch has a performance issue on some embedded machines
-		if (colornum == PColor(PColor::DEFAULT))
+		if (colornum == PColor(PColor::DEFAULT)) {
 			windows_colornum = 7;
-		else if (colornum == PColor(PColor::BLACK))
+		}
+		else if (colornum == PColor(PColor::BLACK)) {
 			windows_colornum = 0;
-		else if (colornum == PColor(PColor::RED))
+		}
+		else if (colornum == PColor(PColor::RED)) {
 			windows_colornum = 4;
-		else if (colornum == PColor(PColor::GREEN))
+		}
+		else if (colornum == PColor(PColor::GREEN)) {
 			windows_colornum = 2;
+		}
 		/*
-		else if (colornum == PColor::(PColor::BROWN))
+		else if (colornum == PColor::(PColor::BROWN)) {
+
+		}
 		*/
-		else if (colornum == PColor(PColor::BLUE))
+		else if (colornum == PColor(PColor::BLUE)) {
 			windows_colornum = 1;
+		}
 		/*
-		else if (colornum == PColor(PColor::MAGENTA))
+		else if (colornum == PColor(PColor::MAGENTA)) {
 			windows_colornum = 0;
+		}
 		*/
-		else if (colornum == PColor(PColor::CYAN))
+		else if (colornum == PColor(PColor::CYAN)) {
 			windows_colornum = 9;
-		else
+		}
+		else {
 			windows_colornum = 7;
+		}
 
 		SetConsoleTextAttribute(windows_termout_handle, windows_colornum);
-
 		cout << str;
-
 		SetConsoleTextAttribute(windows_termout_handle, windows_termout_attributes);
 #endif
 	}
 
-	SOut::SOut(void)
-	{
-		if (objnum == 0)
-		{
+	SOut::SOut(void) {
+		if (objnum == 0) {
 #ifdef TARGET_IS_POSIX
 			cout << "\033[?25l";                      // Hide cursor
 			cout << "\033[?1049h";                    // Use alternate screen buffer
@@ -111,8 +113,7 @@ namespace pong { namespace sys
 		objnum++;
 	}
 
-	SOut& SOut::Refresh(void)
-	{
+	SOut& SOut::Refresh(void) {
 #ifdef TARGET_IS_POSIX
 		fflush(stdout);
 #endif
@@ -120,8 +121,7 @@ namespace pong { namespace sys
 		return *this;
 	}
 
-	SOut& SOut::Clear(void)
-	{
+	SOut& SOut::Clear(void) {
 #ifdef TARGET_IS_POSIX
 		cout << "\033[2J";
 #endif
@@ -130,16 +130,21 @@ namespace pong { namespace sys
 		COORD startpoint = {0, 0};
 		DWORD dw;
 
-		GetConsoleScreenBufferInfo(windows_termout_handle, &windows_termout_sbufinfo);
-		FillConsoleOutputCharacterA(windows_termout_handle, ' ', windows_termout_sbufinfo.dwSize.X * windows_termout_sbufinfo.dwSize.Y, startpoint, &dw);
-		FillConsoleOutputAttribute(windows_termout_handle, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE,windows_termout_sbufinfo.dwSize.X * windows_termout_sbufinfo.dwSize.Y, startpoint, &dw);
+		GetConsoleScreenBufferInfo(windows_termout_handle,
+						&windows_termout_sbufinfo);
+		FillConsoleOutputCharacterA(windows_termout_handle, ' ',
+			windows_termout_sbufinfo.dwSize.X * windows_termout_sbufinfo.dwSize.Y,
+						startpoint, &dw);
+		FillConsoleOutputAttribute(windows_termout_handle,
+				FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE,
+			windows_termout_sbufinfo.dwSize.X * windows_termout_sbufinfo.dwSize.Y,
+						startpoint, &dw);
 #endif
 
 		return *this;
 	}
 
-	int SOut::GetLength(void)
-	{
+	int SOut::GetLength(void) {
 #ifdef TARGET_IS_POSIX
 		return wsize.ws_col;
 #endif
@@ -151,8 +156,7 @@ namespace pong { namespace sys
 		return 0;
 	}
 
-	int SOut::GetWidth(void)
-	{
+	int SOut::GetWidth(void) {
 #ifdef TARGET_IS_POSIX
 		return wsize.ws_row;
 #endif
@@ -164,8 +168,7 @@ namespace pong { namespace sys
 		return 0;
 	}
 
-	SOut& SOut::EraseWrite(PRect drect, PRect wrect)
-	{
+	SOut& SOut::EraseWrite(PRect drect, PRect wrect) {
 		static SOut sout;
 		drect.SetColor(PColor::VOIDSPACE);
 
@@ -174,26 +177,26 @@ namespace pong { namespace sys
 		return *this;
 	}
 
-	SOut& SOut::operator<<(PRect rect)
-	{
+	SOut& SOut::operator<<(PRect rect) {
 		static PColor transp(PColor::VOIDSPACE);
 		static PColor dful(PColor::DEFAULT);
 
-		for(int width=0; width<rect.GetWidth(); width++)
-		{
+		for(int width=0; width<rect.GetWidth(); width++) {
 			GotoPos((rect.GetSpoint()).GetXpos(), (rect.GetSpoint()).GetYpos() + width);
 
-			for(int length=0; length<rect.GetLength(); length++)
-			{
-				if (rect.GetColor() == transp)
+			for (int length = 0; length < rect.GetLength(); length++) {
+				if (rect.GetColor() == transp) {
 					PrintColorString(" ", dful);
+				}
 #ifdef TARGET_IS_POSIX
-				else
+				else {
 					PrintColorString("█", rect.GetColor());
+				}
 #endif
 #ifdef TARGET_IS_WIN32
-				else
+				else {
 					PrintColorString("@", rect.GetColor());
+				}
 #endif
 			}
 		}
@@ -201,21 +204,19 @@ namespace pong { namespace sys
 		return *this;
 	}
 
-	SOut& SOut::operator<<(PString str)
-	{
+	SOut& SOut::operator<<(PString str) {
 		GotoPos(str.GetSpoint());
 		PrintColorString(str.GetString(), str.GetColor());
 
 		return *this;
 	}
 
-	SOut::~SOut()
-	{
+	SOut::~SOut() {
 		objnum--;
 
-		if (objnum == 0)
-		{
-			GotoPos(Point(1, GetWidth())); // Move cursor to the end of the command line
+		if (objnum == 0) {
+			GotoPos(Point(1, GetWidth()));
+					// Move cursor to the end of the command line
 
 #ifdef TARGET_IS_POSIX
 			cout << "\033[?25h";           // Show cursor
@@ -236,15 +237,12 @@ namespace pong { namespace sys
 #endif
 	int SIn::objnum = 0;
 
-	void SIn::ClearBuf(void)
-	{
+	void SIn::ClearBuf(void) {
 		while (getchar() != EOF);
 	}
 
-	SIn::SIn(void)
-	{
-		if (objnum == 0)
-		{
+	SIn::SIn(void) {
+		if (objnum == 0) {
 #ifdef TARGET_IS_POSIX
 			tcgetattr(0, &regulartset);      // Get current attribution
 			newtset = regulartset;           // Substitute
@@ -260,38 +258,39 @@ namespace pong { namespace sys
 		objnum++;
 	}
 
-	void SIn::operator>>(int& target)
-	{
+	void SIn::operator>>(int& target) {
 #ifdef TARGET_IS_POSIX
 		target = getchar();
 		//ClearBuf();
 #endif
 #ifdef TARGET_IS_WIN32
-		if (_kbhit())
+		if (_kbhit()) {
 			target = _getch();
-		else
+		}
+		else {
 			target = -1;
+		}
 #endif
 	}
 
-	SIn::~SIn()
-	{
+	SIn::~SIn() {
 		objnum--;
 
 #ifdef TARGET_IS_POSIX
-		if (objnum == 0)
+		if (objnum == 0) {
 			tcsetattr(0, TCSANOW, &regulartset); // Apply the original setting
+		}
 #endif
 	}
 
-	SCurrent& SCurrent::DelayMsec(const long& msec)
-	{
+	SCurrent& SCurrent::DelayMsec(const long& msec) {
 #ifdef TARGET_IS_POSIX
 		static struct timespec tim;
 		static int ini = 0;
 
-		if (ini == 0)
+		if (ini == 0) {
 			tim.tv_sec = 0;
+		}
 		tim.tv_nsec = (msec * static_cast<long>(1000000));
 
 		nanosleep(&tim, NULL);
@@ -303,14 +302,12 @@ namespace pong { namespace sys
 		return *this;
 	}
 
-	bool SCurrent::CycleTick(const int& cyclenum)
-	{
+	bool SCurrent::CycleTick(const int& cyclenum) {
 		static int cycount = 0;
 
 		cycount++;
 
-		if (cycount >= cyclenum)
-		{
+		if (cycount >= cyclenum) {
 			cycount = 0;
 			return true;
 		}

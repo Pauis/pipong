@@ -149,15 +149,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp" />
-    <ClCompile Include="..\mainautomation.cpp" />
     <ClCompile Include="..\pongcolor.cpp" />
     <ClCompile Include="..\pongobj.cpp" />
     <ClCompile Include="..\pongstring.cpp" />
     <ClCompile Include="..\pongtrigger.cpp" />
+    <ClCompile Include="..\pongutility.cpp" />
     <ClCompile Include="..\sysio.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\mainautomation.h" />
     <ClInclude Include="..\pongcolor.h" />
     <ClInclude Include="..\pongobj.h" />
     <ClInclude Include="..\pongproperties.h" />

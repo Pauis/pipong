@@ -1,15 +1,12 @@
 #ifndef __PONGTRIGGER_H__
 #define __PONGTRIGGER_H__
 
-namespace pong
-{
-	class PGTrigger
-	{
+namespace pong {
+	class PGTrigger {
 	private:
 		int triggernum;
 	public:
-		enum
-		{
+		enum {
 			NONE,
 			LOBBY,
 			INGAME,
