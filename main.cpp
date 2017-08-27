@@ -1,48 +1,46 @@
-#include <string>
-#include "pongobj.h"
-#include "pongproperties.h"
-#include "pongstring.h"
-#include "pongtrigger.h"
-#include "pongutility.h"
-#include "sysio.h"
+#include "clitl/clitl.hpp"
+#include <iostream>
 
-using std::string;
-using pong::PString;
-using pong::PColor;
-using pong::Point;
-using pong::PRect;
-using pong::PKProperty;
-using pong::PGProperty;
-using pong::PGTrigger;
-using pong::MainAM;
-using pong::sys::SOut;
-using pong::sys::SIn;
-using pong::sys::SCurrent;
+enum class gamemode {
+    NONE,
+    LOBBY,
+    INGAME,
+};
 
 int main(void) {
+    using namespace std;
+    using namespace clitl;
+    using clitl::outbuf;
+    using clitl::ostream;
+    typedef pair<coord_t, coord_t> coordpair;
+
 	// Customized System Object
-	SOut sout;
-	SIn ssin;
-	SCurrent scurrent;
+    outbuf obuf;
+    ostream cliout(&obuf);
 	int keyinput;
 
 	// System Setting
-	int terminal_length = sout.GetLength();
-	int terminal_width = sout.GetWidth();
+	coordpair terminal_size = cliout.screensize();
 
 	// Game Object
-	Point upmovevector(0, -1);
-	Point downmovevector(0, 1);
-	PRect boundary_up(3, 2, terminal_length-4, 1);
-	PRect boundary_down(3, terminal_width-1, terminal_length-4, 1);
-	PRect boundary_left(2, 2, 1, terminal_width-2);
-	PRect boundary_right(terminal_length-1, 2, 1, terminal_width-2);
-	PRect boundary_court(3, 3, terminal_length-4, terminal_width-4);
-	PRect lcursor(2, terminal_width/2-2, 1, 6);
-	PRect rcursor(terminal_length-1, terminal_width/2-2, 1, 6);
-	PRect ball(terminal_length/2, terminal_width/2, 1, 1);
-	PRect pbuf;
-
+    rect<coord_t> boundary_up(coordpair(3, 2),
+        coordpair(terminal_size.first - 5, 2));
+    rect<coord_t> boundary_down(coordpair(3, terminal_size.second - 1),
+        coordpair(terminal_size.first - 5, terminal_size.second - 1));
+    rect<coord_t> boundary_left(coordpair(2, 2),
+        coordpair(2, terminal_size.second - 2));
+    rect<coord_t> boundary_right(coordpair(terminal_size.first - 1, 2),
+        coordpair(terminal_size.first - 1, terminal_size.second - 2));
+    rect<coord_t> boundary_court(coordpair(3, 3),
+        coordpair(terminal_size.first - 6, terminal_size.second - 5));
+    rect<coord_t> lcursor(coordpair(2, terminal_size.second / 2 - 2),
+        coordpair(2, terminal_size.second / 2 + 4));
+    rect<coord_t> rcursor(coordpair(terminal_size.first - 1, terminal_size.second / 2 - 2),
+        coordpair(terminal_size.first - 1, terminal_size.second / 2 + 4));
+    rect<coord_t> ball(coordpair(terminal_size.first / 2, terminal_size.second / 2),
+        coordpair(terminal_size.first / 2, terminal_size.second / 2));
+	rect<coord_t> rectbuf;
+    /*
 	// Game Setting
 	Point ballmovevector(-1, 1);
 	bool signal_terminate = false;
@@ -132,4 +130,5 @@ int main(void) {
 	}
 
 	return 0;
+    */
 }
