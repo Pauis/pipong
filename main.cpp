@@ -23,43 +23,45 @@ int main(void) {
 	coordpair terminal_size = cliout.screensize();
 
 	// Game Object
-    rect<coord_t> boundary_up(coordpair(3, 2),
-        coordpair(terminal_size.first - 5, 2));
-    rect<coord_t> boundary_down(coordpair(3, terminal_size.second - 1),
-        coordpair(terminal_size.first - 5, terminal_size.second - 1));
-    rect<coord_t> boundary_left(coordpair(2, 2),
+    rect<> boundary_up(coordpair(3, 2),
+        coordpair(terminal_size.first - 2, 2));
+    rect<> boundary_down(coordpair(3, terminal_size.second - 1),
+        coordpair(terminal_size.first - 2, terminal_size.second - 1));
+    rect<> boundary_left(coordpair(2, 3),
         coordpair(2, terminal_size.second - 2));
-    rect<coord_t> boundary_right(coordpair(terminal_size.first - 1, 2),
+    rect<> boundary_right(coordpair(terminal_size.first - 1, 3),
         coordpair(terminal_size.first - 1, terminal_size.second - 2));
-    rect<coord_t> boundary_court(coordpair(3, 3),
+    rect<> boundary_court(coordpair(3, 3),
         coordpair(terminal_size.first - 6, terminal_size.second - 5));
-    rect<coord_t> lcursor(coordpair(2, terminal_size.second / 2 - 2),
-        coordpair(2, terminal_size.second / 2 + 4));
-    rect<coord_t> rcursor(coordpair(terminal_size.first - 1, terminal_size.second / 2 - 2),
+    rect<> lcursor(coordpair(3, terminal_size.second / 2 - 2),
+        coordpair(3, terminal_size.second / 2 + 4));
+    rect<> rcursor(coordpair(terminal_size.first - 2, terminal_size.second / 2 - 2),
         coordpair(terminal_size.first - 1, terminal_size.second / 2 + 4));
-    rect<coord_t> ball(coordpair(terminal_size.first / 2, terminal_size.second / 2),
+    rect<> ball(coordpair(terminal_size.first / 2, terminal_size.second / 2),
         coordpair(terminal_size.first / 2, terminal_size.second / 2));
-	rect<coord_t> rectbuf;
+
+    coordpair ballmovevector(-1, 1);
+    rect<> rectbuf;
+    bool signal_terminate = false;
+    gamemode gmode = gamemode::LOBBY;
+
+    // Main Loop
+    cliout << pre_process;
+
+    //while (signal_terminate == false) {
+        keyinput =  cin.get();
+
+        if (gmode == gamemode::LOBBY) {
+            cliout << clear;
+
+            boundary_up.set_background(color::BLUE);
+            boundary_down.set_background(color::BLUE);
+        }
+    //}
+
+    cliout.paintmode(nullptr);
+
     /*
-	// Game Setting
-	Point ballmovevector(-1, 1);
-	bool signal_terminate = false;
-	PGTrigger gmode_event = PGTrigger::LOBBY;
-	PGTrigger gmode_stage = PGTrigger::NONE;
-	PGTrigger gmode_lobby = PGTrigger::LOBBY;
-	PGTrigger gmode_ingame = PGTrigger::INGAME;
-
-	// Game Logic
-	while (signal_terminate != true) {
-		ssin >> keyinput;
-
-		if (gmode_event == gmode_lobby) {
-			for (; gmode_stage != gmode_lobby; gmode_stage.Set(PGTrigger::LOBBY)) {
-				sout.Clear();
-
-				boundary_up.SetColor(PColor(PColor::BLUE));
-				boundary_down.SetColor(PColor(PColor::BLUE));
-
 				sout << boundary_up << boundary_down
 					<< PString("Pipong - Classic Table Tennis Game",
 							PColor(PColor::CYAN),
