@@ -49,13 +49,14 @@ int main(void) {
     cliout << pre_process;
 
     //while (signal_terminate == false) {
-        keyinput =  cin.get();
+        //keyinput = getchar();
 
         if (gmode == gamemode::LOBBY) {
             cliout << clear;
 
-            boundary_up.set_background(color::BLUE);
-            boundary_down.set_background(color::BLUE);
+            //boundary_up.set_background(color::BLUE);
+            //boundary_down.set_background(color::BLUE);
+            cliout << boundary_up << boundary_down;
         }
     //}
 
