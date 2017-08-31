@@ -54,26 +54,22 @@ int main(void) {
         if (gmode == gamemode::LOBBY) {
             cliout << clear;
 
-            //boundary_up.set_background(color::BLUE);
-            //boundary_down.set_background(color::BLUE);
-            cliout << boundary_up << boundary_down;
+            boundary_up.set_background(color::BLUE);
+            boundary_down.set_background(color::BLUE);
+            cliout << boundary_up << boundary_down
+                << coloredstring<>(coordpair(terminal_size.first / 2 - 20, terminal_size.second / 2 - 2),
+                    "Pipong - Classic Table Tennis Game", color::CYAN, color::DEFAULT)
+                << coloredstring<>(coordpair(terminal_size.first / 2 - 12, terminal_size.second / 2),
+                    string("Press '") + string("s") + string("' to start"))
+                << coloredstring<>(coordpair(terminal_size.first / 2 - 12, terminal_size.second / 2 + 1),
+                    string("Press '") + string("q") + string("' to end"))
+                << coloredstring<>(coordpair(terminal_size.first / 2 - 20, terminal_size.second / 2 + 3),
+                    "See more details on https://github.com/pauis/pipong.");
         }
     //}
 
     cliout.paintmode(nullptr);
-
     /*
-				sout << boundary_up << boundary_down
-					<< PString("Pipong - Classic Table Tennis Game",
-							PColor(PColor::CYAN),
-							Point(terminal_length/2-20, terminal_width/2-2))
-					<< PString(string("Press '") + string("s") + string("' to start"),
-							Point(terminal_length/2-12, terminal_width/2))
-					<< PString(string("Press '") + string("q") + string("' to end"),
-							Point(terminal_length/2-12, terminal_width/2+1))
-					<< PString("See more details on https://github.com/pauis/pipong.",
-							Point(terminal_length/2-20, terminal_width/2+3));
-			}
 
 			if (keyinput == PKProperty::PSTART) {
 				gmode_event.Set(PGTrigger::INGAME);
