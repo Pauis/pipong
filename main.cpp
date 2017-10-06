@@ -50,7 +50,7 @@ int main(void) {
     rect<> boundary_right(coordpair(terminal_size.first - 1, 3),
         coordpair(terminal_size.first - 1, terminal_size.second - 2));
     rect<> boundary_court(coordpair(3, 3),
-        coordpair(terminal_size.first - 6, terminal_size.second - 5));
+        coordpair(terminal_size.first - 2, terminal_size.second - 2));
     rect<> lcursor(coordpair(2, terminal_size.second / 2 - 2),
         coordpair(2, terminal_size.second / 2 + 4), color::CYAN);
     rect<> rcursor(coordpair(terminal_size.first - 1, terminal_size.second / 2 - 2),
@@ -109,6 +109,8 @@ int main(void) {
                 lcursor.set_endpoint(coordpair(2, terminal_size.second / 2 + 4));
                 rcursor.set_origin(coordpair(terminal_size.first - 1, terminal_size.second / 2 - 2));
                 rcursor.set_endpoint(coordpair(terminal_size.first - 1, terminal_size.second / 2 + 4));
+                ball.set_origin(coordpair(terminal_size.first / 2, terminal_size.second / 2));
+                ball.set_endpoint(coordpair(terminal_size.first / 2, terminal_size.second / 2));
                 cliout << boundary_up << boundary_down << lcursor << rcursor << ball;
             }
 
@@ -174,25 +176,5 @@ int main(void) {
         std::this_thread::sleep_for(chrono::milliseconds(UNIT_CLOCK));
     }
 
-    cliout.paintmode(nullptr);
-
-            
-    /*
-				if (boundary_left.CheckInclude(pbuf) || boundary_right.CheckInclude(pbuf)) {
-					if (lcursor.CheckInclude(pbuf) || rcursor.CheckInclude(pbuf)) {
-						ballmovevector.SetXpos(-(ballmovevector.GetXpos()));
-					}
-					else {
-						gmode_event.Set(PGTrigger::LOBBY);
-					}
-				}
-			}
-		}
-
-		sout.Refresh();
-		scurrent.DelayMsec(PGProperty::PCYCLEDELAY);
-	}
-
-	return 0;
-    */
+    cliout << post_process;
 }
